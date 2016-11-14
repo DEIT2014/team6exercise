@@ -1,29 +1,29 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto);
-
 html, body {
+
+
     width: 100%;
     height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
+    background-color: #000000;
 
-<
-style type
 
-=
-"text/css"
->
-.headtitle {
-    color: #06F;
-    font-family: "Adobe 黑体 Std R";
-    font-size: 18px;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: cornflowerblue;
-    pandding-bottom: 6px;
-    text-align: center;
-    width: auto;
+.header {
+    width: 100%;
+    heighth: 40px;
+    background-color: #0066FF;
+    padding: 5px
+}
 
+.content {
+    width: 100%;
+    heighth: 700px;
+    background-color: #000000;
+}
+
+.footer {
+    width: 100%;
+    heighter: 60px;
+    background-color: transparent;
+    padding: 5px;
 }
 #title {
     font-family: "黑体";
@@ -108,3 +108,5 @@ style type
 }
 
 }
+
+
