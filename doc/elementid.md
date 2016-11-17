@@ -11,3 +11,9 @@ judge_score|教师评分功能
 score_number|教师评价中的分数
 judge_reason|教师评价的原因
 reason_word|教师评价原因的文字输入部分
+signup|注册按钮
+signin|登录按钮
+teaPreview|预览学生的作业
+teaMark|老师评分框
+teaReview|回复框的回复按钮
+commentInput|回复框

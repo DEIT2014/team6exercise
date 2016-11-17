@@ -21,19 +21,24 @@ void main() {
     ..onClick.listen(signin);
 
 //评论区界面
-  var teaPreview = querySelector('teaPreview');
+  var teaPreview = querySelector('#teaPreview');
   querySelector('#teaPreview')
     ..text=listen(teaPreview);
 
-  var teaMark = querySelector('teaMark');
+  var teaMark = querySelector('#teaMark');
   querySelector('#teaMark')
     ..text='评分'
     ..onClick.listen(teaMark);
 
-  var teaReview = querySelector('teaReview');
+  var teaReview = querySelector('#teaReview');
   querySelector('#teaReview')
     ..text='回复'
     ..onClick.listen(teaReview);
+
+  var teaReview = querySelector('#commentInput');
+  querySelector('#commentInput')
+    ..text=''
+    ..onClick.listen(commentInput);
 }
 /// reverseText用来接受用户点击按钮翻转字符的响应工作。
 /// 参数[event]是鼠标事件....
@@ -64,4 +69,8 @@ void teaMark(){
 
 void teaReview(){
   //todo 跳出新的div回复框，提交已写文字到数据库
+}
+
+void commentInput(){
+  //todo 输入评论
 }
