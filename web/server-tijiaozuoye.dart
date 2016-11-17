@@ -20,14 +20,16 @@ forStu(request){
 }
 
 myHandler(request) {
+  ///todo:获取学生的专业
   var name = getPathParameter(request, 'name');
   var faculty = getPathParameter(request, 'faculty');
   return new Response.ok("Hello $name of faculty $faculty");
 }
 stuCourse(request) {
+  ///todo:获取学生的所选课程
   var name = getPathParameter(request, 'name');
   var course = getPathParameter(request, 'course');
-  return new Response.ok("Hello $name of faculty $course");
+  return new Response.ok("Hello $name of course $course");
 }
 scanComputer(request) {
   ///todo:实现浏览本地电脑文件的功能

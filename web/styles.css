@@ -1,16 +1,24 @@
 html, body {
 
-
     width: 100%;
     height: 100%;
     background-color: #FFFFFF;
+.ul{
+    margin: 0;
+    padding:0 ;
+    list-style: none;
+}
 
+.dl,dt {margin: 0;}
+
+.img{display:block}
 
 .header {
     width: 100%;
     heighth: 40px;
     background-color: #0066FF;
-    padding: 5px
+    padding: 5px;
+    margin:0;
 }
 
 .content {
@@ -25,10 +33,12 @@ html, body {
     background-color: transparent;
     padding: 5px;
 }
+
 #title {
     font-family: "黑体";
     font-size: 36px;
 }
+
 #form1 {
     border: 2px solid #000000;
     font-size: 18px;
@@ -39,6 +49,7 @@ html, body {
     margin-left: 30%;
     padding-top: 30px;
 }
+
 .form1buttom {
     font-size: 14px;
     margin-right: 0%;
@@ -46,6 +57,7 @@ html, body {
     padding-top: 2px;
     padding-bottom: 2px;
 }
+
 .yhead {
     margin-top: 0%;
     margin-right: 0%;
@@ -69,23 +81,28 @@ html, body {
     right: 50px;
     bottom: 50px;
 }
+
 #score {
     text-align: right;
     margin-right: 10px;
 }
+
 .comment {
     background-color: #E8E8E8;
     height: 200px;
     padding: 3px;
 }
+
 .input {
     margin-left: 10%;
     margin-right: 10px;
     width: 80%;
 }
+
 .form3buttom {
     margin-left: 800px;
 }
+
 .container {
     left: 15%;
     right: 15%;
@@ -107,12 +124,11 @@ html, body {
     font-size: 16px;
 }
 
-}
-
 body {
     height: 100%;
     width: 100%;
 }
+
 .mainbody {
     border-top-width: 80%;
     border-right-width: 80%;
@@ -126,6 +142,7 @@ body {
     margin-bottom: 10%;
     margin-left: auto;
 }
+
 stuhomework_list {
     border-top-width: 80%;
     border-right-width: 80%;
@@ -146,8 +163,19 @@ homework_detail {
     border-bottom-width: 80%;
     border-left-width: 80%;
 }
+
 homework_file {
     font-style: normal;
     text-decoration: underline;
 }
 
+.STYLE1 {
+    font-family: "宋体";
+    font-size: 18px;
+}
+
+.STYLE2 {
+    font-size: 36px
+}
+
+}
