@@ -20,6 +20,37 @@ void main() {
     ..text='登录'
     ..onClick.listen(signin);
 
+
+
+  //提交作业界面
+  void main(){
+    ///有关作业信息的板块
+    //todo:从老师数据库中获取作业信息的截至日期和作业注释
+    ///有关作业提交的板块
+    //todo:添加附件浏览电脑的功能
+  }
+
+  var postHomework = querySelector('#postHomework');
+  querySelector('#postHomework')
+    ..text='写入提交'
+    ..onClick.listen(postHomework);//todo：点击写入提交按钮就能够出现填写文本的输入框
+
+  var cancel = querySelector('#cancel');
+  querySelector('#cancel')
+    ..text='取消'
+    ..onClick.listen(cancel);
+
+  var saveDraft = querySelector('#saveDraft');
+  querySelector('#saveDraft')
+    ..text='保存草稿'
+    ..onClick.listen(saveDraft);
+
+  var submit = querySelector('#submit');
+  querySelector('#submit')
+    ..text='提交'
+    ..onClick.listen(submit);
+
+
 //评论区界面
   var teaPreview = querySelector('#teaPreview');
   querySelector('#teaPreview')
