@@ -2,9 +2,12 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 import 'dart:html';
+import 'dart:math';
+import 'dart:convert' show JSON;
+import 'dart:core'as core;
+import 'dart:async';
 
-
-
+var host = "localhost:4042";
 void main() {
   querySelector('#sample_text_id')
     ..text = 'Click me!'
@@ -64,7 +67,7 @@ void main() {
   var teaReview = querySelector('#teaReview');
   querySelector('#teaReview')
     ..text='回复'
-    ..onClick.listen(teaReview);
+    ..onClick.listen();
 
   var teaReview = querySelector('#commentInput');
   querySelector('#commentInput')
@@ -100,8 +103,18 @@ void teaMark(){
 
 void teaReview(){
   //todo 跳出新的div回复框，提交已写文字到数据库
+  var url = "http://$host"; // call the web server asynchronously
+  var request = HttpRequest.getString(url).then(teaReview);
+  onDataLoaded(responseText) {
+    var jsonString = responseText;
+    var students=JSON.decode(jsonString);
+    var studentid=students['comments'];
+    querySelector('#sample').text=studentid;
+  }
+
 }
 
 void commentInput(){
   //todo 输入评论
+
 }
