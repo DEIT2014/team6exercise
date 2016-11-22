@@ -1,6 +1,9 @@
 import 'dart:io';
 import 'dart:core';
 import 'dart:async';
+import 'package:sqljocky/sqljocky.dart';
+import 'package:sqljocky/utils.dart';
+import 'package:options_file/options_file.dart';
 
 /* A simple web server that responds to **ALL** GET requests by returning
  * the contents of data.json file, and responds to ALL **POST** requests
@@ -16,6 +19,7 @@ final PORT = 4042;
 final DATA_FILE = "C:\\Users\\wen51\\Documents\\GitHub\\team6exercise\\data.json";
 
 void main() {
+  //todo 读取服务器上数据
   HttpServer.bind(HOST, PORT).then((server) {
     server.listen((HttpRequest request) {
       switch (request.method) {
@@ -37,7 +41,7 @@ void main() {
   pool.query("SELECT * FROM signup").then((results) {
     results.forEach((row) {
       //使用下标查询结果
-      print('${row[1]},${row[3]}');
+      print('${row[0]},${row[1]}');
     });
   });
 }
