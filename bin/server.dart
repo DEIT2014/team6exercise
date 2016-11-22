@@ -16,7 +16,7 @@ import 'package:options_file/options_file.dart';
 
 final HOST = "localhost"; // eg: localhost
 final PORT = 4042;
-final DATA_FILE = "C:\\Users\\wen51\\Documents\\GitHub\\team6exercise\\data.json";
+final DATA_FILE = "127.0.0.1\\C:\Users\candice\Documents\GitHub\team6exercise\\data.json";
 
 void main() {
   //todo 读取服务器上数据
