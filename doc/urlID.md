@@ -14,6 +14,7 @@ URL | 功能描述|姓名
 /getstuhomework_list| 获取学生提交的作业列表
 /gethomework_detail|获取学生提交的一份作业的具体信息
 /postjudge|提交教师的评价
+/submitbutton|提交
 /stu/comment/{id}/{number} | 获取学生第几项作业的评论|吴怡雯
 /signin|登录页面
 /signup|注册页面

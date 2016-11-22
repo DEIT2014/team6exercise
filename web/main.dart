@@ -8,10 +8,6 @@ import 'dart:core'as core;
 import 'dart:async';
 
 var host = "localhost:4042";
-void main() {
-  querySelector('#sample_text_id')
-    ..text = 'Click me!'
-    ..onClick.listen(reverseText);//栗子
 //登录界面
   var signup = querySelector('#signup');
   querySelector('#signup')
@@ -143,16 +139,23 @@ void stuhomework_list() {
 var gethomework_detail = querySelector('#homework_detail');
 querySelector('#homework_detail')
 ..text='信息技术课程作业三：吴同学'
-..onClick.listen(homework_detail);
+..onClick.listen (homework_detail );
 void homework_detail() {
   //todo 获取学生提交的一份作业的具体信息
 }
 //评价页面—李志伟
 var postjudge = querySelector('#judge');
 querySelector('#judge')
-..text='信息技术课程作业三：吴同学 图书馆预定座位小程序'
+..text = '信息技术课程作业三：吴同学 图书馆预定座位小程序'
 ..onClick.listen(judge);
 void judge() {
-  //todo 提交教师的评价
+  //todo 教师的评价
+}
+var submitbutton = querySelector('#submitbutton');
+querySelector('#submitbutton')
+..text = '提交'
+..onClick.listen(submitbutton);
+void submitbutton() {
+  //todo 提交
 }
 
