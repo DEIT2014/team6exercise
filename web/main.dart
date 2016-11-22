@@ -116,5 +116,43 @@ void teaReview(){
 
 void commentInput(){
   //todo 输入评论
-
 }
+
+//教师页面—李志伟
+var getproject_list = querySelector('#project_list');
+querySelector('#project_list')
+..text='信息技术课程作业'
+..onClick.listen(project_list);
+void project_list() {
+  //todo 获取老师发布的作业列表
+}
+var gethomework_list = querySelector('#homework_list');
+querySelector('#homework_list')
+..text='信息技术课程作业三'
+..onClick.listen(homework_list);
+void homework_list() {
+  //todo 获取老师收到的学生的作业列表
+}
+var getstuhomework_list = querySelector('#stuhomework_list');
+querySelector('#stuhomework_list')
+..text='信息技术课程作业三'
+..onClick.listen(stuhomework_list);
+void stuhomework_list() {
+  //todo 获取学生提交的作业列表
+}
+var gethomework_detail = querySelector('#homework_detail');
+querySelector('#homework_detail')
+..text='信息技术课程作业三：吴同学'
+..onClick.listen(homework_detail);
+void homework_detail() {
+  //todo 获取学生提交的一份作业的具体信息
+}
+//评价页面—李志伟
+var postjudge = querySelector('#judge');
+querySelector('#judge')
+..text='信息技术课程作业三：吴同学 图书馆预定座位小程序'
+..onClick.listen(judge);
+void judge() {
+  //todo 提交教师的评价
+}
+
