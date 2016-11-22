@@ -13,7 +13,7 @@ import 'dart:async';
 
 final HOST = "localhost"; // eg: localhost
 final PORT = 4042;
-final DATA_FILE = "data.json";
+final DATA_FILE = "C:\\Users\\wen51\\Documents\\GitHub\\team6exercise\\data.json";
 
 void main() {
   HttpServer.bind(HOST, PORT).then((server) {
