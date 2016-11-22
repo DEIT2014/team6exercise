@@ -30,6 +30,16 @@ void main() {
     print("Listening for GET and POST on http://$HOST:$PORT");
   },
       onError: printError);
+  //todo 连接数据库
+  var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test', password: '111111', db: 'student', max: 5);
+  print("Hello,world!");
+  // pool.query("SELECT * FROM signup");
+  pool.query("SELECT * FROM signup").then((results) {
+    results.forEach((row) {
+      //使用下标查询结果
+      print('${row[1]},${row[3]}');
+    });
+  });
 }
 
 /**
