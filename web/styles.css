@@ -50,7 +50,7 @@ html, body {
     margin-left: 30%;
     padding-top: 30px;
 }
-#sample{
+#teaReview{
     font-size: 40pt;
     text-align: center;
     margin-top: 140px;
@@ -58,7 +58,7 @@ html, body {
     user-select: none;
 }
 
-#teaReview {
+#teaReview_text {
     font-size: 24pt;
     text-align: center;
     margin-top: 140px;

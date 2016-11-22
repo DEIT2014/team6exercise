@@ -35,27 +35,81 @@
 </ul>
       </div>
  </div>
-    <div id="sample"> </div>
-    <div ><button id="sample_text_id"></button></div>
-    <div  id="content">
-       <h2  align="center">作业提交</h2>
-        <div id="inputtext">
-             <form action="#"method="post">
-                <input type="text" name="txt"/>
-              </form>
+
+
+<!--登录页面-吴怡雯-->
+    <blockquote>
+        <div id="title">
+            <div align="center">华东师范大学作业评价工具</div>
         </div>
-<div id="posthomework">
-   <!-- ///文件上传
-    中间包括按钮，本地浏览文件，以及上传文件功能->
-    1,页面布局问题
-       2，添加按钮
-       3，浏览电脑
-       4，提交文件
-    这四个函数组成作业提交的界面///-->
+    </blockquote>
+    <form id="form1" name="form1" method="post" action="">
+        <label> <br />
+            用户名：
+            <input type="text" name="textfield" />
+            <br />
+            <br />
+            密码 ：
+            <input type="text" name="textfield2" />
+        </label>
+        <p>
+            <button class="form1buttom">登录</button>
+            <button class="form1buttom">取消</button>
+
+        </p>
+        <p>&nbsp;</p>
+    </form>
+
+    <p>&nbsp; </p>
+    <!--评论区页面-吴怡雯-->
+    <div align="right" class="yhead">
+        <p>你好，XX！|<button class="form2buttom">注销</button></p>
+    </div>
+    <br><br>
+    <div class="container">
+        <p>您的作业成绩已出，请看成绩与分析……</p>
+        <p align="right">总分：<div id="score"> 90</div></p>
+        <div class="comment">
+            <blockquote>
+                <p>凌菁老师：</p>
+            </blockquote>
+            <textarea rows="4" class="input">    这篇论文观点明确，论据充足，条理清晰，凌菁老师很喜欢！</textarea>
+            <br>
+            <div class="form3buttom">
+                <button>回复</button>
+            </div>
+        </div>
+        <br>
+        <div class="comment">
+            <blockquote>
+                <p>小能：</p>
+            </blockquote>
+            <textarea rows="4" class="input">    谢谢凌菁老师的评语！</textarea>
+            <br>
+            <button class="form3buttom">提交</button>
+        </div>
     </div>
 
+
+    <div  id="content">
+        <h2  align="center">作业提交</h2>
+        <div id="inputtext">
+            <form action="#"method="post">
+                <input type="text" name="txt"/>
+            </form>
+        </div>
+        <div id="posthomework">
+            <!-- ///文件上传
+             中间包括按钮，本地浏览文件，以及上传文件功能->
+             1,页面布局问题
+                2，添加按钮
+                3，浏览电脑
+                4，提交文件
+             这四个函数组成作业提交的界面///-->
+        </div>
+
     </div>
-<div  id="footer" align="center">
+    <div  id="footer" align="center">
     第六小组web作业评价工具
 </div>
 

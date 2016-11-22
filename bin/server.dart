@@ -1,10 +1,10 @@
 import 'dart:io';
-import 'dart:core';
-import 'dart:async';
 import 'package:sqljocky/sqljocky.dart';
 import 'package:sqljocky/utils.dart';
 import 'package:options_file/options_file.dart';
-
+import 'package:shelf/shelf.dart' ;
+import 'package:shelf/shelf_io.dart' as io;
+import 'package:shelf_route/shelf_route.dart';
 /* A simple web server that responds to **ALL** GET requests by returning
  * the contents of data.json file, and responds to ALL **POST** requests
  * by overwriting the contents of the data.json file
@@ -19,12 +19,28 @@ final PORT = 4042;
 final DATA_FILE = "127.0.0.1\\C:\Users\candice\Documents\GitHub\team6exercise\\data.json";
 
 void main() {
+  //杜谦
+  var myRouter = router()
+    ..get('/stu',forStu)
+    ..get('/{name}{?faculty}', myHandler)
+    ..get('/{name}{?course}',stuCourse)
+    ..get('/{name}{?scanComputer}',scanComputer)
+    ..get('/{name}{?submitHomework}',submitHomework)
+    ..get('/teacher',responseRoot);
+  io.serve(myRouter.handler, '127.0.0.1', 8080);
+
   //todo 读取服务器上数据
   HttpServer.bind(HOST, PORT).then((server) {
     server.listen((HttpRequest request) {
       switch (request.method) {
         case "GET":
           handleGet(request);
+          break;
+        case "POST":
+          handlePost(request);
+          break;
+        case "OPTIONS":
+          handleOptions(request);
           break;
         default: defaultHandler(request);
       }
@@ -72,6 +88,24 @@ void handleGet(HttpRequest req) {
  * Handle POST requests by overwriting the contents of data.json
  * Return the same set of data back to the client.
  */
+void handlePost(HttpRequest req) {
+  HttpResponse res = req.response;
+  print("${req.method}: ${req.uri.path}");
+
+  addCorsHeaders(res);
+
+  req.listen((List<int> buffer) {
+    var file = new File(DATA_FILE);
+    var ioSink = file.openWrite(); // save the data to the file
+    ioSink.add(buffer);
+    ioSink.close();
+
+    // return the same results back to the client
+    res.add(buffer);
+    res.close();
+  },
+      onError: printError);
+}
 
 
 /**
@@ -96,3 +130,43 @@ void defaultHandler(HttpRequest req) {
 }
 
 void printError(error) => print(error);
+//杜谦
+forStu(request){
+  ///todo:获取学生的用户名，显示在页头
+  return new Response.ok("Hello stu!");
+}
+
+myHandler(request) {
+  ///todo:获取学生的专业
+  var name = getPathParameter(request, 'name');
+  var faculty = getPathParameter(request, 'faculty');
+  return new Response.ok("Hello $name of faculty $faculty");
+}
+stuCourse(request) {
+  ///todo:获取学生的所选课程
+  var name = getPathParameter(request, 'name');
+  var course = getPathParameter(request, 'course');
+  return new Response.ok("Hello $name of course $course");
+}
+scanComputer(request) {
+  ///todo:实现浏览本地电脑文件的功能
+  var name = getPathParameter(request, 'name');
+  var scanComputer = getPathParameter(request, 'scanComputer');
+  return new Response.ok("Hello $name of scanComputer $scanComputer");
+}
+
+submitHomework(request) {
+  ///todo:实现提交作业的功能
+  var name = getPathParameter(request, 'name');
+  var submitHomework = getPathParameter(request, 'submitHomework');
+  return new Response.ok("Hello $name of submitHomework $submitHomework");
+}
+
+
+responseRoot(request){
+  ///todo:获取老师的用户名，显示在页头
+  return new Response.ok("Hello teacher!");
+
+
+}
+
