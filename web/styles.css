@@ -40,7 +40,7 @@ html, body {
     font-size: 36px;
 }
 
-#form1 {
+.form1 {
     border: 2px solid #000000;
     font-size: 18px;
     line-height: 20px;

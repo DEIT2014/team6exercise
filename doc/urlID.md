@@ -14,7 +14,10 @@ URL | 功能描述|姓名
 /gethomework_detail|获取学生提交的一份作业的具体信息
 /postjudge|提交教师的评价
 /submitbutton|提交
-/stu/comment/{id}/{number} | 获取学生第几项作业的评论|吴怡雯
-/signin|登录页面
-/signup|注册页面
+/stu/comment/{id}/{number}/ | 评论区在某同学第几条作业下获取已有评论|吴怡雯
+/stu/getScore/{id}/{number}/| 评论区在某同学第几条作业下获取分数
+/signin/getid/|登录获取身份信息
+/stu/postComment/{id}/{number}/ | 评论区在某同学第几条作业下提交学生的评论
+/signin/postid/|登录提交身份信息
+/signup/postid/|注册提交身份信息
  
