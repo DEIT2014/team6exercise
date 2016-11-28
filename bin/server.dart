@@ -15,158 +15,78 @@ import 'package:shelf_route/shelf_route.dart';
  */
 
 final HOST = "localhost"; // eg: localhost
-final PORT = 4042;
-final DATA_FILE = "127.0.0.1\\C:\Users\candice\Documents\GitHub\team6exercise\\data.json";
+final PORT = 8080;
+final DATA_FILE = "C:\\Users\\Qian\\WebstormProjects\\作业评价系统\\team6exercise\\team6exercise\\team6exercise\\team6exercise\\web\\data.json";
 
 void main() {
   //杜谦
   var myRouter = router()
-    ..get('/stu',forStu)
-    ..get('/{name}{?faculty}', myHandler)
-    ..get('/{name}{?course}',stuCourse)
-    ..get('/{name}{?scanComputer}',scanComputer)
-    ..get('/{name}{?submitHomework}',submitHomework)
-    ..get('/teacher',responseRoot);
+    ..get('/stu', forStu)..get('/{name}{?faculty}', myHandler)
+    ..get('/{name}{?course}', stuCourse)
+    ..get('/{name}{?scanComputer}', scanComputer)
+    ..get('/{name}{?submitHomework}', submitHomework)
+    ..get('/teacher', responseRoot);
   io.serve(myRouter.handler, '127.0.0.1', 8080);
+}
 
   //todo 读取服务器上数据
-  HttpServer.bind(HOST, PORT).then((server) {
-    server.listen((HttpRequest request) {
-      switch (request.method) {
-        case "GET":
-          handleGet(request);
-          break;
-        case "POST":
-          handlePost(request);
-          break;
-        case "OPTIONS":
-          handleOptions(request);
-          break;
-        default: defaultHandler(request);
-      }
-    },
-        onError: printError);
 
-    print("Listening for GET and POST on http://$HOST:$PORT");
-  },
-      onError: printError);
   //todo 连接数据库
-  var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test', password: '111111', db: 'student', max: 5);
+
+
+
+/**
+ * Handle GET requests by reading the contents of data.json
+ * and returning it to the client
+ */
+
+//杜谦
+forStu(request){
+  ///todo:获取学生的用户名，显示在页头
+   var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test', password: '111111', db: 'student', max: 5);
   print("Hello,world!");
-  // pool.query("SELECT * FROM signup");
+  pool.query("SELECT * FROM signup");
   pool.query("SELECT * FROM signup").then((results) {
     results.forEach((row) {
       //使用下标查询结果
       print('${row[0]},${row[1]}');
     });
   });
-}
-
-/**
- * Handle GET requests by reading the contents of data.json
- * and returning it to the client
- */
-void handleGet(HttpRequest req) {
-  HttpResponse res = req.response;
-  print("${req.method}: ${req.uri.path}");
-  addCorsHeaders(res);
-
-  var file = new File(DATA_FILE);
-  if (file.existsSync()) {
-    res.headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
-    file.readAsBytes().asStream().pipe(res); // automatically close output stream
-  }
-  else {
-    var err = "Could not find file: $DATA_FILE";
-    res.addStream(err);
-    res.close();
-  }
-
-}
-
-/**
- * Handle POST requests by overwriting the contents of data.json
- * Return the same set of data back to the client.
- */
-void handlePost(HttpRequest req) {
-  HttpResponse res = req.response;
-  print("${req.method}: ${req.uri.path}");
-
-  addCorsHeaders(res);
-
-  req.listen((List<int> buffer) {
-    var file = new File(DATA_FILE);
-    var ioSink = file.openWrite(); // save the data to the file
-    ioSink.add(buffer);
-    ioSink.close();
-
-    // return the same results back to the client
-    res.add(buffer);
-    res.close();
-  },
-      onError: printError);
-}
-
-
-/**
- * Add Cross-site headers to enable accessing this server from pages
- * not served by this server
- *
- * See: http://www.html5rocks.com/en/tutorials/cors/
- * and http://enable-cors.org/server.html
- */
-void addCorsHeaders(HttpResponse res) {
-  res.headers.add("Access-Control-Allow-Origin", "*");
-  res.headers.add("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
-  res.headers.add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-}
-
-void defaultHandler(HttpRequest req) {
-  HttpResponse res = req.response;
-  addCorsHeaders(res);
-  res.statusCode = HttpStatus.NOT_FOUND;
-  //res.addString("Not found: ${req.method}, ${req.uri.path}");
-  res.close();
-}
-
-void printError(error) => print(error);
-//杜谦
-forStu(request){
-  ///todo:获取学生的用户名，显示在页头
   return new Response.ok("Hello stu!");
+
 }
 
-myHandler(request) {
+///myHandler(request) {
   ///todo:获取学生的专业
-  var name = getPathParameter(request, 'name');
-  var faculty = getPathParameter(request, 'faculty');
-  return new Response.ok("Hello $name of faculty $faculty");
-}
-stuCourse(request) {
+ // var name = getPathParameter(request, 'name');
+ // var faculty = getPathParameter(request, 'faculty');
+  //return new Response.ok("Hello $name of faculty $faculty");
+//}
+//stuCourse(request) {
   ///todo:获取学生的所选课程
-  var name = getPathParameter(request, 'name');
-  var course = getPathParameter(request, 'course');
-  return new Response.ok("Hello $name of course $course");
-}
-scanComputer(request) {
+ // var name = getPathParameter(request, 'name');
+//  var course = getPathParameter(request, 'course');
+ // return new Response.ok("Hello $name of course $course");
+//}
+//scanComputer(request) {
   ///todo:实现浏览本地电脑文件的功能
-  var name = getPathParameter(request, 'name');
-  var scanComputer = getPathParameter(request, 'scanComputer');
-  return new Response.ok("Hello $name of scanComputer $scanComputer");
-}
+ // var name = getPathParameter(request, 'name');
+  //var scanComputer = getPathParameter(request, 'scanComputer');
+  //return new Response.ok("Hello $name of scanComputer $scanComputer");
+//}
 
-submitHomework(request) {
+//submitHomework(request) {
   ///todo:实现提交作业的功能
-  var name = getPathParameter(request, 'name');
-  var submitHomework = getPathParameter(request, 'submitHomework');
-  return new Response.ok("Hello $name of submitHomework $submitHomework");
-}
+  //var name = getPathParameter(request, 'name');
+  //var submitHomework = getPathParameter(request, 'submitHomework');
+  //return new Response.ok("Hello $name of submitHomework $submitHomework");
+//}
 
 
-responseRoot(request){
+//responseRoot(request){
   ///todo:获取老师的用户名，显示在页头
-  return new Response.ok("Hello teacher!");
+  //return new Response.ok("Hello teacher!");
 
 
-}
+//}
 
