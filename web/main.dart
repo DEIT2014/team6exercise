@@ -1,6 +1,9 @@
 // Copyright (c) 2016, <your name>. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
+// Copyright (c) 2016, <your name>. All rights reserved. Use of this source code
+// is governed by a BSD-style license that can be found in the LICENSE file.
+
 import 'dart:html';
 import 'dart:math';
 import 'dart:convert' show JSON;
@@ -25,10 +28,10 @@ void main() {
 
   //提交作业界面
 
-    ///有关作业信息的板块
-    //todo:从老师数据库中获取作业信息的截至日期和作业注释
-    ///有关作业提交的板块
-    //todo:添加附件浏览电脑的功能
+  ///有关作业信息的板块
+  //todo:从老师数据库中获取作业信息的截至日期和作业注释
+  ///有关作业提交的板块
+  //todo:添加附件浏览电脑的功能
 
 
   var postHomework = querySelector('#postHomework');

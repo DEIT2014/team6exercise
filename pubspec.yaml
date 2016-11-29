@@ -1,4 +1,4 @@
-name: 'untitled'
+name: 'untitled1'
 version: 0.0.1
 description: An absolute bare-bones web app.
 #author: Your Name <email@example.com>
@@ -10,13 +10,12 @@ environment:
 #dependencies:
 #  my_dependency: any
 
-dependencies:
-args: '>=0.10.0 <0.14.0'
-shelf:
-shelf_route:
-sqljocky: 0.14.1
-logging: 0.11.3+1
-
 dev_dependencies:
   browser: '>=0.10.0 <0.11.0'
+  shelf:
+  shelf_route:
+  sqljocky:
   dart_to_js_script_rewriter: '^1.0.1'
+
+transformers:
+- dart_to_js_script_rewriter

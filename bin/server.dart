@@ -16,13 +16,12 @@ import 'package:shelf_route/shelf_route.dart';
 
 final HOST = "localhost"; // eg: localhost
 final PORT = 8080;
-final DATA_FILE = "C:\\Users\\Qian\\WebstormProjects\\作业评价系统\\team6exercise\\team6exercise\\team6exercise\\team6exercise\\web\\data.json";
+final DATA_FILE = "C:\\Users\\Qian\\WebstormProjects\\作业评价系统\\team6exercise\\web\\data.json";
 
 void main() {
   //杜谦
   var myRouter = router()
-    ..get('/stu', forStu)
-    ..get('/{name}{?faculty}', myHandler)
+    ..get('/stu', forStu)..get('/{name}{?faculty}', myHandler)
     ..get('/{name}{?course}', stuCourse)
     ..get('/{name}{?scanComputer}', scanComputer)
     ..get('/{name}{?submitHomework}', submitHomework)
@@ -33,12 +32,8 @@ void main() {
     ..get('/stu/getScore/{id}/{number}/',getScore)//评论区在某同学第几条作业下获取分数
     ..post('/stu/postComment/{id}/{number}/',stuPostComment)//评论区在某同学第几条作业下提交学生的评论
     ..post('/signin/postid/',postID)//登录提交身份信息
-    ..post('/signup/postid/',postID)//注册提交身份信息
-//李志伟
-    ..get('/tea/gethprojectlist/{schoolnumber}/',getprojectlist)//获取老师发布的作业列表
-    ..get('/tea/gethprojectlist/{schoolnumber}/gethomeworklist',gethomeworklist)//获取老师收到的学生的作业列表
-    ..get('/tea/rojectlist/{schoolnumber}/gethomeworklist/gethomeworkdetail',gethomeworkdetail)//获取学生提交的一份作业的具体信息
-    ..post('/tea/postjudge/{teaschoolnumber}/{stuschoolnumber}/{id}/',postjudge);//提交教师的评价
+    ..post('/signup/postid/',postID);//注册提交身份信息
+
   io.serve(myRouter.handler, '127.0.0.1', 8080);
 }
 
@@ -100,7 +95,6 @@ forStu(request){
 //return new Response.ok("Hello teacher!");
 
 
-
 //}
 
 getComment(request){
@@ -119,36 +113,3 @@ postID(request){
 getScore(request){
   //todo 在某同学第几条作业下获取分数
 }
-
-//李志伟
-getprojectlist(request){
-  //todo 取老师发布的作业列表
-}
-gethomeworklist(request){
-  //todo 获取老师收到的学生的作业列表
-}
-gethomeworkdetail(request){
-  //todo 获取学生提交的一份作业的具体信息
-}
-postjudge(request){
-//todo 提交教师的评价
-}
-
-
-getComment(request){
-  //todo 在某同学第几条作业下获取已有评论
-}
-
-getID(request){
-  //todo 获取身份信息
-}
-stuPostComment(request){
-  //todo 在某同学第几条作业下提交学生的评论
-}
-postID(request){
-  //todo 提交身份信息
-}
-getScore(request){
-  //todo 在某同学第几条作业下获取分数
-}
-
