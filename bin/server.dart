@@ -99,6 +99,7 @@ forStu(request){
 //return new Response.ok("Hello teacher!");
 
 
+
 //}
 
 getComment(request){
@@ -130,5 +131,23 @@ gethomeworkdetail(request){
 }
 postjudge(request){
 //todo 提交教师的评价
+}
+
+
+getComment(request){
+  //todo 在某同学第几条作业下获取已有评论
+}
+
+getID(request){
+  //todo 获取身份信息
+}
+stuPostComment(request){
+  //todo 在某同学第几条作业下提交学生的评论
+}
+postID(request){
+  //todo 提交身份信息
+}
+getScore(request){
+  //todo 在某同学第几条作业下获取分数
 }
 

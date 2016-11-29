@@ -12,6 +12,12 @@ URL | 功能描述|姓名
 /tea/gethprojectlist/{teaschoolnumber}/gethomeworklist | 获取老师收到的学生的作业列表
 /tea/rojectlist/{teaschoolnumber}/gethomeworklist/gethomeworkdetail|获取学生提交的一份作业的具体信息
 /tea/postjudge/{teaschoolnumber}/{stuschoolnumber}/{id}/|提交教师的评价
+/getproject_list |获取老师发布的作业列表|李志伟
+/gethomework_list | 获取老师收到的学生的作业列表
+/getstuhomework_list| 获取学生提交的作业列表
+/gethomework_detail|获取学生提交的一份作业的具体信息
+/postjudge|提交教师的评价
+/submitbutton|提交
 /stu/comment/{id}/{number}/ | 评论区在某同学第几条作业下获取已有评论|吴怡雯
 /stu/getScore/{id}/{number}/| 评论区在某同学第几条作业下获取分数
 /signin/getid/|登录获取身份信息
