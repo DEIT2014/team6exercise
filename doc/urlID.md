@@ -7,7 +7,6 @@ URL | 功能描述|姓名
  /stu/{submitHomework} |提交作业
 /teacher/	 |获取老师的信息
  /teacher/{id} |获取老师的姓名
-/teacher/{scanHomework} |浏览学生提交的作业
 /tea/gethprojectlist/{teaschoolnumber}/ |获取老师发布的作业列表|李志伟
 /tea/gethprojectlist/{teaschoolnumber}/gethomeworklist | 获取老师收到的学生的作业列表
 /tea/rojectlist/{teaschoolnumber}/gethomeworklist/gethomeworkdetail|获取学生提交的一份作业的具体信息
