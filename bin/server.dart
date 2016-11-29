@@ -21,7 +21,8 @@ final DATA_FILE = "C:\\Users\\Qian\\WebstormProjects\\作业评价系统\\team6e
 void main() {
   //杜谦
   var myRouter = router()
-    ..get('/stu', forStu)..get('/{name}{?faculty}', myHandler)
+    ..get('/stu', forStu)
+    ..get('/{name}{?faculty}', myHandler)
     ..get('/{name}{?course}', stuCourse)
     ..get('/{name}{?scanComputer}', scanComputer)
     ..get('/{name}{?submitHomework}', submitHomework)
