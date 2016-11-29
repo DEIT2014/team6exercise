@@ -56,10 +56,6 @@ void main() {
   var teaPreview = querySelector('#teaPreview');
   querySelector('#teaPreview');
 
-  var teaMark = querySelector('#teaMark');
-  querySelector('#teaMark')
-    ..text='评分'
-    ..onClick.listen(teaMark);
 
   var teaReview = querySelector('#teaReview');
   querySelector('#teaReview')
@@ -70,6 +66,11 @@ void main() {
   querySelector('#commentInput')
     ..text=''
     ..onClick.listen(commentInput);
+
+  var comment = querySelector('#comment');
+  querySelector('#commentInput')
+    ..text=''
+    ..onClick.listen(comment);
 
   var getproject_list = querySelector('#project_list');
   querySelector('#project_list')
@@ -125,27 +126,27 @@ void teaPreview(){
   //todo 显示数据库中的学生作业
 }
 
-void teaMark(){
-  //todo 老师输入分数，上传老师的评分至数据库
-}
+
 
 void teaReview(){
   //todo 跳出新的div回复框，提交已写文字到数据库
   var url = "http://$host"; // call the web server asynchronously
   var request = HttpRequest.getString(url).then(teaRreview);
-  onDataLoaded(responseText) {
-    var jsonString = responseText;
-    var students=JSON.decode(jsonString);
-    var studentid=students['comments'];
-    querySelector('#sample').text=studentid;
-  }
-
+}
+teaRreview(responseText) {
+  var jsonString = responseText;
+  var students=JSON.decode(jsonString);
+  var studentid=students['comments'];
+  querySelector('#sample').text=studentid;
 }
 
 void commentInput(){
   //todo 输入评论
 }
 
+void comment(){
+  //todo 显示评论
+}
 //教师页面—李志伟
 
 void project_list() {
