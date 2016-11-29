@@ -72,26 +72,26 @@ void main() {
     ..text=''
     ..onClick.listen(comment);
 
-  var getproject_list = querySelector('#project_list');
-  querySelector('#project_list')
+  var getprojectlist = querySelector('#projectlist');
+  querySelector('#projectlist')
     ..text='信息技术课程作业'
-    ..onClick.listen(project_list);
+    ..onClick.listen(projectlist);
 
-  var gethomework_list = querySelector('#homework_list');
-  querySelector('#homework_list')
+  var gethomeworklist = querySelector('#homeworklist');
+  querySelector('#homeworklist')
     ..text='信息技术课程作业三'
-    ..onClick.listen(homework_list);
+    ..onClick.listen(homeworklist);
 
-  var gethomework_detail = querySelector('#homework_detail');
-  querySelector('#homework_detail')
+  var gethomeworkdetail = querySelector('#homeworkdetail');
+  querySelector('#homeworkdetail')
     ..text='信息技术课程作业三：吴同学'
-    ..onClick.listen (homework_detail );
+    ..onClick.listen (homeworkdetail );
 
 
-  var getstuhomework_list = querySelector('#stuhomework_list');
-  querySelector('#stuhomework_list')
+  var getstuhomeworklist = querySelector('#stuhomeworklist');
+  querySelector('#stuhomeworklist')
     ..text='信息技术课程作业三'
-    ..onClick.listen(stuhomework_list);
+    ..onClick.listen(stuhomeworklist);
 
   var submitbutton = querySelector('#submitbutton');
   querySelector('#submitbutton')
@@ -103,6 +103,8 @@ void main() {
     ..text = '信息技术课程作业三：吴同学 图书馆预定座位小程序'
     ..onClick.listen(judge);
 }
+
+
 /// reverseText用来接受用户点击按钮翻转字符的响应工作。
 /// 参数[event]是鼠标事件....
 void reverseText(MouseEvent event) {
@@ -149,19 +151,19 @@ void comment(){
 }
 //教师页面—李志伟
 
-void project_list() {
+void projectlist() {
   //todo 获取老师发布的作业列表
 }
 
-void homework_list() {
+void homeworklist() {
   //todo 获取老师收到的学生的作业列表
 }
 
-void stuhomework_list() {
+void stuhomeworklist() {
   //todo 获取学生提交的作业列表
 }
 
-void homework_detail() {
+void homeworkdetail() {
   //todo 获取学生提交的一份作业的具体信息
 }
 //评价页面—李志伟
