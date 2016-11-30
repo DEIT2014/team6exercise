@@ -10,7 +10,7 @@ import 'dart:convert' show JSON;
 import 'dart:core'as core;
 import 'dart:async';
 
-var host = "localhost:4042";
+var host = "localhost:8080";
 void main() {
 //登录界面
   var signup = querySelector('#signup');
@@ -135,7 +135,7 @@ void teaPreview(){
 
 void teaReview(){
   //todo 跳出新的div回复框，提交已写文字到数据库
-  var url = "http://$host"; // call the web server asynchronously
+  var url = "http://$host/stu/postComment/{id}/{number}/"; // call the web server asynchronously
   var request = HttpRequest.getString(url).then(teaRreview);
 }
 teaRreview(responseText) {
