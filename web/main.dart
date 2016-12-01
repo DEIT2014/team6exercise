@@ -9,9 +9,32 @@ import 'dart:math';
 import 'dart:convert' show JSON;
 import 'dart:core'as core;
 import 'dart:async';
+var host = "localhost:8080";
+HttpRequest request;
 
-var host = "127.0.0.1:8080";
+
+void click(MouseEvent e){
+  var url = 'http://localhost:8080/stu/id';
+  request = new HttpRequest();
+  request.onReadyStateChange.listen(onData);
+  request.open('POST', url);
+  request.send(" josnstring");
+}
+
+void onData(_) {
+  if (request.readyState == HttpRequest.DONE && request.status == 200) {
+    var data=request.responseText;
+    var datalist=JSON.decode(data);
+    var stuname=datalist[0]["number_stu"];
+    querySelector("#name").text=stuname;
+
+  }
+}
+
+
 void main() {
+
+  querySelector("#btn").onClick.listen(click);
 //登录界面
   var signup = querySelector('#signup');
   querySelector('#signup')
@@ -23,11 +46,37 @@ void main() {
     ..text='登录'
     ..onClick.listen(signin);
 
-
-
-
   //提交作业界面
+  var getprojectlist = querySelector('#projectlist');
+  querySelector('#projectlist')
+    ..text='信息技术课程作业'
+    ..onClick.listen(projectlist);
 
+  var gethomeworklist = querySelector('#homeworklist');
+  querySelector('#homeworklist')
+    ..text='信息技术课程作业三'
+    ..onClick.listen(homeworklist);
+
+  var gethomeworkdetail = querySelector('#homeworkdetail');
+  querySelector('#homeworkdetail')
+    ..text='信息技术课程作业三：吴同学'
+    ..onClick.listen (homeworkdetail );
+
+
+  var getstuhomeworklist = querySelector('#stuhomeworklist');
+  querySelector('#stuhomeworklist')
+    ..text='信息技术课程作业三'
+    ..onClick.listen(stuhomeworklist);
+
+  var submitbutton = querySelector('#submitbutton');
+  querySelector('#submitbutton')
+    ..text = '提交'
+    ..onClick.listen(submitbutton);
+
+  var postjudge = querySelector('#judge');
+  querySelector('#judge')
+    ..text = '信息技术课程作业三：吴同学 图书馆预定座位小程序'
+    ..onClick.listen(judge);
   ///有关作业信息的板块
   //todo:从老师数据库中获取作业信息的截至日期和作业注释
   ///有关作业提交的板块
@@ -57,9 +106,7 @@ void main() {
 
 //评论区界面
   var teaPreview = querySelector('#teaPreview');
-  querySelector('#teaPreview')
-    ..text=''
-    ..onClick.listen(teaPreview);
+  querySelector('#teaPreview');
 
 
   var teaReview = querySelector('#teaReview');
@@ -73,40 +120,13 @@ void main() {
     ..onClick.listen(commentInput);
 
   var comment = querySelector('#comment');
-  querySelector('#comment')
-    ..text='';
-
-  var projectlist = querySelector('#projectlist');
-  querySelector('#projectlist')
-    ..text='信息技术课程作业'
-    ..onClick.listen(projectlist);
-
-  var homeworklist = querySelector('#homeworklist');
-  querySelector('#homeworklist')
-    ..text='信息技术课程作业三'
-    ..onClick.listen(homeworklist);
-
-  var homeworkdetail = querySelector('#homeworkdetail');
-  querySelector('#homeworkdetail')
-    ..text='信息技术课程作业三：吴同学'
-    ..onClick.listen (homeworkdetail );
+  querySelector('#commentInput')
+    ..text=''
+    ..onClick.listen(comment);
 
 
-  var stuhomeworklist = querySelector('#stuhomeworklist');
-  querySelector('#stuhomeworklist')
-    ..text='信息技术课程作业三'
-    ..onClick.listen(stuhomeworklist);
-
-  var submitbutton = querySelector('#submitbutton');
-  querySelector('#submitbutton')
-    ..text = '提交'
-    ..onClick.listen(submitbutton);
-
-  var judge = querySelector('#judge');
-  querySelector('#judge')
-    ..text = '信息技术课程作业三：吴同学 图书馆预定座位小程序'
-    ..onClick.listen(judge);
 }
+
 
 
 /// reverseText用来接受用户点击按钮翻转字符的响应工作。
@@ -136,36 +156,23 @@ void teaPreview(){
 
 void teaReview(){
   //todo 跳出新的div回复框，提交已写文字到数据库
-  var request = new HttpRequest();
-  var url = "127.0.0.1:8080/stu/comment/"; // call the web server asynchronously
-  //var request = HttpRequest.getString(url).then(onDataLoaded);
-  request.listen(onDataLoaded);
-  request.open('POST', url);
+  var url = "http://$host/stu/postComment/{id}/{number}/"; // call the web server asynchronously
+  var request = HttpRequest.getString(url).then(teaRreview);
 }
-onDataLoaded(responseText) {
+teaRreview(responseText) {
   var jsonString = responseText;
-  var student=JSON.decode(jsonString);
-  var commentlist=student['comments']['comment'];
-  querySelector('#sample').text=commentlist;
-
+  var students=JSON.decode(jsonString);
+  var studentid=students['comments'];
+  querySelector('#sample').text=studentid;
 }
 
 void commentInput(){
   //todo 输入评论
 }
 
-void comment(MouseEvent e){
+void comment(){
   //todo 显示评论
-  var url = "127.0.0.1:8080/stu/comment/{id}/{number}/"; // call the web server asynchronously
-  var request = HttpRequest.getString(url).then(onDataLoaded);
 }
-//onDataLoaded(responseText) {
-//  var jsonString = responseText;
-//  var student=JSON.decode(jsonString);
-//  var commentlist=student['comments']['comment'];
-//  querySelector('#sample').text=commentlist;
-//
-//}
 //教师页面—李志伟
 
 void projectlist() {
