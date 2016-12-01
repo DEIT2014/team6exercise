@@ -27,7 +27,7 @@ final pool = new ConnectionPool(host: "localhost",
 
 
 
-void main(){
+main(){
   var myRouter = router()
     ..get('/stu/id',stuID)
     ..get('/stu/faculty',stuFaculty)
@@ -40,14 +40,17 @@ void main(){
    ..get('/stu/getScore/{id}/{number}/',getScore)//评论区在某同学第几条作业下获取分数
    ..post('/stu/postComment/{id}/{number}/',stuPostComment)//评论区在某同学第几条作业下提交学生的评论
    ..post('/signin/postid/',postID)//登录提交身份信息
-   ..post('/signup/postid/',postID)
+   ..post('/signup/postid/',postID)//注册提交身份信息
   //李志伟
     ..get('/tea/gethprojectlist/{schoolnumber}/',getprojectlist)//获取老师发布的作业列表
     ..get('/tea/gethprojectlist/{schoolnumber}/gethomeworklist',gethomeworklist)//获取老师收到的学生的作业列表
     ..get('/tea/rojectlist/{schoolnumber}/gethomeworklist/gethomeworkdetail',gethomeworkdetail)//获取学生提交的一份作业的具体信息
-     ..post('/tea/postjudge/{teaschoolnumber}/{stuschoolnumber}/{id}/',postjudge);//提交教师的评价
-  ;//注册提交身份信息
+    ..post('/tea/postjudge/{teaschoolnumber}/{stuschoolnumber}/{id}/',postjudge)//提交教师的评价
+    ..get('/{name}{?age}', myHandler);
   io.serve(myRouter.handler, '127.0.0.1', 8080);
+
+
+
 }
 
 /**
@@ -59,7 +62,7 @@ void main(){
 //todo:获取学生的姓名
 stuID(request) async{
   //连接我的数据库
-  var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'root',  db: '第三小组测试', max: 5);
+  var pool = new ConnectionPool(host:"180160.63.178" , port: 3306, user: 'root',  db: '第三小组测试', max: 5);
   await pool.query('select * from 第三小组数据库测试').then((results) {
     results.forEach((row) {
       print('ID: ${row[0]}, user-name: ${row[1]}');
@@ -69,6 +72,11 @@ stuID(request) async{
 
 }
 
+myHandler(request) {
+  var name = getPathParameter(request, 'name');
+  var age = getPathParameter(request, 'age');
+  return new Response.ok("Hello $name of age $age");
+}
 teacherID(request){
 ///todo:获取老师的姓名
 }
@@ -121,4 +129,17 @@ postID(request){
 }
 getScore(request){
   //todo 在某同学第几条作业下获取分数
+}
+//李志伟
+getprojectlist(request){
+  //todo 取老师发布的作业列表
+}
+gethomeworklist(request){
+  //todo 获取老师收到的学生的作业列表
+}
+gethomeworkdetail(request){
+  //todo 获取学生提交的一份作业的具体信息
+}
+postjudge(request){
+//todo 提交教师的评价
 }
