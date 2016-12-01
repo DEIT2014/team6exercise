@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'package:sqljocky/sqljocky.dart';
+import 'package:shelf/shelf.dart' ;
 import 'package:sqljocky/utils.dart';
 import 'package:options_file/options_file.dart';
-import 'package:shelf/shelf.dart' ;
 import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_route/shelf_route.dart';
+import 'dart:core';
+import 'dart:async';
 /* A simple web server that responds to **ALL** GET requests by returning
  * the contents of data.json file, and responds to ALL **POST** requests
  * by overwriting the contents of the data.json file
@@ -15,16 +17,11 @@ import 'package:shelf_route/shelf_route.dart';
  */
 
 Map<String, String> data = new Map();
-final pool = new ConnectionPool(host: "localhost",
-    port: 3306,
-    user: '10140340109',
-//用自己的账号替代
-    password: 'root',
-//用自己的密码替代
-    db: '第三小组测试',
-//用自己的数据库替代
-    max: 5); //与数据库相连
-
+var host = "127.0.0.1:8080";
+final DATA_FILE="C:\\Users\\wen51\\Documents\\GitHub\\team6exercise\\bin\\data.json";
+final _headers={"Access-Control-Allow-Origin":"*",
+  "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+  "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept"};
 
 
 void main(){
@@ -35,13 +32,13 @@ void main(){
     ..get('/stu/submitHomework',stuSubHomwork)
     ..get('/teacher/id',teacherID)
   //吴怡雯
-   ..get('/stu/getComment/{id}/{number}/',getComment)//评论区在某同学第几条作业下获取已有评论
+   ..get('/stu/getComment',getComment)//评论区在某同学第几条作业下获取已有评论
    ..get('/signin/getid/',getID)//登录获取身份信息
    ..get('/stu/getScore/{id}/{number}/',getScore)//评论区在某同学第几条作业下获取分数
    ..post('/stu/postComment/{id}/{number}/',stuPostComment)//评论区在某同学第几条作业下提交学生的评论
    ..post('/signin/postid/',postID)//登录提交身份信息
    ..post('/signup/postid/',postID);//注册提交身份信息
-  io.serve(myRouter.handler, '127.0.0.1', 8080);
+  io.serve(myRouter.handler, '127.0.0.1',8080);
 }
 
 /**
@@ -51,15 +48,18 @@ void main(){
 //杜谦
 //get数据库中的数据的实现
 //todo:获取学生的姓名
-stuID(request) async{
+getComment(request) async{
   //连接我的数据库
-  var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'root',  db: '第三小组测试', max: 5);
-  await pool.query('select * from 第三小组数据库测试').then((results) {
-    results.forEach((row) {
-      print('ID: ${row[0]}, user-name: ${row[1]}');
-    });
+  var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test',password: '111111' , db: 'student', max: 5);
+  var singledata=new Map<String,String>();//存放单个用户数据
+  var userdata=new List();//存放所有用户的数据
+  var data=await pool.query('select comment from comment'); //去数据库中的数据
+  await data.forEach((row){
+    singledata={'"ID"':'"${row.ID}"','"comment"':'"${row.comment}"'};//按照这个格式存放单条数据
+    userdata.add(singledata);//将该数据加入数组中);
   });
-  return new Response.ok("Hello stu!");
+
+  return new Response.ok(userdata);
 
 }
 
@@ -100,8 +100,15 @@ return new Response.ok("Hello teacher!");
 
 }
 
-getComment(request){
+stuID(request) async{
   ///todo 在某同学第几条作业下获取已有评论
+  var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'root',  db: 'STU_SQL', max: 5);
+  await pool.query('select * from STU_SQL').then((results) {
+    results.forEach((row) {
+      print('ID: ${row[0]}, user-name: ${row[1]}');
+    });
+  });
+  return new Response.ok("Hello stu!");
 }
 
 getID(request){

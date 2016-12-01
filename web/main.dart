@@ -10,7 +10,7 @@ import 'dart:convert' show JSON;
 import 'dart:core'as core;
 import 'dart:async';
 
-var host = "localhost:8080";
+var host = "127.0.0.1:8080";
 void main() {
 //登录界面
   var signup = querySelector('#signup');
@@ -57,7 +57,9 @@ void main() {
 
 //评论区界面
   var teaPreview = querySelector('#teaPreview');
-  querySelector('#teaPreview');
+  querySelector('#teaPreview')
+    ..text=''
+    ..onClick.listen(teaPreview);
 
 
   var teaReview = querySelector('#teaReview');
@@ -71,9 +73,8 @@ void main() {
     ..onClick.listen(commentInput);
 
   var comment = querySelector('#comment');
-  querySelector('#commentInput')
-    ..text=''
-    ..onClick.listen(comment);
+  querySelector('#comment')
+    ..text='';
 
   var getprojectlist = querySelector('#projectlist');
   querySelector('#projectlist')
@@ -135,23 +136,36 @@ void teaPreview(){
 
 void teaReview(){
   //todo 跳出新的div回复框，提交已写文字到数据库
-  var url = "http://$host/stu/postComment/{id}/{number}/"; // call the web server asynchronously
-  var request = HttpRequest.getString(url).then(teaRreview);
+  var request = new HttpRequest();
+  var url = "127.0.0.1:8080/stu/comment/"; // call the web server asynchronously
+  //var request = HttpRequest.getString(url).then(onDataLoaded);
+  request.listen(onDataLoaded);
+  request.open('POST', url);
 }
-teaRreview(responseText) {
+onDataLoaded(responseText) {
   var jsonString = responseText;
-  var students=JSON.decode(jsonString);
-  var studentid=students['comments'];
-  querySelector('#sample').text=studentid;
+  var student=JSON.decode(jsonString);
+  var commentlist=student['comments']['comment'];
+  querySelector('#sample').text=commentlist;
+
 }
 
 void commentInput(){
   //todo 输入评论
 }
 
-void comment(){
+void comment(MouseEvent e){
   //todo 显示评论
+  var url = "127.0.0.1:8080/stu/comment/{id}/{number}/"; // call the web server asynchronously
+  var request = HttpRequest.getString(url).then(onDataLoaded);
 }
+//onDataLoaded(responseText) {
+//  var jsonString = responseText;
+//  var student=JSON.decode(jsonString);
+//  var commentlist=student['comments']['comment'];
+//  querySelector('#sample').text=commentlist;
+//
+//}
 //教师页面—李志伟
 
 void projectlist() {
