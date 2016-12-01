@@ -24,7 +24,7 @@ final _headers={"Access-Control-Allow-Origin":"*",
   "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept"};
 
 
-void main(){
+main(){
   var myRouter = router()
     ..get('/stu/id',stuID)
     ..get('/stu/faculty',stuFaculty)
@@ -37,9 +37,17 @@ void main(){
    ..get('/stu/getScore/{id}/{number}/',getScore)//评论区在某同学第几条作业下获取分数
    ..post('/stu/postComment/{id}/{number}/',stuPostComment)//评论区在某同学第几条作业下提交学生的评论
    ..post('/signin/postid/',postID)//登录提交身份信息
-   ..post('/signup/postid/',postID);//注册提交身份信息
-  io.serve(myRouter.handler, '127.0.0.1',8080);
-}
+   ..post('/signup/postid/',postID)//注册提交身份信息
+  //李志伟
+    ..get('/tea/gethprojectlist/{schoolnumber}/',getprojectlist)//获取老师发布的作业列表
+    ..get('/tea/gethprojectlist/{schoolnumber}/gethomeworklist',gethomeworklist)//获取老师收到的学生的作业列表
+    ..get('/tea/rojectlist/{schoolnumber}/gethomeworklist/gethomeworkdetail',gethomeworkdetail)//获取学生提交的一份作业的具体信息
+    ..post('/tea/postjudge/{teaschoolnumber}/{stuschoolnumber}/{id}/',postjudge)//提交教师的评价
+    ..get('/{name}{?age}', myHandler);
+  io.serve(myRouter.handler, '127.0.0.1', 8080);
+
+
+
 
 /**
  * Handle GET requests by reading the contents of data.json
@@ -50,6 +58,7 @@ void main(){
 //todo:获取学生的姓名
 getComment(request) async{
   //连接我的数据库
+
   var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test',password: '111111' , db: 'student', max: 5);
   var singledata=new Map<String,String>();//存放单个用户数据
   var userdata=new List();//存放所有用户的数据
@@ -57,10 +66,14 @@ getComment(request) async{
   await data.forEach((row){
     singledata={'"ID"':'"${row.ID}"','"comment"':'"${row.comment}"'};//按照这个格式存放单条数据
     userdata.add(singledata);//将该数据加入数组中);
-  });
-
   return new Response.ok(userdata);
 
+}
+
+myHandler(request) {
+  var name = getPathParameter(request, 'name');
+  var age = getPathParameter(request, 'age');
+  return new Response.ok("Hello $name of age $age");
 }
 
 teacherID(request){
@@ -122,4 +135,17 @@ postID(request){
 }
 getScore(request){
   //todo 在某同学第几条作业下获取分数
+}
+//李志伟
+getprojectlist(request){
+  //todo 取老师发布的作业列表
+}
+gethomeworklist(request){
+  //todo 获取老师收到的学生的作业列表
+}
+gethomeworkdetail(request){
+  //todo 获取学生提交的一份作业的具体信息
+}
+postjudge(request){
+//todo 提交教师的评价
 }

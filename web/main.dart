@@ -76,23 +76,23 @@ void main() {
   querySelector('#comment')
     ..text='';
 
-  var getprojectlist = querySelector('#projectlist');
+  var projectlist = querySelector('#projectlist');
   querySelector('#projectlist')
     ..text='信息技术课程作业'
     ..onClick.listen(projectlist);
 
-  var gethomeworklist = querySelector('#homeworklist');
+  var homeworklist = querySelector('#homeworklist');
   querySelector('#homeworklist')
     ..text='信息技术课程作业三'
     ..onClick.listen(homeworklist);
 
-  var gethomeworkdetail = querySelector('#homeworkdetail');
+  var homeworkdetail = querySelector('#homeworkdetail');
   querySelector('#homeworkdetail')
     ..text='信息技术课程作业三：吴同学'
     ..onClick.listen (homeworkdetail );
 
 
-  var getstuhomeworklist = querySelector('#stuhomeworklist');
+  var stuhomeworklist = querySelector('#stuhomeworklist');
   querySelector('#stuhomeworklist')
     ..text='信息技术课程作业三'
     ..onClick.listen(stuhomeworklist);
@@ -102,7 +102,7 @@ void main() {
     ..text = '提交'
     ..onClick.listen(submitbutton);
 
-  var postjudge = querySelector('#judge');
+  var judge = querySelector('#judge');
   querySelector('#judge')
     ..text = '信息技术课程作业三：吴同学 图书馆预定座位小程序'
     ..onClick.listen(judge);
