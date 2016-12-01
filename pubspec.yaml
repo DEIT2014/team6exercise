@@ -11,15 +11,12 @@ environment:
 #dependencies:
 #  my_dependency: any
 dependencies:
-   shelf:
-   shelf_route:
-   sqljocky:
-   path:
+     path:
+     browser: '>=0.10.0 <0.11.0'
+     shelf:
+     shelf_route:
+     sqljocky:
+     dart_to_js_script_rewriter: '^1.0.1'
+     json_object: any
+     json:
 
-
-dev_dependencies:
-  browser: '>=0.10.0 <0.11.0'
-
-
-
-transformers:

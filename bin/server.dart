@@ -30,7 +30,7 @@ final pool = new ConnectionPool(host: "localhost",
 
 
 void main(){
-
+  //杜谦
   var myRouter = router()
     ..get('/stu/id',stuID)
     ..get('/stu/faculty',stuFaculty)
@@ -58,11 +58,10 @@ void main(){
  * and returning it to the client
  */
 //杜谦
-//get数据库中的数据的实现
+
 //todo:获取学生的姓名
 stuID(request) async{
-  //连接我的数据库
-
+  //连接我的数据库,将取出的数据存入到一个列表中
   var singledata=new Map<String,String>();
   var info_stulist=new List();
   var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'root',  db: 'STU_SQL', max: 5);
@@ -76,11 +75,6 @@ stuID(request) async{
   return info_stulist ;
 }
 //todo:把从数据库取出的数据连接到客户端，并在客户端上显示出来
-
-
-
-
-
 myHandler(request) {
   var name = getPathParameter(request, 'name');
   var age = getPathParameter(request, 'age');
