@@ -26,7 +26,9 @@ final pool = new ConnectionPool(host: "localhost",
     db: '第三小组测试',
 //用自己的数据库替代
     max: 5); //与数据库相连
-
+final _headers={"Access-Control-Allow-Origin":"*",
+  "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+  "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept"};
 
 
 void main(){
@@ -64,16 +66,20 @@ stuID(request) async{
   //连接我的数据库,将取出的数据存入到一个列表中
   var singledata=new Map<String,String>();
   var info_stulist=new List();
+  var finalinfo_stulist=new Map<String,String>();
   var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'root',  db: 'STU_SQL', max: 5);
   await pool.query('select * from STU_SQL').then((results) {
     results.forEach((row) {
       singledata={'"number_stu"':'" ${row[0]}"','" name_stu"':'" ${row[1]}"','"faculty_stu"':'"${row[2]}"'};
-      info_stulist.add(singledata);
+      info_stulist.add(singledata);//将该数据加入数组中
     });
+   //将用户数据存入数组中
+    finalinfo_stulist={'"STU_SQL"':info_stulist};
   });
-
-  return info_stulist ;
+  return (new Response.ok(finalinfo_stulist.toString(),headers: _headers));
 }
+
+
 //todo:把从数据库取出的数据连接到客户端，并在客户端上显示出来
 myHandler(request) {
   var name = getPathParameter(request, 'name');

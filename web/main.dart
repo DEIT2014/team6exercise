@@ -9,16 +9,15 @@ import 'dart:math';
 import 'dart:convert' show JSON;
 import 'dart:core'as core;
 import 'dart:async';
+
 var host = "localhost:8080";
 HttpRequest request;
-
-
 void click(MouseEvent e){
   var url = 'http://localhost:8080/stu/id';
   request = new HttpRequest();
   request.onReadyStateChange.listen(onData);
   request.open('POST', url);
-  request.send(" josnstring");
+  request.send(" jsonstring");
 }
 
 void onData(_) {
