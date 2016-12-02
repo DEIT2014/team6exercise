@@ -76,8 +76,18 @@ void main() {
   querySelector('#judge')
     ..text = '信息技术课程作业三：吴同学 图书馆预定座位小程序'
     ..onClick.listen(judge);
+  //作业提交界面——杜谦
   ///有关作业信息的板块
   //todo:从老师数据库中获取作业信息的截至日期和作业注释
+  var posthomework = querySelector('#posthomework');
+  querySelector('#posthomework')
+    ..text='写入提交'
+    ..onClick.listen(posthomework);
+
+  var browseComputer = querySelector('#browseComputer');
+  querySelector('#browseComputer')
+    ..text='浏览我的电脑'
+    ..onClick.listen(browseComputer);
   ///有关作业提交的板块
   //todo:添加附件浏览电脑的功能
 

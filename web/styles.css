@@ -1,39 +1,40 @@
-html, body {
 
-    width: 100%;
-    height: 100%;
-    background-color: #FFFFFF;
+#截止日期 {
+    float: left;
+    height: 50px;
+    width: 115px;
+    border: 1px solid #000;
 }
-.ul{
-    margin: 0;
-    padding:0 ;
-    list-style: none;
+#作业提交 #文本提交 {
+    float: left;
+}
+#满分 {
+    float: left;
+    border: 1px solid #000;
+    height: 50px;
+    width: 120px;
+    margin-left: 50px;
+}
+#写入提交 {
+    margin-left: 70px;
+}
+#附加文件 {
+    float: left;
+}
+#浏览我的电脑 {
+    margin-left: 70px;
+    float: left;
+}
+#作业提交 #注释文本框 {
+    float: left;
+    margin-left: 70px;
+    background-color: #CCC;
+    width:450px;
+    height:100px;
 }
 
-.dl,dt {margin: 0;}
 
-.img{display:block}
 
-.header {
-    width: 100%;
-    heighth: 40px;
-    background-color: #0066FF;
-    padding: 5px;
-    margin:0;
-}
-
-.content {
-    width: 100%;
-    heighth: 700px;
-    background-color: #000000;
-}
-
-.footer {
-    width: 100%;
-    heighter: 60px;
-    background-color: transparent;
-    padding: 5px;
-}
 
 #title {
     font-family: "黑体";
