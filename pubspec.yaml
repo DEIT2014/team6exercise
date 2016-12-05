@@ -16,7 +16,6 @@ dependencies:
      shelf:
      shelf_route:
      sqljocky:
-     dart_to_js_script_rewriter: '^1.0.1'
      json_object: any
      json:
 

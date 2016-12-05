@@ -12,28 +12,13 @@ import 'dart:async';
 
 var host = "localhost:8080";
 HttpRequest request;
-void click(MouseEvent e){
-  var url = 'http://localhost:8080/stu/id';
-  request = new HttpRequest();
-  request.onReadyStateChange.listen(onData);
-  request.open('POST', url);
-  request.send(" jsonstring");
-}
 
-void onData(_) {
-  if (request.readyState == HttpRequest.DONE && request.status == 200) {
-    var data=request.responseText;
-    var datalist=JSON.decode(data);
-    var stuname=datalist[0]["number_stu"];
-    querySelector("#name").text=stuname;
-
-  }
-}
 
 
 void main() {
 
-  querySelector("#btn").onClick.listen(click);
+  querySelector("#btn")
+      .onClick.listen(click);
 //登录界面
   var signup = querySelector('#signup');
   querySelector('#signup')
@@ -136,7 +121,23 @@ void main() {
 
 }
 
+void click(MouseEvent e){
+  var url = 'http://localhost:8080/stu/id';
+  request = new HttpRequest();
+  request.onReadyStateChange.listen(onData);
+  request.open('POST', url);
+  request.send(" jsonstring");
+}
 
+void onData(_) {
+  if (request.readyState == HttpRequest.DONE && request.status == 200) {
+    var data=request.responseText;
+    var datalist=JSON.decode(data);
+    var stuname=datalist[0]["number_stu"];
+    querySelector("#name").text=stuname;
+
+  }
+}
 
 /// reverseText用来接受用户点击按钮翻转字符的响应工作。
 /// 参数[event]是鼠标事件....

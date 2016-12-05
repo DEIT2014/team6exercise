@@ -123,8 +123,19 @@ responseRoot(request){
 
 }
 
-getComment(request){
+getComment(request) async{
   ///todo 在某同学第几条作业下获取已有评论
+  //连接我的数据库
+  var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test', password: '111111', db: 'student', max: 5);
+  var singledata=new Map<String,String>();//存放单个用户数据
+  var userdata=new List();//存放所有用户的数据
+  var data=await pool.query('select comment from comment'); //去数据库中的数据
+  await data.forEach((row){
+singledata={'"ID"':'"${row.ID}"','"comment"':'"${row.comment}"'};//按照这个格式存放单条数据
+userdata.add(singledata);//将该数据加入数组中);
+});
+return new Response.ok("Hello stu!");
+
 }
 
 getID(request){
