@@ -99,24 +99,14 @@ void main() {
 
 
 //评论区界面
-  var teaPreview = querySelector('#teaPreview');
-  querySelector('#teaPreview');
-
+//  var teaPreview = querySelector('#teaPreview');
+//  querySelector('#teaPreview');
+//
 
   var teaReview = querySelector('#teaReview');
   querySelector('#teaReview')
     ..text='回复'
     ..onClick.listen(teaReview);
-
-  var commentInput = querySelector('#commentInput');
-  querySelector('#commentInput')
-    ..text=''
-    ..onClick.listen(commentInput);
-
-  var comment = querySelector('#comment');
-  querySelector('#commentInput')
-    ..text=''
-    ..onClick.listen(comment);
 
 
 }
@@ -166,6 +156,14 @@ void teaPreview(){
 
 void teaReview(){
   //todo 跳出新的div回复框，提交已写文字到数据库
+  var url = "http://localhost:8080/stu/comment/"; // call the web server asynchronously
+  var request = HttpRequest.getString(url).then(onDataLoaded);
+}
+onDataLoaded(responseText) {
+  var jsonString =responseText;
+  var student=JSON.decode(jsonString);
+  var commentlist=student['comments']['comment'];
+  querySelector('#commentInput').text='${commentlist}';
 }
 
 void commentInput(){
@@ -174,14 +172,6 @@ void commentInput(){
 
 void comment(){
   //todo 显示评论
-  var url = "http://$host/stu/comment/"; // call the web server asynchronously
-  var request = HttpRequest.getString(url).then(onDataLoaded);
-}
-onDataLoaded(responseText) {
-  var jsonString = responseText;
-  var student=JSON.decode(jsonString);
-  var commentlist=student['comments']['comment'];
-  querySelector('#sample').text=commentlist;
 }
 //教师页面—李志伟
 

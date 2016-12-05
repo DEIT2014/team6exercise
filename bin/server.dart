@@ -39,7 +39,7 @@ Future main() async{
     ..get('/stu/getScore/{id}/{number}/',getScore)//评论区在某同学第几条作业下获取分数
     ..post('/stu/postComment/{id}/{number}/',stuPostComment)//评论区在某同学第几条作业下提交学生的评论
     ..post('/signin/postid/',postID)//登录提交身份信息
-    ..get('/',mm)
+
 
   //李志伟
     ..get('/tea/gethprojectlist/{schoolnumber}/',getprojectlist)//获取老师发布的作业列表
@@ -55,13 +55,7 @@ Future main() async{
  * and returning it to the client
  */
 //杜谦
-mm(request)async{
 
-
-      return new Response.ok('Hello, world!')
-;
-
-}
 //todo:获取学生的姓名
 stuID(request) async{
   //连接我的数据库,将取出的数据存入到一个列表中
@@ -126,15 +120,23 @@ responseRoot(request){
 getComment(request) async{
   ///todo 在某同学第几条作业下获取已有评论
   //连接我的数据库
-  var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test', password: '111111', db: 'student', max: 5);
-  var singledata=new Map<String,String>();//存放单个用户数据
-  var userdata=new List();//存放所有用户的数据
-  var data=await pool.query('select comment from comment'); //去数据库中的数据
-  await data.forEach((row){
-singledata={'"ID"':'"${row.ID}"','"comment"':'"${row.comment}"'};//按照这个格式存放单条数据
-userdata.add(singledata);//将该数据加入数组中);
-});
-return new Response.ok("Hello stu!");
+  var singledata = new Map<String, String>(); //存放单个用户数据
+  var userdata = new List(); //存放所有用户的数据
+  var comment=new Map<String,String>();//存放最终的用户数据
+//  new ResponseFormatter formatter = new ResponseFormatter();
+//  FormatResult result = formatter.formatResponse(request, {'"comment"':'"${row.comment}"'});
+//  print(result.body);
+//  print(result.contentType);
+  var data = await pool.query('select comment from comment'); //取数据库中的数据
+
+  await data.forEach((row) {
+    singledata =
+    {'"ID"':'"${row.ID}"', '"comment"':'"${row.comment}"'}; //按照这个格式存放单条数据
+//    userdata.add(singledata); //将该数据加入数组中
+  });
+  //将用户数据存入数组中
+  comment={'"comment"':singledata};
+  return (new Response.ok(comment.toString(),headers: _headers));
 
 }
 
