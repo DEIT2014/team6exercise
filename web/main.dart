@@ -162,8 +162,8 @@ void teaReview(){
 onDataLoaded(responseText) {
   var jsonString =responseText;
   var student=JSON.decode(jsonString);
-  var commentlist=student['comments']['comment'];
-  querySelector('#commentInput').text='${commentlist}';
+  var commentlist=student['comment']['singledata'];
+  querySelector('#commentInput').text = commentlist.toString();
 }
 
 void commentInput(){
