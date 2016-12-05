@@ -165,14 +165,6 @@ void teaPreview(){
 
 void teaReview(){
   //todo 跳出新的div回复框，提交已写文字到数据库
-  var url = "http://$host/stu/postComment/{id}/{number}/"; // call the web server asynchronously
-  var request = HttpRequest.getString(url).then(teaRreview);
-}
-teaRreview(responseText) {
-  var jsonString = responseText;
-  var students=JSON.decode(jsonString);
-  var studentid=students['comments'];
-  querySelector('#sample').text=studentid;
 }
 
 void commentInput(){
@@ -181,6 +173,14 @@ void commentInput(){
 
 void comment(){
   //todo 显示评论
+  var url = "http://$host/stu/comment/"; // call the web server asynchronously
+  var request = HttpRequest.getString(url).then(onDataLoaded);
+}
+onDataLoaded(responseText) {
+  var jsonString = responseText;
+  var student=JSON.decode(jsonString);
+  var commentlist=student['comments']['comment'];
+  querySelector('#sample').text=commentlist;
 }
 //教师页面—李志伟
 

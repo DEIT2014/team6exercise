@@ -6,7 +6,7 @@ import 'package:shelf/shelf.dart' ;
 import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_route/shelf_route.dart';
 import 'package:json_object/json_object.dart';
-
+import 'dart:async';
 
 /* A simple web server that responds to **ALL** GET requests by returning
  * the contents of data.json file, and responds to ALL **POST** requests
@@ -18,20 +18,13 @@ import 'package:json_object/json_object.dart';
  */
 
 Map<String, String> data = new Map();
-final pool = new ConnectionPool(host: "localhost",
-    port: 3306,
-    user: 'root',
-//用自己的账号替代
-//用自己的密码替代,不需要密码的时候就不要写password
-    db: '第三小组测试',
-//用自己的数据库替代
-    max: 5); //与数据库相连
+final pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'root',  db: 'STU_SQL', max: 5);
 final _headers={"Access-Control-Allow-Origin":"*",
   "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
   "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept"};
 
 
-void main(){
+Future main() async{
   //杜谦
   var myRouter = router()
     ..get('/stu/id',stuID)
@@ -40,11 +33,12 @@ void main(){
     ..get('/stu/submitHomework',stuSubHomwork)
     ..get('/teacher/id',teacherID)
   //吴怡雯
-    ..get('/stu/getComment/{id}/{number}/',getComment)//评论区在某同学第几条作业下获取已有评论
+    ..get('/stu/comment/',getComment)//评论区在某同学第几条作业下获取已有评论
     ..get('/signin/getid/',getID)//登录获取身份信息
     ..get('/stu/getScore/{id}/{number}/',getScore)//评论区在某同学第几条作业下获取分数
     ..post('/stu/postComment/{id}/{number}/',stuPostComment)//评论区在某同学第几条作业下提交学生的评论
     ..post('/signin/postid/',postID)//登录提交身份信息
+    ..get('/',mm)
 
   //李志伟
     ..get('/tea/gethprojectlist/{schoolnumber}/',getprojectlist)//获取老师发布的作业列表
@@ -60,14 +54,19 @@ void main(){
  * and returning it to the client
  */
 //杜谦
+mm(request)async{
 
+
+      return new Response.ok('Hello, world!')
+;
+
+}
 //todo:获取学生的姓名
 stuID(request) async{
   //连接我的数据库,将取出的数据存入到一个列表中
   var singledata=new Map<String,String>();
   var info_stulist=new List();
   var finalinfo_stulist=new Map<String,String>();
-  var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'root',  db: 'STU_SQL', max: 5);
   await pool.query('select * from STU_SQL').then((results) {
     results.forEach((row) {
       singledata={'"number_stu"':'" ${row[0]}"','" name_stu"':'" ${row[1]}"','"faculty_stu"':'"${row[2]}"'};
