@@ -70,13 +70,7 @@
     user-select: none;
 }
 
-#teaReview_text {
-    font-size: 24pt;
-    text-align: center;
-    margin-top: 140px;
-    -webkit-user-select: none;
-    user-select: none;
-}
+
 
 .form1dbuttom {
     font-size: 14px;
