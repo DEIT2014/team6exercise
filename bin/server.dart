@@ -59,18 +59,18 @@ Future main() async{
 //todo:获取学生的姓名
 stuID(request) async{
   //连接我的数据库,将取出的数据存入到一个列表中
-  var singledata=new Map<String,String>();
-  var info_stulist=new List();
-  var finalinfo_stulist=new Map<String,String>();
-  await pool.query('select * from STU_SQL').then((results) {
-    results.forEach((row) {
-      singledata={'"number_stu"':'" ${row[0]}"','" name_stu"':'" ${row[1]}"','"faculty_stu"':'"${row[2]}"'};
-      info_stulist.add(singledata);//将该数据加入数组中
-    });
-   //将用户数据存入数组中
-    finalinfo_stulist={'"STU_SQL"':info_stulist};
-  });
-  return (new Response.ok(finalinfo_stulist.toString(),headers: _headers));
+//  var singledata=new Map<String,String>();
+//  var info_stulist=new List();
+//  var finalinfo_stulist=new Map<String,String>();
+//  await pool.query('select * from STU_SQL').then((results) {
+//    results.forEach((row) {
+//      singledata={'"number_stu"':'" ${row[0]}"','" name_stu"':'" ${row[1]}"','"faculty_stu"':'"${row[2]}"'};
+//      info_stulist.add(singledata);//将该数据加入数组中
+//    });
+//   //将用户数据存入数组中
+//    finalinfo_stulist={'"STU_SQL"':info_stulist};
+//  });
+//  return (new Response.ok(finalinfo_stulist.toString(),headers: _headers));
 }
 
 
@@ -127,17 +127,18 @@ getComment(request) async{
 //  FormatResult result = formatter.formatResponse(request, {'"comment"':'"${row.comment}"'});
 //  print(result.body);
 //  print(result.contentType);
-  var data = await pool.query('select comment from comment'); //取数据库中的数据
+  var data = await pool.query('select id,comment from comment'); //取数据库中的数据
 
   await data.forEach((row) {
-    singledata =
-    {'"ID"':'"${row.ID}"', '"comment"':'"${row.comment}"'}; //按照这个格式存放单条数据
+     singledata =
+    {'"ID"':'"${row.id}"', '"comment"':'"${row.comment}"'}; //按照这个格式存放单条数据
 //    userdata.add(singledata); //将该数据加入数组中
   });
   //将用户数据存入数组中
-  comment={'"comment"':singledata};
-  return (new Response.ok(comment.toString(),headers: _headers));
-
+  //comment={'"comment"':singledata};
+  return (new Response.ok(singledata.toString()));
+//可能是map无法转成String
+//也可能是singledata数据错误
 }
 
 getID(request){
