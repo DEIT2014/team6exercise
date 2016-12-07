@@ -7,7 +7,6 @@ import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_route/shelf_route.dart';
 import 'package:json_object/json_object.dart';
 import 'dart:async';
-import 'dart:convert' show JSON;
 
 /* A simple web server that responds to **ALL** GET requests by returning
  * the contents of data.json file, and responds to ALL **POST** requests
@@ -19,13 +18,14 @@ import 'dart:convert' show JSON;
  */
 
 Map<String, String> data = new Map();
-//final pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'root',  db: 'STU_SQL', max: 5);
-final HOST = "127.0.0.1"; // eg: localhost
-final PORT = 8080;
-final pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test', password: '111111', db: 'student', max: 5);
+//final pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test', password: '111111', db: 'student', max: 5);
 final _headers={"Access-Control-Allow-Origin":"*",
   "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
-  "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept"};
+  "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept",
+  "Content-Type":"text/html"
+};
+
+
 
 
 Future main() async{
@@ -50,8 +50,7 @@ Future main() async{
     ..get('/tea/rojectlist/{schoolnumber}/gethomeworklist/gethomeworkdetail',gethomeworkdetail)//获取学生提交的一份作业的具体信息
     ..post('/tea/postjudge/{teaschoolnumber}/{stuschoolnumber}/{id}/',postjudge)//提交教师的评价
     ..get('/{name}{?age}', myHandler);
-  io.serve(myRouter.handler, '127.0.0.1', 8080);
-  print("Listening for GET and POST on http://$HOST:$PORT/stu/comment/");
+  io.serve(myRouter.handler, '127.0.0.1', 3320);
 }
 
 /**
@@ -63,19 +62,24 @@ Future main() async{
 //todo:获取学生的姓名
 stuID(request) async{
   //连接我的数据库,将取出的数据存入到一个列表中
-//  var singledata=new Map<String,String>();
-//  var info_stulist=new List();
-//  var finalinfo_stulist=new Map<String,String>();
-//  await pool.query('select * from STU_SQL').then((results) {
-//    results.forEach((row) {
-//      singledata={'"number_stu"':'" ${row[0]}"','" name_stu"':'" ${row[1]}"','"faculty_stu"':'"${row[2]}"'};
-//      info_stulist.add(singledata);//将该数据加入数组中
-//    });
-//   //将用户数据存入数组中
-//    finalinfo_stulist={'"STU_SQL"':info_stulist};
-//  });
-//  return (new Response.ok(finalinfo_stulist.toString(),headers: _headers));
+  var singledata=new Map<String,String>();
+  var info_stulist=new List();
+  var finalinfo_stulist=new Map<String,String>();
+  final pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'root',  db: 'stu_sql', max: 5);
+  var result=await pool.query('select Number_stu,Name_stu,Faculty_stu from stu_sql');
+  await result.forEach((row) {
+    singledata={
+      '"number_stu"':'"${row.Number_stu}"',
+      '" name_stu"':'"${row.Name_stu}"',
+      '"faculty_stu"':'"${row.Faculty_stu}"'
+    };
+    info_stulist.add(singledata);//将该数据加入数组中
+
+  });
+  finalinfo_stulist={'"STU_SQL"':info_stulist};
+  return (new Response.ok(finalinfo_stulist.toString(),headers: _headers));
 }
+
 
 
 //todo:把从数据库取出的数据连接到客户端，并在客户端上显示出来
@@ -131,6 +135,7 @@ getComment(request) async{
 //  FormatResult result = formatter.formatResponse(request, {'"comment"':'"${row.comment}"'});
 //  print(result.body);
 //  print(result.contentType);
+  final pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test', password: '111111', db: 'student', max: 5);
   var data = await pool.query('select id,comment from comment'); //取数据库中的数据
 
   await data.forEach((row) {
