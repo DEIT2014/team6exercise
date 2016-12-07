@@ -1,4 +1,81 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(232, 232, 232, 0);
+}
 
+#mainbody,#teacherpage{
+    width: 80%;
+    background-color: #e3f1ff;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+#projectlist{
+    padding-top: 5px;
+    padding-left: 5px;
+    margin-left: 5%
+}
+
+#loginpage,#three,#two,#one,#threewu,#threeli,#threedu{
+    padding-top: 5px;
+    padding-left: 5px;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+#linkthree1,#linktwo1,#linkone1,#linkthreewu1,#linkthreeli1,#linkthreedu1,#linktwowu1,#linktwoli1,#linktwodu1,#linkonewu1,#linkoneli1,#linkonedu1{
+    margin-bottom: 5px;
+}
+
+#threewuword,#judgereasonwu,#threeliword,#judgereasonli,#threeduword,#judgereasondu{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+#teacherjudgewu,#teacherjudgeli,#teacherjudgedu{
+    margin-left: 40%;
+    margin-right: 40%;
+}
+
+a:link {
+    text-decoration: none;
+    font-family: "宋体";
+    font-size: 16px;
+    color: #000000;
+}
+a.hover{
+    text-decoration:underline;
+    font-size: 18px;
+    background-color: #2fb5ff;
+}
+a:active {
+    text-decoration:underline;
+    font-size: 18px;
+    background-color: #2fb5ff;
+}
+a:visited {
+    text-decoration: none;
+    font-family: "宋体";
+    font-size: 16px;
+    color: #000000;
+}
+
+section {
+    display: none;
+    width: 90%;
+    height: 20%;
+
+}
+
+section.selected {
+    display: block;
+}
+
+.warning {
+    color: red;
+}
 #截止日期 {
     float: left;
     height: 50px;

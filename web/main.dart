@@ -9,6 +9,8 @@ import 'dart:math';
 import 'dart:convert' show JSON;
 import 'dart:core'as core;
 import 'dart:async';
+import 'package:logging/logging.dart';
+import 'package:route_hierarchical/client.dart';
 
 var host = "localhost:8080";
 HttpRequest request;
@@ -16,6 +18,35 @@ HttpRequest request;
 
 
 void main() {
+
+  new Logger('')
+    ..level = Level.FINEST
+    ..onRecord.listen((r) => print('[${r.level}] ${r.message}'));
+
+  querySelector('#warning').remove();
+
+  var router = new Router(useFragment: true);
+
+  router.root
+    ..addRoute(name: 'loginpage', defaultRoute: true, path: '/loginpage', enter: showloginpage)
+    ..addRoute(name: 'teacherpage',path: '/teacherpage', enter: showteacherpage)
+    ..addRoute(name: 'login', path: '/teacherpage', enter: showloginpage)
+    ..addRoute(name: 'three', path: '/three', enter: showthree)
+    ..addRoute(name: 'two', path: '/two', enter: showtwo)
+    ..addRoute(name: 'one', path: '/one', enter: showone)
+    ..addRoute(name: 'threewu', path: '/threewu', enter: showthreewu)
+    ..addRoute(name: 'threeli', path: '/threeli', enter: showthreeli)
+    ..addRoute(name: 'threedu', path: '/threedu', enter: showthreedu);
+
+  querySelector('#loginpage').attributes['href'] = router.url('loginpage');
+  querySelector('#login').attributes['href'] = router.url('teacherpage');
+  querySelector('#linkthree').attributes['href'] = router.url('three');
+  querySelector('#linktwo').attributes['href'] = router.url('two');
+  querySelector('#linkone').attributes['href'] = router.url('one');
+  querySelector('#linkthreewu').attributes['href'] = router.url('threewu');
+  querySelector('#linkthreeli').attributes['href'] = router.url('threeli');
+  querySelector('#linkthreedu').attributes['href'] = router.url('threedu');
+  router.listen();
 
   querySelector("#btn")
       .onClick.listen(click);
@@ -31,23 +62,23 @@ void main() {
     ..onClick.listen(signin);
 
   //提交作业界面
-  var getprojectlist = querySelector('#projectlist');
+  var projectlist = querySelector('#projectlist');
   querySelector('#projectlist')
     ..text='信息技术课程作业'
     ..onClick.listen(projectlist);
 
-  var gethomeworklist = querySelector('#homeworklist');
+  var homeworklist = querySelector('#homeworklist');
   querySelector('#homeworklist')
     ..text='信息技术课程作业三'
     ..onClick.listen(homeworklist);
 
-  var gethomeworkdetail = querySelector('#homeworkdetail');
+  var homeworkdetail = querySelector('#homeworkdetail');
   querySelector('#homeworkdetail')
     ..text='信息技术课程作业三：吴同学'
     ..onClick.listen (homeworkdetail );
 
 
-  var getstuhomeworklist = querySelector('#stuhomeworklist');
+  var stuhomeworklist = querySelector('#stuhomeworklist');
   querySelector('#stuhomeworklist')
     ..text='信息技术课程作业三'
     ..onClick.listen(stuhomeworklist);
@@ -57,7 +88,7 @@ void main() {
     ..text = '提交'
     ..onClick.listen(submitbutton);
 
-  var postjudge = querySelector('#judge');
+  var judge = querySelector('#judge');
   querySelector('#judge')
     ..text = '信息技术课程作业三：吴同学 图书馆预定座位小程序'
     ..onClick.listen(judge);
@@ -110,6 +141,90 @@ void main() {
 
 
 }
+
+
+void showloginpage(RouteEvent e) {
+  querySelector('#loginpage').classes.add('selected');
+  querySelector('#teacherpage').classes.remove('selected');
+  querySelector('#one').classes.remove('selected');
+  querySelector('#two').classes.remove('selected');
+  querySelector('#three').classes.remove('selected');
+  querySelector('#threewu').classes.remove('selected');
+  querySelector('#threeli').classes.remove('selected');
+  querySelector('#threedu').classes.remove('selected');
+}
+
+void showteacherpage(RouteEvent e) {
+  querySelector('#teacherpage').classes.add('selected');
+  querySelector('#loginpage').classes.remove('selected');
+  querySelector('#one').classes.remove('selected');
+  querySelector('#two').classes.remove('selected');
+  querySelector('#three').classes.remove('selected');
+  querySelector('#threewu').classes.remove('selected');
+  querySelector('#threeli').classes.remove('selected');
+  querySelector('#threedu').classes.remove('selected');
+}
+
+void showthree(RouteEvent e) {
+  querySelector('#login').classes.remove('selected');
+  querySelector('#one').classes.remove('selected');
+  querySelector('#two').classes.remove('selected');
+  querySelector('#three').classes.add('selected');
+  querySelector('#threewu').classes.remove('selected');
+  querySelector('#threeli').classes.remove('selected');
+  querySelector('#threedu').classes.remove('selected');
+}
+
+void showtwo(RouteEvent e) {
+  querySelector('#login').classes.remove('selected');
+  querySelector('#one').classes.remove('selected');
+  querySelector('#two').classes.add('selected');
+  querySelector('#three').classes.remove('selected');
+  querySelector('#threewu').classes.remove('selected');
+  querySelector('#threeli').classes.remove('selected');
+  querySelector('#threedu').classes.remove('selected');
+}
+
+void showone(RouteEvent e) {
+  querySelector('#login').classes.remove('selected');
+  querySelector('#one').classes.add('selected');
+  querySelector('#two').classes.remove('selected');
+  querySelector('#three').classes.remove('selected');
+  querySelector('#threewu').classes.remove('selected');
+  querySelector('#threeli').classes.remove('selected');
+  querySelector('#threedu').classes.remove('selected');
+}
+
+void showthreewu(RouteEvent e) {
+  querySelector('#login').classes.remove('selected');
+  querySelector('#one').classes.remove('selected');
+  querySelector('#two').classes.remove('selected');
+  querySelector('#three').classes.remove('selected');
+  querySelector('#threewu').classes.add('selected');
+  querySelector('#threeli').classes.remove('selected');
+  querySelector('#threedu').classes.remove('selected');
+}
+
+void showthreeli(RouteEvent e) {
+  querySelector('#login').classes.remove('selected');
+  querySelector('#one').classes.remove('selected');
+  querySelector('#two').classes.remove('selected');
+  querySelector('#three').classes.remove('selected');
+  querySelector('#threewu').classes.remove('selected');
+  querySelector('#threeli').classes.add('selected');
+  querySelector('#threedu').classes.remove('selected');
+}
+
+void showthreedu(RouteEvent e) {
+  querySelector('#login').classes.remove('selected');
+  querySelector('#one').classes.remove('selected');
+  querySelector('#two').classes.remove('selected');
+  querySelector('#three').classes.remove('selected');
+  querySelector('#threewu').classes.remove('selected');
+  querySelector('#threeli').classes.remove('selected');
+  querySelector('#threedu').classes.add('selected');
+}
+
 
 void click(MouseEvent e){
   var url = 'http://localhost:8080/stu/id';

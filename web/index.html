@@ -11,6 +11,119 @@
 </head>
 
 <body>
+
+<h1>ECNU作业评价小工具</h1>
+<div id="warning">Dart is not running</div>
+<div id="mainbody">
+
+    <section id="loginpage">
+        <blockquote>
+            <div id="title">
+                <div align="center">华东师范大学作业评价工具</div>
+            </div>
+        </blockquote>
+        <form id="form1" name="form1" method="post" action="">
+            <label> <br />
+                用户名：
+                <input type="text" name="textfield" />
+                <br />
+                <br />
+                密码 ：
+                <input type="text" name="textfield2" />
+            </label>
+            <p>
+                <button class="form1dbuttom">登录</button>
+                <button class="form1zbuttom">注册</button>
+                <a href="teacherpage" id="login">111</a>
+            </p>
+        </form>
+    </section>
+
+    <!--//教师评价页面-->
+    <section id="teacherpage">
+        <div id="projectlist">
+            <h3>科目：web编程</h3>
+            <h3>作业列表</h3><nav>
+            <div id="linkthree1"><a href="#three" id="linkthree" title="project3">项目三：提交一个预定座位的小程序</a></div><br>
+            <div id="linktwo1"><a href="#two" id="linktwo" title="project2">项目二：提交一个画图的小程序</a></div><br>
+            <div id="linkone1"><a href="#one" id="linkone" title="project1" >项目一：提交一个银行的服务器程序</a></div>
+        </nav>
+        </div>
+
+        <section id="three">
+            <h2>项目三：提交一个预定座位的小程序</h2>
+            <div id="threedetail">
+                <div id="linkthreewu1"><a href="#threewu" id="linkthreewu" title="project3_wu" >吴怡雯提交了项目三的作业：图书馆预定座位小程序</a></div><br>
+                <div id="linkthreeli1"><a href="#threeli" id="linkthreeli" title="project3_li">李志伟提交了项目三的作业：餐厅预定座位小程序</a></div><br>
+                <div id="linkthreedu1"><a href="#threedu" id="linkthreedu" title="project3_du" >杜谦提交了项目三的作业：电影院预定座位小程序</a></div>
+            </div>
+        </section>
+
+        <section id="threewu">
+            <h3>吴怡雯提交了项目三的作业：图书馆预定座位小程序</h3>
+            <div><a href="#threewufile" title="附件" >附件：图书馆预定座位小程序</a>
+                <form action="" method="get">
+                    <p>详情</p>
+                    <textarea name="word" cols="100" rows="8" id="threewuword"></textarea></form>
+            </div>
+            <form action="" method="post">
+                <label for="judgereasonwu">评价</label><br>
+                <textarea name="word" cols="100" rows="8" id="judgereasonwu"></textarea></form>
+            <form action="" method="post" id="teacherjudgewu">
+                <label for="judgescorewu">分数</label>
+                <input type="text" name="judgescore" id="judgescorewu" size="2" MAXLENGTH="4"/>
+                <input type="submit" value="提交" id="submitbuttonwu"/>
+            </form>
+        </section>
+        <section id="threeli">
+            <h3>李志伟提交了项目三的作业：餐厅预定座位小程序</h3>
+            <div><a href="#threelifile" title="附件" >附件：餐厅预定座位小程序</a>
+                <form action="" method="get">
+                    <p>详情</p>
+                    <textarea name="word" cols="100" rows="8" id="threeliword"></textarea></form>
+            </div>
+            <form action="" method="post">
+                <label for="judgereasonli">评价</label><br>
+                <textarea name="word" cols="100" rows="8" id="judgereasonli"></textarea></form>
+            <form action="" method="post" id="teacherjudgeli">
+                <label for="judgescoreli">分数</label>
+                <input type="text" name="judgescore" id="judgescoreli" size="2" MAXLENGTH="4"/>
+                <input type="submit" value="提交" id="submitbuttonli"/>
+            </form>
+        </section>
+        <section id="threedu">
+            <h3>杜谦提交了项目三的作业：电影院预定座位小程序</h3>
+            <div><a href="#threelifile" title="附件" >附件：电影院预定座位小程序</a>
+                <form action="" method="get">
+                    <p>详情</p>
+                    <textarea name="word" cols="130" rows="8" id="threeduword"></textarea></form>
+            </div>
+            <form action="" method="post">
+                <label for="judgereasonli">评价</label><br>
+                <textarea name="word" cols="130" rows="8" id="judgereasondu"></textarea></form>
+            <form action="" method="post" id="teacherjudgedu">
+                <label for="judgescoreli">分数</label>
+                <input type="text" name="judgescore" id="judgescoredu" size="2" MAXLENGTH="4"/>
+                <input type="submit" value="提交" id="submitbuttondu"/>
+            </form>
+        </section>
+
+
+        <section id="two">
+            <h2>项目二：提交一个画图的小程序</h2>
+            <div id="linktwowu1"><a href="#twowu" id="linktwowu" title="project2_wu">吴怡雯提交了项目二的作业：勾画简单图形小程序</a></div><br>
+            <div id="linktwoli1"><a href="#twoli" id="linktwoli" title="project2_li">李志伟提交了项目二的作业：简单服装勾画小程序</a></div><br>
+            <div id="linktwodu1"><a href="#twodu" id="linktwodu" title="project2_du" >杜谦提交了项目二的作业：简单房屋勾画小程序</a></div>
+        </section>
+
+        <section id="one">
+            <h2>项目一：提交一个银行的服务器程序</h2>
+            <div id="linkonewu1"><a href="#onewu" id="linkonewu" title="project1_wu">吴怡雯提交了项目一的作业：一个银行的服务器程序</a></div><br>
+            <div id="linkoneli1"><a href="#oneli" id="linkoneli" title="project1_li">李志伟提交了项目一的作业：一个银行的服务器程序</a></div><br>
+            <div id="linkonedu1"><a href="#onedu" id="linkonedu" title="project1_du">杜谦提交了项目一的作业：一个银行的服务器程序</a></div>
+        </section>
+    </section>
+</div>
 <input type="button" value="anniu" id="btn">
 <div id="name">mingzi</div>
 
