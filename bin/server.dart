@@ -7,6 +7,7 @@ import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_route/shelf_route.dart';
 import 'package:json_object/json_object.dart';
 import 'dart:async';
+import 'dart:convert' show JSON;
 
 /* A simple web server that responds to **ALL** GET requests by returning
  * the contents of data.json file, and responds to ALL **POST** requests
@@ -19,6 +20,8 @@ import 'dart:async';
 
 Map<String, String> data = new Map();
 //final pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'root',  db: 'STU_SQL', max: 5);
+final HOST = "127.0.0.1"; // eg: localhost
+final PORT = 8080;
 final pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test', password: '111111', db: 'student', max: 5);
 final _headers={"Access-Control-Allow-Origin":"*",
   "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
@@ -48,6 +51,7 @@ Future main() async{
     ..post('/tea/postjudge/{teaschoolnumber}/{stuschoolnumber}/{id}/',postjudge)//提交教师的评价
     ..get('/{name}{?age}', myHandler);
   io.serve(myRouter.handler, '127.0.0.1', 8080);
+  print("Listening for GET and POST on http://$HOST:$PORT/stu/comment/");
 }
 
 /**
@@ -121,8 +125,8 @@ getComment(request) async{
   ///todo 在某同学第几条作业下获取已有评论
   //连接我的数据库
   var singledata = new Map<String, String>(); //存放单个用户数据
-  var userdata = new List(); //存放所有用户的数据
-  var comment=new Map<String,String>();//存放最终的用户数据
+ // var userdata = new List(); //存放所有用户的数据
+ // var comment=new Map<String,String>();//存放最终的用户数据
 //  new ResponseFormatter formatter = new ResponseFormatter();
 //  FormatResult result = formatter.formatResponse(request, {'"comment"':'"${row.comment}"'});
 //  print(result.body);
@@ -131,12 +135,13 @@ getComment(request) async{
 
   await data.forEach((row) {
      singledata =
-    {'"ID"':'"${row.id}"', '"comment"':'"${row.comment}"'}; //按照这个格式存放单条数据
+    {"ID":"${row.id}", "comment":"${row.comment}"}; //按照这个格式存放单条数据map
 //    userdata.add(singledata); //将该数据加入数组中
   });
   //将用户数据存入数组中
   //comment={'"comment"':singledata};
-  return (new Response.ok(singledata.toString()));
+  String jsonData = JSON.encode(singledata);//convert map to String
+  return (new Response.ok(jsonData));//string
 //可能是map无法转成String
 //也可能是singledata数据错误
 }

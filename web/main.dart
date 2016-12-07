@@ -122,7 +122,7 @@ void click(MouseEvent e){
 void onData(_) {
   if (request.readyState == HttpRequest.DONE && request.status == 200) {
     var data=request.responseText;
-    var datalist=JSON.decode(data);
+    var datalist=JSON.decode(data);//string(json)to map
     var stuname=datalist[0]["number_stu"];
     querySelector("#name").text=stuname;
 
@@ -157,14 +157,29 @@ void teaPreview(){
 void teaReview(){
   //todo 跳出新的div回复框，提交已写文字到数据库
   var url = "http://localhost:8080/stu/comment/"; // call the web server asynchronously
-  var request = HttpRequest.getString(url).then(onDataLoaded);
+  var request = HttpRequest.getString(url).then(onDataLoaded); // create a new XHR
+  request.onReadyStateChange.listen(saveData);
+  request.open("POST", url, async: false);
+  request.open("GET", url, async: false);
+  //String jsonData = '{"language":"dart"}'; // etc...
+  request.send("your jsonndata"); // perform the async POST
 }
 onDataLoaded(responseText) {
   var jsonString =responseText;
   var student=JSON.decode(jsonString);
-  var commentlist=student['comment']['singledata'];
-  querySelector('#commentInput').text = commentlist.toString();
+  //var commentlist=student;
+  querySelector('#commentInput').text = student.toString();
 }
+void saveData(_) {
+
+  // add an event handler that is called when the request finishes
+
+    if (request.readyState == HttpRequest.DONE &&
+        (request.status == 200 || request.status == 0)) {
+      // data saved OK.
+     core.print(request.responseText); // output the response from the server
+    }
+  }
 
 void commentInput(){
   //todo 输入评论
