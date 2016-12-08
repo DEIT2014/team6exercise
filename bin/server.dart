@@ -141,12 +141,12 @@ getComment(request) async{
   await data.forEach((row) {
      singledata =
     {"ID":"${row.id}", "comment":"${row.comment}"}; //按照这个格式存放单条数据map
-//    userdata.add(singledata); //将该数据加入数组中
+//  userdata.add(singledata); //将该数据加入数组中
   });
   //将用户数据存入数组中
   //comment={'"comment"':singledata};
-  String jsonData = JSON.encode(singledata);//convert map to String
-  return (new Response.ok(jsonData));//string
+ // String jsonData = JSON.encode(singledata);//convert map to String
+ // return (new Response.ok(jsonData));//string
 //可能是map无法转成String
 //也可能是singledata数据错误
 }

@@ -112,15 +112,15 @@ void main() {
 }
 
 void click(MouseEvent e){
-  var url = 'http://localhost:8080/stu/id';
+  var url = 'http://localhost:3320/stu/id';
   request = new HttpRequest();
   request.onReadyStateChange.listen(onData);
   request.open('POST', url);
-  request.send(" jsonstring");
+  request.send(" jsonstring");//send 的括号里面填写自己的数据
 }
 
 void onData(_) {
-  if (request.readyState == HttpRequest.DONE && request.status == 200) {
+  if (request.readyState == HttpRequest.DONE && request.status == 200) {//当此时等于200时，表示运行没有问题
     var data=request.responseText;
     var datalist=JSON.decode(data);//string(json)to map
     var stuname=datalist[0]["number_stu"];
