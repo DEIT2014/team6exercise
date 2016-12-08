@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="scaffolded-by" content="https://github.com/google/stagehand">
-    <title>作业评价系统</title>
+    <title>ECNU作业评价系统</title>
     <link href="styles.css"rel="stylesheet" href="styles.css">
     <script defer src="main.dart" type="application/dart"></script>
     <script defer src="packages/browser/dart.js"></script>
@@ -12,23 +12,19 @@
 
 <body>
 
-<h1>ECNU作业评价小工具</h1>
 <div id="warning">Dart is not running</div>
+
+<section id="hello">
+    <h1>ECNU作业评价小工具</h1>
+    <div align="right" class="yhead">
+        <p>你好，XX！|<a id="logoutbutton">注销 </a></p>
+    </div>
+</section>
+
 <div id="mainbody">
 
-    <section id="hallo">
-        <h1>ECNU作业评价小工具</h1>
-       <div align="right" class="yhead">
-           <p>你好，XX！|<button class="form2buttom"><a id="logoutbutton">注销 </a></button></p>
-      </div>
-    </section>
-
     <section id="loginpage">
-        <blockquote>
-            <div id="title">
-                <div align="center">华东师范大学作业评价工具</div>
-            </div>
-        </blockquote>
+        <div id="title" align="center">华东师范大学作业评价工具</div>
         <form id="form1" name="form1" method="post" action="">
             <label> <br />
                 用户名：
@@ -41,96 +37,122 @@
             <p>
                 <button class="form1dbuttom">登录</button>
                 <button class="form1zbuttom">注册</button>
-                <a href="#teacherpage" id="login1">tea</a>
+                <a href="#teapage" id="login1">tea</a>
                 <a href="#stupage" id="login2">stu</a>
             </p>
         </form>
     </section>
 
     <!--//教师评价页面-->
-    <section id="teacherpage">
-        <div id="projectlist">
+    <section id="teapage">
+        <div id="prolist">
             <h3>科目：web编程</h3>
-            <h3>作业列表</h3><nav>
-            <div id="linkthree1"><a href="#three" id="linkthree" title="project3">项目三：提交一个预定座位的小程序</a></div><br>
-            <div id="linktwo1"><a href="#two" id="linktwo" title="project2">项目二：提交一个画图的小程序</a></div><br>
-            <div id="linkone1"><a href="#one" id="linkone" title="project1" >项目一：提交一个银行的服务器程序</a></div></nav>
+            <h3>作业列表</h3>
+            <table>
+                <tr>
+                    <td width="800px" height="30px">
+                        <div id="linkthree1"><a href="#three" id="linkthree" title="project3">项目三：提交一个预定座位的小程序</a></div>
+                    </td>
+                    <td width="800px">
+                        <div id="timethree">时间：2016年10月7日 15:00</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="800px" height="30px">
+                        <div id="linktwo1"><a href="#two" id="linktwo" title="project2">项目二：提交一个画图的小程序</a></div>
+                    </td>
+                    <td width="800px">
+                        <div id="timetwo">时间：2016年10月7日 15:00</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="800px" height="30px">
+                        <div id="linkone1"><a href="#one" id="linkone" title="project1" >项目一：提交一个银行的服务器程序</a></div>
+                    </td>
+                    <td width="800px">
+                        <div id="timeone">时间：2016年10月7日 15:00</div>
+                    </td>
+                </tr>
+            </table>
         </div>
+    </section>
 
-        <section id="three">
-            <h2>项目三：提交一个预定座位的小程序</h2>
-            <div id="threedetail">
-                <div id="linkthreewu1"><a href="#threewu" id="linkthreewu" title="project3_wu" >吴怡雯提交了项目三的作业：图书馆预定座位小程序</a></div><br>
-                <div id="linkthreeli1"><a href="#threeli" id="linkthreeli" title="project3_li">李志伟提交了项目三的作业：餐厅预定座位小程序</a></div><br>
-                <div id="linkthreedu1"><a href="#threedu" id="linkthreedu" title="project3_du" >杜谦提交了项目三的作业：电影院预定座位小程序</a></div>
-            </div>
-        </section>
+    <section id="three">
+        <a id="rebtnthree" href="#teacherpage" title="返回作业列表">返回作业列表</a>
+        <h2>项目三：提交一个预定座位的小程序</h2>
+        <div id="threedetail">
+            <div id="linkthreewu1"><a href="#threewu" id="linkthreewu" title="project3_wu" >吴怡雯提交了项目三的作业：图书馆预定座位小程序</a></div><br>
+            <div id="linkthreeli1"><a href="#threeli" id="linkthreeli" title="project3_li">李志伟提交了项目三的作业：餐厅预定座位小程序</a></div><br>
+            <div id="linkthreedu1"><a href="#threedu" id="linkthreedu" title="project3_du" >杜谦提交了项目三的作业：电影院预定座位小程序</a></div>
+        </div>
+    </section>
 
-        <section id="threewu">
-            <h3>吴怡雯提交了项目三的作业：图书馆预定座位小程序</h3>
-            <div><a href="#threewufile" title="附件" >附件：图书馆预定座位小程序</a>
-                <form action="" method="get">
-                    <p>详情</p>
-                    <textarea name="word" cols="100" rows="8" id="threewuword"></textarea></form>
-            </div>
-            <form action="" method="post">
-                <label for="judgereasonwu">评价</label><br>
-                <textarea name="word" cols="100" rows="8" id="judgereasonwu"></textarea></form>
-            <form action="" method="post" id="teacherjudgewu">
-                <label for="judgescorewu">分数</label>
-                <input type="text" name="judgescore" id="judgescorewu" size="2" MAXLENGTH="4"/>
-                <button type="submit" value="提交"><a  id="submitbuttonwu">提交</a></button>
-            </form>
-        </section>
+    <section id="threewu">
+        <h3>吴怡雯提交了项目三的作业：图书馆预定座位小程序</h3>
+        <div><a href="#threewufile" title="附件" >附件：图书馆预定座位小程序</a>
+            <form action="" method="get">
+                <p>详情</p>
+                <textarea name="word" cols="100" rows="8" id="threewuword"></textarea></form>
+        </div>
+        <form action="" method="post">
+            <label for="reasonwu">评价</label><br>
+            <textarea name="word" cols="100" rows="8" id="reasonwu"></textarea></form>
+        <form action="" method="post" id="teajudgewu">
+            <label for="scorewu">分数</label>
+            <input type="text" name="score" id="scorewu" size="2" MAXLENGTH="4"/>
+            <button type="submit" value="提交"><a  id="subbtnwu">提交</a></button>
+        </form>
+    </section>
 
-        <section id="threeli">
-            <h3>李志伟提交了项目三的作业：餐厅预定座位小程序</h3>
-            <div><a href="#threelifile" title="附件" >附件：餐厅预定座位小程序</a>
-                <form action="" method="get">
-                    <p>详情</p>
-                    <textarea name="word" cols="100" rows="8" id="threeliword"></textarea></form>
-            </div>
-            <form action="" method="post">
-                <label for="judgereasonli">评价</label><br>
-                <textarea name="word" cols="100" rows="8" id="judgereasonli"></textarea></form>
-            <form action="" method="post" id="teacherjudgeli">
-                <label for="judgescoreli">分数</label>
-                <input type="text" name="judgescore" id="judgescoreli" size="2" MAXLENGTH="4"/>
-                <input type="submit" value="提交" id="submitbuttonli"/>
-            </form>
-        </section>
+    <section id="threeli">
+        <h3>李志伟提交了项目三的作业：餐厅预定座位小程序</h3>
+        <div><a href="#threelifile" title="附件" >附件：餐厅预定座位小程序</a>
+            <form action="" method="get">
+                <p>详情</p>
+                <textarea name="word" cols="100" rows="8" id="threeliword"></textarea></form>
+        </div>
+        <form action="" method="post">
+            <label for="reasonli">评价</label><br>
+            <textarea name="word" cols="100" rows="8" id="reasonli"></textarea></form>
+        <form action="" method="post" id="teajudgeli">
+            <label for="scoreli">分数</label>
+            <input type="text" name="score" id="scoreli" size="2" MAXLENGTH="4"/>
+            <button type="submit" value="提交"><a  id="subbtnli">提交</a></button>
+        </form>
+    </section>
 
-        <section id="threedu">
-            <h3>杜谦提交了项目三的作业：电影院预定座位小程序</h3>
-            <div><a href="#threelifile" title="附件" >附件：电影院预定座位小程序</a>
-                <form action="" method="get">
-                    <p>详情</p>
-                    <textarea name="word" cols="130" rows="8" id="threeduword"></textarea></form>
-            </div>
-            <form action="" method="post">
-                <label for="judgereasonli">评价</label><br>
-                <textarea name="word" cols="130" rows="8" id="judgereasondu"></textarea></form>
-            <form action="" method="post" id="teacherjudgedu">
-                <label for="judgescoreli">分数</label>
-                <input type="text" name="judgescore" id="judgescoredu" size="2" MAXLENGTH="4"/>
-                <input type="submit" value="提交" id="submitbuttondu"/>
-            </form>
-        </section>
+    <section id="threedu">
+        <h3>杜谦提交了项目三的作业：电影院预定座位小程序</h3>
+        <div><a href="#threelifile" title="附件" >附件：电影院预定座位小程序</a>
+            <form action="" method="get">
+                <p>详情</p>
+                <textarea name="word" cols="130" rows="8" id="threeduword"></textarea></form>
+        </div>
+        <form action="" method="post">
+            <label for="reasondu">评价</label><br>
+            <textarea name="word" cols="130" rows="8" id="reasondu"></textarea></form>
+        <form action="" method="post" id="teajudgedu">
+            <label for="scoredu">分数</label>
+            <input type="text" name="score" id="scoredu" size="2" MAXLENGTH="4"/>
+            <button type="submit" value="提交"><a  id="subbtndu">提交</a></button>
+        </form>
+    </section>
 
 
-        <section id="two">
-            <h2>项目二：提交一个画图的小程序</h2>
-            <div id="linktwowu1"><a href="#twowu" id="linktwowu" title="project2_wu">吴怡雯提交了项目二的作业：勾画简单图形小程序</a></div><br>
-            <div id="linktwoli1"><a href="#twoli" id="linktwoli" title="project2_li">李志伟提交了项目二的作业：简单服装勾画小程序</a></div><br>
-            <div id="linktwodu1"><a href="#twodu" id="linktwodu" title="project2_du" >杜谦提交了项目二的作业：简单房屋勾画小程序</a></div>
-        </section>
+    <section id="two">
+        <a id="rebtntwo" href="#teapage" title="返回作业列表">返回作业列表</a>
+        <h2>项目二：提交一个画图的小程序</h2>
+        <div id="linktwowu1"><a href="#twowu" id="linktwowu" title="project2_wu">吴怡雯提交了项目二的作业：勾画简单图形小程序</a></div><br>
+        <div id="linktwoli1"><a href="#twoli" id="linktwoli" title="project2_li">李志伟提交了项目二的作业：简单服装勾画小程序</a></div><br>
+        <div id="linktwodu1"><a href="#twodu" id="linktwodu" title="project2_du" >杜谦提交了项目二的作业：简单房屋勾画小程序</a></div>
+    </section>
 
-        <section id="one">
-            <h2>项目一：提交一个银行的服务器程序</h2>
-            <div id="linkonewu1"><a href="#onewu" id="linkonewu" title="project1_wu">吴怡雯提交了项目一的作业：一个银行的服务器程序</a></div><br>
-            <div id="linkoneli1"><a href="#oneli" id="linkoneli" title="project1_li">李志伟提交了项目一的作业：一个银行的服务器程序</a></div><br>
-            <div id="linkonedu1"><a href="#onedu" id="linkonedu" title="project1_du">杜谦提交了项目一的作业：一个银行的服务器程序</a></div>
-        </section>
+    <section id="one">
+        <a id="rebtnone" href="#teapage" title="返回作业列表">返回作业列表</a>
+        <h2>项目一：提交一个银行的服务器程序</h2>
+        <div id="linkonewu1"><a href="#onewu" id="linkonewu" title="project1_wu">吴怡雯提交了项目一的作业：一个银行的服务器程序</a></div><br>
+        <div id="linkoneli1"><a href="#oneli" id="linkoneli" title="project1_li">李志伟提交了项目一的作业：一个银行的服务器程序</a></div><br>
+        <div id="linkonedu1"><a href="#onedu" id="linkonedu" title="project1_du">杜谦提交了项目一的作业：一个银行的服务器程序</a></div>
     </section>
 
     <section id="stupage">
@@ -142,7 +164,7 @@
         <a id="myhomework">您的作业成绩已出，请看成绩与分析……</a>
     </section>
 
-    <section id="postmyhomework">
+    <section id="posthomework">
          <hr />
          <div>作业提交</div>
          <hr />
@@ -150,8 +172,7 @@
          <div id="满分">满分：100分</div>
          <br> <br> <br>
          <div id="文本提交"><p>文本提交</p>
-         <button  id="写入提交" >写入提交</button>
-        </div>
+         <button  id="写入提交" >写入提交</button></div>
         <div id="附加文件">附加文件</div>
         <button  id="scan">浏览我的电脑</button>
         <div align="left">
@@ -162,14 +183,12 @@
 
     <section id="mygrade" class="container">
         <p>您的作业成绩已出，请看成绩与分析……</p>
-        <p align="right">总分：<div id="score"> 90</div></p>
+        <p align="right"><div id="score">总分： 90</div></p>
         <div class="comment">
-        <blockquote>
         <p>凌菁老师：</p>
-        </blockquote>
         <textarea rows="4" id="commentInput"></textarea>
         <br>
-        <button class="teaReview"><a id="commentbutton">回复</a></button>
+        <button class="teaReview"><a id="combtn">回复</a></button>
         </div><br>
     </section>
 </div>
