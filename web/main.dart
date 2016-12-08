@@ -18,9 +18,6 @@ HttpRequest request;
 
 
 void main() {
-
-
-
   querySelector('#warning').remove();
 
   var router = new Router(useFragment: true);
