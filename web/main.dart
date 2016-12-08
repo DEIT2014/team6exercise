@@ -19,9 +19,7 @@ HttpRequest request;
 
 void main() {
 
-  new Logger('')
-    ..level = Level.FINEST
-    ..onRecord.listen((r) => print('[${r.level}] ${r.message}'));
+
 
   querySelector('#warning').remove();
 
@@ -30,7 +28,9 @@ void main() {
   router.root
     ..addRoute(name: 'loginpage', defaultRoute: true, path: '/loginpage', enter: showloginpage)
     ..addRoute(name: 'teacherpage',path: '/teacherpage', enter: showteacherpage)
-    ..addRoute(name: 'login', path: '/teacherpage', enter: showloginpage)
+    ..addRoute(name: 'stupage',path: '/stupage', enter: showstupage)
+    ..addRoute(name: 'postmyhomework',path: '/postmyhomework', enter: showpostmyhomework)
+    ..addRoute(name: 'mygrade',path: '/mygrade', enter: showmygrade)
     ..addRoute(name: 'three', path: '/three', enter: showthree)
     ..addRoute(name: 'two', path: '/two', enter: showtwo)
     ..addRoute(name: 'one', path: '/one', enter: showone)
@@ -39,7 +39,13 @@ void main() {
     ..addRoute(name: 'threedu', path: '/threedu', enter: showthreedu);
 
   querySelector('#loginpage').attributes['href'] = router.url('loginpage');
-  querySelector('#login').attributes['href'] = router.url('teacherpage');
+  querySelector('#login1').attributes['href'] = router.url('teacherpage');
+  querySelector('#login2').attributes['href'] = router.url('stupage');
+  querySelector('#logoutbutton').attributes['href'] = router.url('loginpage');
+  querySelector('#commentbutton').attributes['href'] = router.url('stupage');
+  querySelector('#submitbuttonwu').attributes['href'] = router.url('three');
+  querySelector('#newhomework').attributes['href'] = router.url('postmyhomework');
+  querySelector('#myhomework').attributes['href'] = router.url('mygrade');
   querySelector('#linkthree').attributes['href'] = router.url('three');
   querySelector('#linktwo').attributes['href'] = router.url('two');
   querySelector('#linkone').attributes['href'] = router.url('one');
@@ -144,7 +150,55 @@ void main() {
 
 
 void showloginpage(RouteEvent e) {
+  querySelector('#hallo').classes.remove('selected');
   querySelector('#loginpage').classes.add('selected');
+  querySelector('#stupage').classes.remove('selected');
+  querySelector('#postmyhomework').classes.remove('selected');
+  querySelector('#mygrade').classes.remove('selected');
+  querySelector('#teacherpage').classes.remove('selected');
+  querySelector('#one').classes.remove('selected');
+  querySelector('#two').classes.remove('selected');
+  querySelector('#three').classes.remove('selected');
+  querySelector('#threewu').classes.remove('selected');
+  querySelector('#threeli').classes.remove('selected');
+  querySelector('#threedu').classes.remove('selected');
+}
+
+void showstupage(RouteEvent e) {
+  querySelector('#hallo').classes.add('selected');
+  querySelector('#loginpage').classes.remove('selected');
+  querySelector('#stupage').classes.add('selected');
+  querySelector('#postmyhomework').classes.remove('selected');
+  querySelector('#mygrade').classes.remove('selected');
+  querySelector('#teacherpage').classes.remove('selected');
+  querySelector('#one').classes.remove('selected');
+  querySelector('#two').classes.remove('selected');
+  querySelector('#three').classes.remove('selected');
+  querySelector('#threewu').classes.remove('selected');
+  querySelector('#threeli').classes.remove('selected');
+  querySelector('#threedu').classes.remove('selected');
+}
+
+void showpostmyhomework(RouteEvent e) {
+  querySelector('#loginpage').classes.remove('selected');
+  querySelector('#stupage').classes.remove('selected');
+  querySelector('#postmyhomework').classes.add('selected');
+  querySelector('#mygrade').classes.remove('selected');
+  querySelector('#teacherpage').classes.remove('selected');
+  querySelector('#one').classes.remove('selected');
+  querySelector('#two').classes.remove('selected');
+  querySelector('#three').classes.remove('selected');
+  querySelector('#threewu').classes.remove('selected');
+  querySelector('#threeli').classes.remove('selected');
+  querySelector('#threedu').classes.remove('selected');
+}
+
+void showmygrade(RouteEvent e) {
+  querySelector('#loginpage').classes.remove('selected');
+  querySelector('#stupage').classes.remove('selected');
+  querySelector('#postmyhomework').classes.remove('selected');
+  querySelector('#mygrade').classes.remove('selected');
+  querySelector('#mygrade').classes.add('selected');
   querySelector('#teacherpage').classes.remove('selected');
   querySelector('#one').classes.remove('selected');
   querySelector('#two').classes.remove('selected');
@@ -155,6 +209,10 @@ void showloginpage(RouteEvent e) {
 }
 
 void showteacherpage(RouteEvent e) {
+  querySelector('#hallo').classes.add('selected');
+  querySelector('#stupage').classes.remove('selected');
+  querySelector('#postmyhomework').classes.remove('selected');
+  querySelector('#mygrade').classes.remove('selected');
   querySelector('#teacherpage').classes.add('selected');
   querySelector('#loginpage').classes.remove('selected');
   querySelector('#one').classes.remove('selected');
@@ -166,7 +224,11 @@ void showteacherpage(RouteEvent e) {
 }
 
 void showthree(RouteEvent e) {
+  querySelector('#stupage').classes.remove('selected');
   querySelector('#login').classes.remove('selected');
+  querySelector('#postmyhomework').classes.remove('selected');
+  querySelector('#mygrade').classes.remove('selected');
+  querySelector('#teacherpage').classes.remove('selected');
   querySelector('#one').classes.remove('selected');
   querySelector('#two').classes.remove('selected');
   querySelector('#three').classes.add('selected');
@@ -176,6 +238,7 @@ void showthree(RouteEvent e) {
 }
 
 void showtwo(RouteEvent e) {
+  querySelector('#stupage').classes.remove('selected');
   querySelector('#login').classes.remove('selected');
   querySelector('#one').classes.remove('selected');
   querySelector('#two').classes.add('selected');
@@ -186,6 +249,7 @@ void showtwo(RouteEvent e) {
 }
 
 void showone(RouteEvent e) {
+  querySelector('#stupage').classes.remove('selected');
   querySelector('#login').classes.remove('selected');
   querySelector('#one').classes.add('selected');
   querySelector('#two').classes.remove('selected');
@@ -196,6 +260,7 @@ void showone(RouteEvent e) {
 }
 
 void showthreewu(RouteEvent e) {
+  querySelector('#stupage').classes.remove('selected');
   querySelector('#login').classes.remove('selected');
   querySelector('#one').classes.remove('selected');
   querySelector('#two').classes.remove('selected');
@@ -206,6 +271,7 @@ void showthreewu(RouteEvent e) {
 }
 
 void showthreeli(RouteEvent e) {
+  querySelector('#stupage').classes.remove('selected');
   querySelector('#login').classes.remove('selected');
   querySelector('#one').classes.remove('selected');
   querySelector('#two').classes.remove('selected');
@@ -216,6 +282,7 @@ void showthreeli(RouteEvent e) {
 }
 
 void showthreedu(RouteEvent e) {
+  querySelector('#stupage').classes.remove('selected');
   querySelector('#login').classes.remove('selected');
   querySelector('#one').classes.remove('selected');
   querySelector('#two').classes.remove('selected');
