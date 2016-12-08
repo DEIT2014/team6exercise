@@ -12,7 +12,7 @@ import 'dart:async';
 import 'package:logging/logging.dart';
 import 'package:route_hierarchical/client.dart';
 
-var host = "localhost:8080";
+var host = "localhost:3320";
 HttpRequest request;
 
 
@@ -271,30 +271,53 @@ void teaPreview(){
 
 void teaReview(){
   //todo 跳出新的div回复框，提交已写文字到数据库
-  var url = "http://localhost:8080/stu/comment/"; // call the web server asynchronously
-  var request = HttpRequest.getString(url).then(onDataLoaded); // create a new XHR
-  request.onReadyStateChange.listen(saveData);
+  loadData;
+  // call the web server asynchronously
+  saveData;
+  var url = "http://localhost:8080/stu/comment/";
   request.open("POST", url, async: false);
   request.open("GET", url, async: false);
   //String jsonData = '{"language":"dart"}'; // etc...
   request.send("your jsonndata"); // perform the async POST
 }
-onDataLoaded(responseText) {
+void loadData(_) {//下载数据
+  var url = "http://$host/stu/comment/";
+  var request = HttpRequest.getString(url).then(onDataLoaded); // create a new XHR
+}
+onDataLoaded(responseText) {//下载好的数据显示在文本框中
   var jsonString =responseText;
   var student=JSON.decode(jsonString);
+  //JSON.decode() 	Builds Dart objects from a string containing JSON data.num String bool null List Map
+  //JSON.encode() 	Serializes a Dart object into a JSON string.安排序列到JSON
   //var commentlist=student;
   querySelector('#commentInput').text = student.toString();
 }
-void saveData(_) {
 
-  // add an event handler that is called when the request finishes
+void saveData(_) {//用户提交数据，保存
 
-    if (request.readyState == HttpRequest.DONE &&
-        (request.status == 200 || request.status == 0)) {
-      // data saved OK.
-     core.print(request.responseText); // output the response from the server
-    }
+//  var request = new HttpRequest();
+//  request.onReadyStateChange.listen((_) {
+//    if (request.readyState == HttpRequest.DONE &&
+//        (request.status == 200 || request.status == 0)) {
+//      // data saved OK.
+//     // print(request.responseText);
+//     var newcomment=request.responseText;// output the response from the server
+//     querySelector("#commentInput").text = newcomment;
+//    }
+//  });
+
+//  // Get some data to save
+//  var newcomment = query("#commentInput").text;
+//  Language jsonObject = new LanguageImpl.fromJsonString(jsonString);//language是类名
+//  jsonObject.language = jsonObject.language.toUpperCase();
+//  jsonObject.targets.add("Android?");
+//
+//  // POST the data to the server
+//  var url = "http://$host/programming-languages";
+//  request.open("POST", url, false);
+//  request.send(JSON.stringify(jsonObject));
   }
+
 
 void commentInput(){
   //todo 输入评论

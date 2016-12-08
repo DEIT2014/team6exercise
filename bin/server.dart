@@ -7,23 +7,17 @@ import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_route/shelf_route.dart';
 import 'package:json_object/json_object.dart';
 import 'dart:async';
+import 'dart:convert';
 
 /* A simple web server that responds to **ALL** GET requests by returning
- * the contents of data.json file, and responds to ALL **POST** requests
- * by overwriting the contents of the data.json file
- *
- * Browse to it using http://localhost:4042
- *
+ * Browse to it using http://localhost:3320
  * Provides CORS headers, so can be accessed from any other page
  */
 
 Map<String, String> data = new Map();
-//final pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test', password: '111111', db: 'student', max: 5);
-final _headers={"Access-Control-Allow-Origin":"*",
-  "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
-  "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept",
-  "Content-Type":"text/html"
-};
+final HOST = "127.0.0.1"; // 便于从console框中直接进入url，调试状态下勿删。
+final PORT = 3320;//便于从console框中直接进入url，调试状态下勿删。
+
 
 
 
@@ -51,21 +45,20 @@ Future main() async{
     ..post('/tea/postjudge/{teaschoolnumber}/{stuschoolnumber}/{id}/',postjudge)//提交教师的评价
     ..get('/{name}{?age}', myHandler);
   io.serve(myRouter.handler, '127.0.0.1', 3320);
+  print("Listening for GET,POST and PUT on http://$HOST:$PORT");//便于从console框中直接进入url,可在语句最后加上“/后缀”检验该URL是否取到数据，调试状态下勿删。
 }
-
-/**
- * Handle GET requests by reading the contents of data.json
- * and returning it to the client
- */
-//杜谦
-
-//todo:获取学生的姓名
+////todo:获取学生的姓名
 stuID(request) async{
   //连接我的数据库,将取出的数据存入到一个列表中
   var singledata=new Map<String,String>();
   var info_stulist=new List();
   var finalinfo_stulist=new Map<String,String>();
-  final pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'root',  db: 'stu_sql', max: 5);
+  var _headers={"Access-Control-Allow-Origin":"*",
+    "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+    "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept",
+    "Content-Type":"text/html"
+  };
+  var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'root',  db: 'stu_sql', max: 5);
   var result=await pool.query('select Number_stu,Name_stu,Faculty_stu from stu_sql');
   await result.forEach((row) {
     singledata={
@@ -128,14 +121,15 @@ responseRoot(request){
 getComment(request) async{
   ///todo 在某同学第几条作业下获取已有评论
   //连接我的数据库
-  var singledata = new Map<String, String>(); //存放单个用户数据
+  var _headers1={"Access-Control-Allow-Origin":"*",
+  "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+  "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept",
+  "Content-Type":"application/json"
+  };
+  var singledata = new Map<String,String>(); //存放单个用户数据
  // var userdata = new List(); //存放所有用户的数据
  // var comment=new Map<String,String>();//存放最终的用户数据
-//  new ResponseFormatter formatter = new ResponseFormatter();
-//  FormatResult result = formatter.formatResponse(request, {'"comment"':'"${row.comment}"'});
-//  print(result.body);
-//  print(result.contentType);
-  final pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test', password: '111111', db: 'student', max: 5);
+  var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test', password: '111111', db: 'student', max: 5);
   var data = await pool.query('select id,comment from comment'); //取数据库中的数据
 
   await data.forEach((row) {
@@ -145,8 +139,9 @@ getComment(request) async{
   });
   //将用户数据存入数组中
   //comment={'"comment"':singledata};
-  String jsonData = JSON.encode(singledata);//convert map to String
-  return (new Response.ok(jsonData));//string
+  String jsonString = JSON.encode(singledata);
+//convert map to String
+  return (new Response.ok(jsonString.toString(),headers: _headers1));//string
 //可能是map无法转成String
 //也可能是singledata数据错误
 }
