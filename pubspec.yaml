@@ -18,4 +18,9 @@ dependencies:
      sqljocky:
      json_object: any
      json:
+     logging: any
+     route_hierarchical:
+dev_dependencies:
+     mockito: any
+     test: any
 

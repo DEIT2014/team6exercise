@@ -11,11 +11,17 @@
 </head>
 
 <body>
-
-<h1>ECNU作业评价小工具</h1>
 <div id="warning">Dart is not running</div>
-<div id="mainbody">
 
+<section id="hallo">
+    <h1>ECNU作业评价小工具</h1>
+    <div align="right" class="yhead">
+    <p>你好，XX！|<button class="form2buttom"><a id="logoutbutton">注销 </a></button></p>
+    </div>
+</section>
+
+<!--登录页面-->
+<div id="mainbody">
     <section id="loginpage">
         <blockquote>
             <div id="title">
@@ -34,7 +40,8 @@
             <p>
                 <button class="form1dbuttom">登录</button>
                 <button class="form1zbuttom">注册</button>
-                <a href="teacherpage" id="login">111</a>
+                <a href="#teacherpage" id="login1">tea</a>
+                <a href="#stupage" id="login2">stu</a>
             </p>
         </form>
     </section>
@@ -72,9 +79,10 @@
             <form action="" method="post" id="teacherjudgewu">
                 <label for="judgescorewu">分数</label>
                 <input type="text" name="judgescore" id="judgescorewu" size="2" MAXLENGTH="4"/>
-                <input type="submit" value="提交" id="submitbuttonwu"/>
+                <button type="submit" value="提交"><a  id="submitbuttonwu">提交</a></button>
             </form>
         </section>
+
         <section id="threeli">
             <h3>李志伟提交了项目三的作业：餐厅预定座位小程序</h3>
             <div><a href="#threelifile" title="附件" >附件：餐厅预定座位小程序</a>
@@ -91,6 +99,7 @@
                 <input type="submit" value="提交" id="submitbuttonli"/>
             </form>
         </section>
+
         <section id="threedu">
             <h3>杜谦提交了项目三的作业：电影院预定座位小程序</h3>
             <div><a href="#threelifile" title="附件" >附件：电影院预定座位小程序</a>
@@ -123,52 +132,96 @@
             <div id="linkonedu1"><a href="#onedu" id="linkonedu" title="project1_du">杜谦提交了项目一的作业：一个银行的服务器程序</a></div>
         </section>
     </section>
+
+    <section id="stupage">
+        <hr />
+        <div>作业信息</div>
+        <hr />
+        <a id="newhomework">你需要提交一份你对web编程课的感受</a>
+        <hr />
+        <a id="myhomework">您的作业成绩已出，请看成绩与分析……</a>
+    </section>
+
+
+    <section id="postmyhomework">
+        <hr />
+        <div>作业提交</div>
+        <hr />
+        <div id="截止日期">截止日期：2016年12月31日</div>
+        <div id="满分">满分：100分</div>
+        <br> <br> <br>
+        <div id="文本提交"><p>文本提交</p>
+            <button  id="写入提交" >写入提交</button>
+        </div>
+        <div id="附加文件">附加文件</div>
+            <button  id="scan">浏览我的电脑</button>
+        <div align="left">
+            <p>添加注释：</p>
+        </div>
+        <textarea   id="注释文本框" dir="ltr" lang="zh" ></textarea>
+    </section>
+
+    <section id="mygrade" class="container">
+        <p>您的作业成绩已出，请看成绩与分析……</p>
+        <p align="right">总分：<div id="score"> 90</div></p>
+        <div class="comment">
+            <blockquote>
+                <p>凌菁老师：</p>
+            </blockquote>
+            <textarea rows="4" id="commentInput"></textarea>
+            <br>
+            <button class="teaReview"><a id="commentbutton">回复</a></button>
+        </div><br>
+    </section>
+
+
 </div>
-<input type="button" value="anniu" id="btn">
-<div id="name">mingzi</div>
+
+
+
+<!--<input type="button" value="anniu" id="btn">-->
+<!--<div id="name">mingzi</div>-->
 
 
 <!--登录页面-吴怡雯-->
 
-    <section id="login">
-        <div id="title" align="center">华东师范大学作业评价工具</div>
+    <!--<section id="login">-->
+        <!--<div id="title" align="center">华东师范大学作业评价工具</div>-->
 
 
-<form id="form1" name="form1" method="post" action="">
-    <label> <br />
-        用户名：
-        <input type="text" name="textfield" />
-        <br />
-        <br />
-        密码 ：
-        <input type="text" name="textfield2" />
-    </label>
-    <p>
-        <button class="form1dbuttom">登录</button>
-        <button class="form1zbuttom">注册</button>
+<!--<form id="form1" name="form1" method="post" action="">-->
+    <!--<label> <br />-->
+        <!--用户名：-->
+        <!--<input type="text" name="textfield" />-->
+        <!--<br />-->
+        <!--<br />-->
+        <!--密码 ：-->
+        <!--<input type="text" name="textfield2" />-->
+    <!--</label>-->
+    <!--<p>-->
+        <!--<button class="form1dbuttom">登录</button>-->
+        <!--<button class="form1zbuttom">注册</button>-->
 
-    </p>
-    <p>&nbsp;</p>
-</form>
-</section>
+    <!--</p>-->
+    <!--<p>&nbsp;</p>-->
+<!--</form>-->
+<!--</section>-->
 
 <!--评论区页面-吴怡雯-->
-<div align="right" class="yhead">
-    <p>你好，XX！|<button class="form2buttom">注销</button></p>
-</div>
-<br><br>
-<section class="container">
-    <p>您的作业成绩已出，请看成绩与分析……</p>
-    <p align="right">总分：<div id="score"> 90</div></p>
-    <div class="comment">
-        <blockquote>
-            <p>凌菁老师：</p>
-        </blockquote>
-        <textarea rows="4" id="commentInput"></textarea>
-        <br>
-        <button  class="teaReview">回复</button>
-    </div>
-    <br>
+
+<!--<br><br>-->
+<!--<section class="container">-->
+    <!--<p>您的作业成绩已出，请看成绩与分析……</p>-->
+    <!--<p align="right">总分：<div id="score"> 90</div></p>-->
+    <!--<div class="comment">-->
+        <!--<blockquote>-->
+            <!--<p>凌菁老师：</p>-->
+        <!--</blockquote>-->
+        <!--<textarea rows="4" id="commentInput"></textarea>-->
+        <!--<br>-->
+        <!--<button  class="teaReview">回复</button>-->
+    <!--</div>-->
+    <!--<br>-->
     <!--<div class="comment">
       <blockquote>
         <p>小能：</p>
@@ -177,7 +230,7 @@
       <br>
       <button class="teaReview">回复</button>
     </div>-->
-</section>
+<!--</section>-->
 
 <!--作业提交界面——杜谦-->
         <!-- ///文件上传
@@ -189,32 +242,33 @@
          这四个函数组成作业提交的界面///-->
 
 
-<div id="作业信息">
-    <hr />
-    <div>作业信息</div>
-    <hr />
-    <div id="截止日期">截止日期：2016年12月31日</div>
-    <div id="满分">满分：100分</div></br>
-    <p>&nbsp;</p>
-    <div>你需要提交一份你对web编程课的感受</div>
-</div>
-<div id="作业提交">
-    <hr />
-    <div>作业提交</div>
-    <hr />
-    <div id="文本提交">文本提交</div>
-    <p>
-    <button  id="写入提交" >写入提交</button>
-    <div id="附加文件">附加文件</div>
-    <p>
-        <button  id="scan">浏览我的电脑</button>
-    </p>
-    <div align="left">
-        <p>&nbsp;</p>
-        <p>添加注释：</p>
-    </div>
-    <textarea   id="注释文本框" dir="ltr" lang="zh" ></textarea>
-</div>
+<!--<div id="作业信息">-->
+    <!--<hr />-->
+    <!--<div>作业信息</div>-->
+    <!--<hr />-->
+    <!--<div id="截止日期">截止日期：2016年12月31日</div>-->
+    <!--<div id="满分">满分：100分</div></br>-->
+    <!--<p>&nbsp;</p>-->
+    <!--<div>你需要提交一份你对web编程课的感受</div>-->
+<!--</div>-->
+
+<!--<div id="作业提交">-->
+    <!--<hr />-->
+    <!--<div>作业提交</div>-->
+    <!--<hr />-->
+    <!--<div id="文本提交">文本提交</div>-->
+    <!--<p>-->
+    <!--<button  id="写入提交" >写入提交</button>-->
+    <!--<div id="附加文件">附加文件</div>-->
+    <!--<p>-->
+        <!--<button  id="scan">浏览我的电脑</button>-->
+    <!--</p>-->
+    <!--<div align="left">-->
+        <!--<p>&nbsp;</p>-->
+        <!--<p>添加注释：</p>-->
+    <!--</div>-->
+    <!--<textarea   id="注释文本框" dir="ltr" lang="zh" ></textarea>-->
+<!--</div>-->
 
 
 
@@ -222,77 +276,77 @@
 
 <!--教师页面—李志伟-->
 
-<div id="teacherpage">
-    <div class="STYLE1" id="project_list">
-        <p>项目三：提交一个预定座位的小程序</p>
-        <p>项目二：提交一个画图的小程序</p>
-        <p>项目一：提交一个银行的服务器程序</p>
-    </div>
-    <div id="homework_list">
-        <table width="100%" height="100" border="0" cellspacing="1">
-            <tr>
-                <td width="540"><span class="STYLE1">吴同学提交了项目三的作业</span></td>
-                <td width="469" class="STYLE1">图书馆预定座位小程序</td>
-            </tr>
-            <tr>
-                <td><span class="STYLE1">李同学提交了项目三的作业</span></td>
-                <td><span class="STYLE1">电影院预定座位小程序</span></td>
-            </tr>
-            <tr>
-                <td><span class="STYLE1">杜同学提交了项目三的作业</span></td>
-                <td><span class="STYLE1">餐厅预定座位小程序</span></td>
-            </tr>
-            <tr>
-                <td><span class="STYLE1">张同学提交了项目一的作业</span></td>
-                <td><span class="STYLE1">电影院预定座位小程序</span></td>
-            </tr>
-        </table>
-    </div>
-</div>
-<!--教师评分页面—李志伟-->
-<div id="teacherjudge">
-    <div id="stuhomework_list">
-        <table width="100%" height="20" border="0" cellspacing="1">
-            <tr>
-                <td width="285"><span class="STYLE1">吴同学提交了项目三的作业</span></td>
-                <td width="837" class="STYLE1"><p>图书馆预定座位小程序</p>
-                </td>
-            </tr>
-        </table>
+<!--<div id="teacherpage">-->
+    <!--<div class="STYLE1" id="project_list">-->
+        <!--<p>项目三：提交一个预定座位的小程序</p>-->
+        <!--<p>项目二：提交一个画图的小程序</p>-->
+        <!--<p>项目一：提交一个银行的服务器程序</p>-->
+    <!--</div>-->
+    <!--<div id="homework_list">-->
+        <!--<table width="100%" height="100" border="0" cellspacing="1">-->
+            <!--<tr>-->
+                <!--<td width="540"><span class="STYLE1">吴同学提交了项目三的作业</span></td>-->
+                <!--<td width="469" class="STYLE1">图书馆预定座位小程序</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td><span class="STYLE1">李同学提交了项目三的作业</span></td>-->
+                <!--<td><span class="STYLE1">电影院预定座位小程序</span></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td><span class="STYLE1">杜同学提交了项目三的作业</span></td>-->
+                <!--<td><span class="STYLE1">餐厅预定座位小程序</span></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td><span class="STYLE1">张同学提交了项目一的作业</span></td>-->
+                <!--<td><span class="STYLE1">电影院预定座位小程序</span></td>-->
+            <!--</tr>-->
+        <!--</table>-->
+    <!--</div>-->
+<!--</div>-->
+<!--&lt;!&ndash;教师评分页面—李志伟&ndash;&gt;-->
+<!--<div id="teacherjudge">-->
+    <!--<div id="stuhomework_list">-->
+        <!--<table width="100%" height="20" border="0" cellspacing="1">-->
+            <!--<tr>-->
+                <!--<td width="285"><span class="STYLE1">吴同学提交了项目三的作业</span></td>-->
+                <!--<td width="837" class="STYLE1"><p>图书馆预定座位小程序</p>-->
+                <!--</td>-->
+            <!--</tr>-->
+        <!--</table>-->
 
-        <div id="homework_detail">
-            <div id="homework_file">
-                <p class="STYLE1">附件：图书馆预定座位小程序</p>
-            </div>
-            <div id="homework_word">
-                <textarea name="word" cols="100" rows="8"></textarea>
-            </div></div>
-    </div>
+        <!--<div id="homework_detail">-->
+            <!--<div id="homework_file">-->
+                <!--<p class="STYLE1">附件：图书馆预定座位小程序</p>-->
+            <!--</div>-->
+            <!--<div id="homework_word">-->
+                <!--<textarea name="word" cols="100" rows="8"></textarea>-->
+            <!--</div></div>-->
+    <!--</div>-->
 
-    <div id="judge">
-        <div id="judge_score">
-            <p class="STYLE1">评分</p>
-        </div>
-        <div id="score_number">
-            <form id="form2" name="form1" method="post" action="">
-                <label>
-                    <input name="textfield" type="text" size="40" />
-                </label>
-            </form>
-        </div>
-        <div id="judge_reason">
-            <p class="STYLE1">评分理由</p>
-        </div>
-        <div id="reason_word">
-            <textarea name="judge_reason" cols="100" rows="3"></textarea>
-        </div>
-        <div id="submit">
-            <button id="submitbutton"><p class="STYLE1">提交</p></button></bu>
-        </div>
-    </div>
-</div>
+    <!--<div id="judge">-->
+        <!--<div id="judge_score">-->
+            <!--<p class="STYLE1">评分</p>-->
+        <!--</div>-->
+        <!--<div id="score_number">-->
+            <!--<form id="form2" name="form1" method="post" action="">-->
+                <!--<label>-->
+                    <!--<input name="textfield" type="text" size="40" />-->
+                <!--</label>-->
+            <!--</form>-->
+        <!--</div>-->
+        <!--<div id="judge_reason">-->
+            <!--<p class="STYLE1">评分理由</p>-->
+        <!--</div>-->
+        <!--<div id="reason_word">-->
+            <!--<textarea name="judge_reason" cols="100" rows="3"></textarea>-->
+        <!--</div>-->
+        <!--<div id="submit">-->
+            <!--<button id="submitbutton"><p class="STYLE1">提交</p></button></bu>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
 
-<!--//教师评价页面—李志伟-->
+<!--&lt;!&ndash;//教师评价页面—李志伟&ndash;&gt;-->
 
 </body>
 </html>

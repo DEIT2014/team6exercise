@@ -4,8 +4,9 @@ html, body {
     background-color: rgba(232, 232, 232, 0);
 }
 
-#mainbody,#teacherpage{
+#mainbody{
     width: 80%;
+    height: auto;
     background-color: #e3f1ff;
     margin-right: 10%;
     margin-left: 10%;
@@ -76,6 +77,7 @@ section.selected {
 .warning {
     color: red;
 }
+
 #截止日期 {
     float: left;
     height: 50px;
@@ -227,42 +229,27 @@ section.selected {
     font-size: 16px;
 }
 
-body {
-    height: 100%;
-    width: 100%;
-}
+/*#stuhomeworklist {*/
+    /*align: center;*/
+    /*margin-right: 10%;*/
+    /*margin-left: 10%;*/
+/*}*/
 
-.mainbody {
-    height: 100%;
-    width: 80%;
-    background-color: #FFFFFF;
-    margin-top: 10%;
-    margin-right: auto;
-    margin-bottom: 10%;
-    margin-left: auto;
-}
+/*#homeworkdetail {*/
+    /*height: 800px;*/
+    /*width: 80%;*/
+    /*margin-right: 10%;*/
+    /*margin-left: 10%;*/
+/*}*/
+/*#submitbutton {*/
+    /*height:40px;*/
+    /*width: 80px;*/
+/*}*/
 
-#stuhomeworklist {
-    align: center;
-    margin-right: 10%;
-    margin-left: 10%;
-}
-
-#homeworkdetail {
-    height: 800px;
-    width: 80%;
-    margin-right: 10%;
-    margin-left: 10%;
-}
-#submitbutton {
-    height:40px;
-    width: 80px;
-}
-
-#homeworkfile {
-    font-style: normal;
-    text-decoration: underline;
-}
+/*#homeworkfile {*/
+    /*font-style: normal;*/
+    /*text-decoration: underline;*/
+/*}*/
 
 .STYLE1 {
     font-family: "宋体";
