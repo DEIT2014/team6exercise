@@ -129,7 +129,7 @@ getComment(request) async{
   var singledata = new Map<String,String>(); //存放单个用户数据
  // var userdata = new List(); //存放所有用户的数据
  // var comment=new Map<String,String>();//存放最终的用户数据
-  var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test', password: '111111', db: 'student', max: 5);
+  var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test', password: '111111', db: 'evaltool', max: 5);
   var data = await pool.query('select id,comment from comment'); //取数据库中的数据
 
   await data.forEach((row) {
