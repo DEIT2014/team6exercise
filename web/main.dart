@@ -339,7 +339,7 @@ void teaPreview(){
 void teaReview(MouseEvent e){
   //todo 跳出新的div回复框，提交已写文字到数据库
 
-  var url = "http://localhost:8080/stu/comment/";
+  var url = "http://localhost:3320/stu/comment/";
   request = new HttpRequest();
   request.onReadyStateChange.listen(onData);
   request.open("POST", url);
