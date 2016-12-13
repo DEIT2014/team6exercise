@@ -346,13 +346,13 @@ void teaReview(MouseEvent e){
 
   var url = "http://localhost:3320/stu/comment/";
   request = new HttpRequest();
-  request.onReadyStateChange.listen(onData);
+  request.onReadyStateChange.listen(onDataLoading);
   request.open("POST", url);
   request.open("GET", url);
   //String jsonData = '{"language":"dart"}'; // etc...
   request.send(""); // perform the async POST
 }
-void onData(_) {//下载数据
+onDataLoading(responseText) {//下载数据
   if (request.readyState == HttpRequest.DONE && request.status == 200) {
     //下载好的数据显示在文本框中
     var jsonString = responseText;
