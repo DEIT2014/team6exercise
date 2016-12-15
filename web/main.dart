@@ -299,7 +299,7 @@ void showthreedu(RouteEvent e) {
 
 
 void click(MouseEvent e){
-  var url = 'http://localhost:8080/stu/id';
+  var url = 'http://localhost:3320/stu/id';
   request = new HttpRequest();
   request.onReadyStateChange.listen(onData);
   request.open('POST', url);
