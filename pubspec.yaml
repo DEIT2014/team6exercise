@@ -1,4 +1,4 @@
-name: 'untitled1'
+name: 'team6exercise'
 version: 0.0.1
 description: An absolute bare-bones web app.
 #author: Your Name <email@example.com>
@@ -19,4 +19,4 @@ dependencies:
      json_object: any
      json:
      route_hierarchical:
-
+     jsonx:
