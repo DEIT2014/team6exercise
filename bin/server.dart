@@ -7,8 +7,9 @@ import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_route/shelf_route.dart';
 import 'package:json_object/json_object.dart';
 import 'dart:async';
-import 'dart:convert';
-
+import 'dart:convert' show JSON;
+import 'package:team6exercise/comment-class.dart';
+import 'package:jsonx/jsonx.dart';
 /* A simple web server that responds to **ALL** GET requests by returning
  * Browse to it using http://localhost:3320
  * Provides CORS headers, so can be accessed from any other page
@@ -23,6 +24,14 @@ final PORT = 3320;//便于从console框中直接进入url，调试状态下勿�
 
 
 Future main() async{
+
+//  var commentList=[];
+//  commentList.add(com1);
+//  String comListJson=encode(commentList);
+//  print(comListJson);
+//  List<com> commentList1 = decode(comListJson, type: const TypeHelper<List<com>>().type);
+//  print(commentList1);
+
   //杜谦
   var myRouter = router()
     ..get('/stu/id',stuID)
@@ -126,22 +135,29 @@ getComment(request) async{
   "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept",
   "Content-Type":"application/json"
   };
-  var singledata = new Map<String,String>(); //存放单个用户数据
+//  var singledata = new Map<String,String>(); //存放单个用户数据
  // var userdata = new List(); //存放所有用户的数据
- // var comment=new Map<String,String>();//存放最终的用户数据
+
   var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test', password: '111111', db: 'evaltool', max: 5);
   var data = await pool.query('select id,comment from comment'); //取数据库中的数据
-
+  var com1 = new com();
   await data.forEach((row) {
-     singledata =
-    {"ID":"${row.id}", "comment":"${row.comment}"}; //按照这个格式存放单条数据map
-//    userdata.add(singledata); //将该数据加入数组中
+//    String index = "id" + i.toString();//index=id0
+//    singledata.add(index);//map加一个属性index
+//    singledata[index] = row.id;//值为数据库中的id
+//    i++;
+    com1.id = row.id;
+    com1.comment = row.comment;
   });
-  //将用户数据存入数组中
-  //comment={'"comment"':singledata};
-  String jsonString = JSON.encode(singledata);
-//convert map to String
-  return (new Response.ok(jsonString.toString(),headers: _headers1));//string
+  String comJson =encode(com1);
+//  var commentList=[];
+//  commentList.add(com1);
+//  String comListJson=encode(commentList);
+//  print(comListJson);
+//  List<com> commentList1 = decode(comListJson, type: const TypeHelper<List<com>>().type);
+//  print(commentList1);
+
+  return (new Response.ok(comJson.toString(),headers: _headers1));//string
 //可能是map无法转成String
 //也可能是singledata数据错误
 }
