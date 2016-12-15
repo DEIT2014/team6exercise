@@ -43,6 +43,36 @@
         </form>
     </section>
 
+
+<!--注册界面-->
+    <div id="register" align="center">
+        <p align="center">作业评价小工具</p>
+        <p>注册新账号：</p>
+        <table>
+            <tr>
+                <td>用户名：</td>
+                <td><input name="register_username" type="text" /></td>
+            </tr>
+            <tr>
+                <td>密码：</td>
+                <td><input name="register_password" type="password" /></td>
+            </tr>
+            <tr>
+                <td>确认密码：</td>
+                <td><input name="register_password" type="password" /></td>
+            </tr>
+            <tr>
+                <td>登陆身份：</td>
+                <td>
+                    <select onchange="if(this.selectedIndex!=0) ">
+                        <option selected></option>
+                        <option>教师</option>
+                        <option>学生</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
     <!--//教师评价页面-->
     <section id="teapage">
         <div id="prolist">
