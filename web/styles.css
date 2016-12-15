@@ -94,40 +94,6 @@ section.selected {
     color: red;
 }
 
-#截止日期 {
-    float: left;
-    height: 50px;
-    width: 115px;
-    border: 1px solid #000;
-}
-#作业提交 #文本提交 {
-    float: left;
-}
-#满分 {
-    float: left;
-    border: 1px solid #000;
-    height: 50px;
-    width: 120px;
-    margin-left: 50px;
-}
-#写入提交 {
-    margin-left: 70px;
-
-}
-#附加文件 {
-    float: left;
-}
-#scan{
-    margin-left: 70px;
-    float: left;
-}
-#作业提交 #注释文本框 {
-    float: left;
-    margin-left: 70px;
-    background-color: #CCC;
-    width:450px;
-    height:100px;
-}
 
 
 
