@@ -166,7 +166,13 @@ section.selected {
     -webkit-user-select: none;
     user-select: none;
 }
-
+#return{
+    font-size: 40pt;
+    text-align: center;
+    margin-top: 140px;
+    -webkit-user-select: none;
+    user-select: none;
+}
 
 
 .form1dbuttom {
