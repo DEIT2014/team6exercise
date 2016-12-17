@@ -25,6 +25,7 @@ void main() {
 
   router.root
     ..addRoute(name: 'loginpage', defaultRoute: true, path: '/loginpage', enter: showloginpage)
+    ..addRoute(name: 'loguppage',path: '/loguppage', enter: showloguppage)
     ..addRoute(name: 'teapage',path: '/teapage', enter: showteapage)
     ..addRoute(name: 'stupage',path: '/stupage', enter: showstupage)
     ..addRoute(name: 'posthomework',path: '/stupage/posthomework', enter: showposthomework)
@@ -37,9 +38,11 @@ void main() {
     ..addRoute(name: 'threedu', path: '/threedu', enter: showthreedu);
 
   querySelector('#loginpage').attributes['href'] = router.url('loginpage');
+  querySelector('#logup').attributes['href'] = router.url('loguppage');
   querySelector('#login1').attributes['href'] = router.url('teapage');
   querySelector('#login2').attributes['href'] = router.url('stupage');
-  querySelector('#logoutbutton').attributes['href'] = router.url('loginpage');
+  querySelector('#logoutbu').attributes['href'] = router.url('loginpage');
+  querySelector('#confirbu').attributes['href'] = router.url('loginpage');
   querySelector('#combtn').attributes['href'] = router.url('stupage');
   querySelector('#subbtnwu').attributes['href'] = router.url('three');
   querySelector('#subbtnli').attributes['href'] = router.url('three');
@@ -155,6 +158,7 @@ void main() {
 void showloginpage(RouteEvent e) {
   querySelector('#hello').classes.remove('selected');
   querySelector('#loginpage').classes.add('selected');
+  querySelector('#loguppage').classes.remove('selected');
   querySelector('#stupage').classes.remove('selected');
   querySelector('#posthomework').classes.remove('selected');
   querySelector('#mygrade').classes.remove('selected');
@@ -165,6 +169,22 @@ void showloginpage(RouteEvent e) {
   querySelector('#threewu').classes.remove('selected');
   querySelector('#threeli').classes.remove('selected');
   querySelector('#threedu').classes.remove('selected');
+}
+
+void showloguppage(RouteEvent e) {
+  querySelector('#hello').classes.remove('selected');
+  querySelector('#loginpage').classes.remove('selected');
+  querySelector('#loguppage').classes.add('selected');
+//  querySelector('#loguppage').classes.remove('selected');
+//  querySelector('#posthomework').classes.remove('selected');
+//  querySelector('#mygrade').classes.remove('selected');
+//  querySelector('#teapage').classes.remove('selected');
+//  querySelector('#one').classes.remove('selected');
+//  querySelector('#two').classes.remove('selected');
+//  querySelector('#three').classes.remove('selected');
+//  querySelector('#threewu').classes.remove('selected');
+//  querySelector('#threeli').classes.remove('selected');
+//  querySelector('#threedu').classes.remove('selected');
 }
 
 void showstupage(RouteEvent e) {
@@ -299,8 +319,8 @@ void showthreedu(RouteEvent e) {
 
 
 void click(MouseEvent e){
-  var url = 'http://$host/stu/id';
-  HttpRequest a=new HttpRequest();
+  var url = 'http://localhost:3320/stu/id';
+  request = new HttpRequest();
   request.onReadyStateChange.listen(onData);
   request.open('GET', url);
   request.send(" jsonstring");

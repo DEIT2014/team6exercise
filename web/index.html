@@ -17,7 +17,7 @@
 <section id="hello">
     <h1>ECNU作业评价小工具</h1>
     <div align="right" class="yhead">
-        <p>你好，XX！|<a id="logoutbutton">注销 </a></p>
+        <p>你好，XX！|<a id="logoutbu">注销 </a></p>
     </div>
 </section>
 
@@ -36,13 +36,44 @@
             </label>
             <p>
                 <button class="form1dbuttom">登录</button>
-                <button class="form1zbuttom">注册</button>
+                <button class="form1zbuttom"><a href="#loguppage" id="logup">注册</a></button>
                 <a href="#teapage" id="login1">tea</a>
                 <a href="#stupage" id="login2">stu</a>
             </p>
         </form>
     </section>
 
+
+<!--注册界面-->
+    <section id="loguppage"><div id="register" align="center">
+        <p align="center">作业评价小工具</p>
+        <p>注册新账号：</p>
+        <table>
+            <tr>
+                <td>用户名：</td>
+                <td><input name="register_username" type="text" /></td>
+            </tr>
+            <tr>
+                <td>密码：</td>
+                <td><input name="register_password" type="password" /></td>
+            </tr>
+            <tr>
+                <td>确认密码：</td>
+                <td><input name="register_password" type="password" /></td>
+            </tr>
+            <tr>
+                <td>登陆身份：</td>
+                <td>
+                    <select onchange="if(this.selectedIndex!=0) ">
+                        <option selected></option>
+                        <option>教师</option>
+                        <option>学生</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <tr><button class="form1zbuttom"><a href="#loginpage" id="confirbu">确认</a></button></tr>
+    </div></section>
     <!--//教师评价页面-->
     <section id="teapage">
         <div id="prolist">
@@ -190,21 +221,27 @@
         <a id="myhomework">您的作业成绩已出，请看成绩与分析……</a>
     </section>
 
+
+
     <section id="posthomework">
-         <hr />
-         <div>作业提交</div>
-         <hr />
-         <div id="截止日期">截止日期：2016年12月31日</div>
-         <div id="满分">满分：100分</div>
-         <br> <br> <br>
-         <div id="文本提交"><p>文本提交</p>
-         <button  id="写入提交" >写入提交</button></div>
-        <div id="附加文件">附加文件</div>
-        <button  id="scan">浏览我的电脑</button>
-        <div align="left">
-        <p>添加注释：</p>
-        </div>
-        <textarea   id="注释文本框" dir="ltr" lang="zh" ></textarea>
+        <p>作业提交</p>
+        <p>截止日期：2016年12月31日   满分：100分</p>
+        <p>文本提交 </p>
+        <form  name="form1" method="post" action="">
+            <label for="writeText"></label>
+            <textarea name="writeText" id="writeText" cols="45" rows="5"></textarea>
+        </form>
+        <p>添加附件：
+            <label for="attachfile_text"></label>
+            <input type="text" name="attachfile_text" id="attachfile_text" />
+            <input type="submit" name="scan" id="scan2" value="浏览我的电脑" />
+        </p>
+        <p>
+            <input type="submit" style="margin-left:300px" name="cancel" id="cancel" value="取消" />
+            <input type="submit" style="margin-left:30px" name="post" id="post" value="提交" />
+        </p>
+
+        <p>&nbsp;</p>
     </section>
 
     <section id="mygrade" class="container">
