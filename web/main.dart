@@ -322,7 +322,7 @@ void click(MouseEvent e){
   var url = 'http://localhost:3320/stu/id';
   request = new HttpRequest();
   request.onReadyStateChange.listen(onData);
-  request.open('POST', url);
+  request.open('GET', url);
   request.send(" jsonstring");
 }
 
@@ -332,7 +332,6 @@ void onData(_) {
     var datalist=JSON.decode(data);//string(json)to map
     var stuname=datalist[0]["number_stu"];
     querySelector("#name").text=stuname;
-
   }
 }
 
@@ -363,17 +362,17 @@ void teaPreview(){
 
 void teaReview(MouseEvent e){
   //todo 跳出新的div回复框，提交已写文字到数据库
-
+  var request = new HttpRequest ();
   var url = "http://localhost:3320/stu/comment/";
   request = new HttpRequest();
   request.onReadyStateChange.listen(onDataLoading);
-  request.open("POST", url);
-  request.open("GET", url);
+  request.open('POST', url);
   //String jsonData = '{"language":"dart"}'; // etc...
   request.send(""); // perform the async POST
 
 }
-onDataLoading(responseText) {//下载数据
+void onDataLoading(responseText) {//下载数据
+
   if (request.readyState == HttpRequest.DONE && request.status == 200) {
     //下载好的数据显示在文本框中
     var jsonString = responseText;
