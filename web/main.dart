@@ -25,6 +25,7 @@ void main() {
 
   router.root
     ..addRoute(name: 'loginpage', defaultRoute: true, path: '/loginpage', enter: showloginpage)
+    ..addRoute(name: 'loguppage',path: '/loguppage', enter: showloguppage)
     ..addRoute(name: 'teapage',path: '/teapage', enter: showteapage)
     ..addRoute(name: 'stupage',path: '/stupage', enter: showstupage)
     ..addRoute(name: 'posthomework',path: '/stupage/posthomework', enter: showposthomework)
@@ -37,9 +38,11 @@ void main() {
     ..addRoute(name: 'threedu', path: '/threedu', enter: showthreedu);
 
   querySelector('#loginpage').attributes['href'] = router.url('loginpage');
+  querySelector('#logup').attributes['href'] = router.url('loguppage');
   querySelector('#login1').attributes['href'] = router.url('teapage');
   querySelector('#login2').attributes['href'] = router.url('stupage');
-  querySelector('#logoutbutton').attributes['href'] = router.url('loginpage');
+  querySelector('#logoutbu').attributes['href'] = router.url('loginpage');
+  querySelector('#confirbu').attributes['href'] = router.url('loginpage');
   querySelector('#combtn').attributes['href'] = router.url('stupage');
   querySelector('#subbtnwu').attributes['href'] = router.url('three');
   querySelector('#subbtnli').attributes['href'] = router.url('three');
@@ -155,6 +158,7 @@ void main() {
 void showloginpage(RouteEvent e) {
   querySelector('#hello').classes.remove('selected');
   querySelector('#loginpage').classes.add('selected');
+  querySelector('#loguppage').classes.remove('selected');
   querySelector('#stupage').classes.remove('selected');
   querySelector('#posthomework').classes.remove('selected');
   querySelector('#mygrade').classes.remove('selected');
@@ -165,6 +169,12 @@ void showloginpage(RouteEvent e) {
   querySelector('#threewu').classes.remove('selected');
   querySelector('#threeli').classes.remove('selected');
   querySelector('#threedu').classes.remove('selected');
+}
+
+void showloguppage(RouteEvent e) {
+  querySelector('#hello').classes.remove('selected');
+  querySelector('#loginpage').classes.remove('selected');
+  querySelector('#loguppage').classes.add('selected');
 }
 
 void showstupage(RouteEvent e) {
@@ -173,67 +183,30 @@ void showstupage(RouteEvent e) {
   querySelector('#stupage').classes.add('selected');
   querySelector('#posthomework').classes.remove('selected');
   querySelector('#mygrade').classes.remove('selected');
-//  querySelector('#teacherpage').classes.remove('selected');
-//  querySelector('#one').classes.remove('selected');
-//  querySelector('#two').classes.remove('selected');
-//  querySelector('#three').classes.remove('selected');
-//  querySelector('#threewu').classes.remove('selected');
-//  querySelector('#threeli').classes.remove('selected');
-//  querySelector('#threedu').classes.remove('selected');
 }
 
 void showposthomework(RouteEvent e) {
-//  querySelector('#loginpage').classes.remove('selected');
   querySelector('#stupage').classes.remove('selected');
   querySelector('#posthomework').classes.add('selected');
   querySelector('#mygrade').classes.remove('selected');
-//  querySelector('#teacherpage').classes.remove('selected');
-//  querySelector('#one').classes.remove('selected');
-//  querySelector('#two').classes.remove('selected');
-//  querySelector('#three').classes.remove('selected');
-//  querySelector('#threewu').classes.remove('selected');
-//  querySelector('#threeli').classes.remove('selected');
-//  querySelector('#threedu').classes.remove('selected');
 }
 
 void showmygrade(RouteEvent e) {
-//  querySelector('#loginpage').classes.remove('selected');
   querySelector('#stupage').classes.remove('selected');
-//  querySelector('#postmyhomework').classes.remove('selected');
-//  querySelector('#mygrade').classes.remove('selected');
   querySelector('#mygrade').classes.add('selected');
-//  querySelector('#teacherpage').classes.remove('selected');
-//  querySelector('#one').classes.remove('selected');
-//  querySelector('#two').classes.remove('selected');
-//  querySelector('#three').classes.remove('selected');
-//  querySelector('#threewu').classes.remove('selected');
-//  querySelector('#threeli').classes.remove('selected');
-//  querySelector('#threedu').classes.remove('selected');
 }
 
 void showteapage(RouteEvent e) {
   querySelector('#hello').classes.add('selected');
-//  querySelector('#stupage').classes.remove('selected');
-//  querySelector('#postmyhomework').classes.remove('selected');
-//  querySelector('#mygrade').classes.remove('selected');
   querySelector('#teapage').classes.add('selected');
   querySelector('#loginpage').classes.remove('selected');
   querySelector('#one').classes.remove('selected');
   querySelector('#two').classes.remove('selected');
   querySelector('#three').classes.remove('selected');
-//  querySelector('#threewu').classes.remove('selected');
-//  querySelector('#threeli').classes.remove('selected');
-//  querySelector('#threedu').classes.remove('selected');
 }
 
 void showthree(RouteEvent e) {
-//  querySelector('#stupage').classes.remove('selected');
-//  querySelector('#login').classes.remove('selected');
-//  querySelector('#postmyhomework').classes.remove('selected');
-//  querySelector('#mygrade').classes.remove('selected');
   querySelector('#teapage').classes.remove('selected');
-//  querySelector('#one').classes.remove('selected');
-//  querySelector('#two').classes.remove('selected');
   querySelector('#three').classes.add('selected');
   querySelector('#threewu').classes.remove('selected');
   querySelector('#threeli').classes.remove('selected');
@@ -242,58 +215,26 @@ void showthree(RouteEvent e) {
 
 void showtwo(RouteEvent e) {
   querySelector('#teapage').classes.remove('selected');
-//  querySelector('#stupage').classes.remove('selected');
-//  querySelector('#login').classes.remove('selected');
-//  querySelector('#one').classes.remove('selected');
   querySelector('#two').classes.add('selected');
-//  querySelector('#three').classes.remove('selected');
-//  querySelector('#threewu').classes.remove('selected');
-//  querySelector('#threeli').classes.remove('selected');
-//  querySelector('#threedu').classes.remove('selected');
 }
 
 void showone(RouteEvent e) {
   querySelector('#teapage').classes.remove('selected');
-//  querySelector('#stupage').classes.remove('selected');
-//  querySelector('#login').classes.remove('selected');
   querySelector('#one').classes.add('selected');
-//  querySelector('#two').classes.remove('selected');
-//  querySelector('#three').classes.remove('selected');
-//  querySelector('#threewu').classes.remove('selected');
-//  querySelector('#threeli').classes.remove('selected');
-//  querySelector('#threedu').classes.remove('selected');
 }
 
 void showthreewu(RouteEvent e) {
-//  querySelector('#stupage').classes.remove('selected');
-//  querySelector('#login').classes.remove('selected');
-//  querySelector('#one').classes.remove('selected');
-//  querySelector('#two').classes.remove('selected');
   querySelector('#three').classes.remove('selected');
   querySelector('#threewu').classes.add('selected');
-//  querySelector('#threeli').classes.remove('selected');
-//  querySelector('#threedu').classes.remove('selected');
 }
 
 void showthreeli(RouteEvent e) {
-//  querySelector('#stupage').classes.remove('selected');
-//  querySelector('#login').classes.remove('selected');
-//  querySelector('#one').classes.remove('selected');
-//  querySelector('#two').classes.remove('selected');
   querySelector('#three').classes.remove('selected');
-//  querySelector('#threewu').classes.remove('selected');
   querySelector('#threeli').classes.add('selected');
-//  querySelector('#threedu').classes.remove('selected');
 }
 
 void showthreedu(RouteEvent e) {
-//  querySelector('#stupage').classes.remove('selected');
-//  querySelector('#login').classes.remove('selected');
-//  querySelector('#one').classes.remove('selected');
-//  querySelector('#two').classes.remove('selected');
   querySelector('#three').classes.remove('selected');
-//  querySelector('#threewu').classes.remove('selected');
-//  querySelector('#threeli').classes.remove('selected');
   querySelector('#threedu').classes.add('selected');
 }
 
@@ -341,54 +282,40 @@ void teaPreview(){
 
 
 
-void teaReview(){
+void teaReview(MouseEvent e){
   //todo 跳出新的div回复框，提交已写文字到数据库
-  loadData;
-  // call the web server asynchronously
-  saveData;
-  var url = "http://localhost:8080/stu/comment/";
-  request.open("POST", url, async: false);
-  request.open("GET", url, async: false);
+
+  var url = "http://localhost:3320/stu/comment/";
+  request = new HttpRequest();
+  request.onReadyStateChange.listen(onDataLoading);
+  request.open("POST", url);
+  request.open("GET", url);
   //String jsonData = '{"language":"dart"}'; // etc...
-  request.send("your jsonndata"); // perform the async POST
-}
-void loadData(_) {//下载数据
-  var url = "http://$host/stu/comment/";
-  var request = HttpRequest.getString(url).then(onDataLoaded); // create a new XHR
-}
-onDataLoaded(responseText) {//下载好的数据显示在文本框中
-  var jsonString =responseText;
-  var student=JSON.decode(jsonString);
-  //JSON.decode() 	Builds Dart objects from a string containing JSON data.num String bool null List Map
-  //JSON.encode() 	Serializes a Dart object into a JSON string.安排序列到JSON
-  //var commentlist=student;
-  querySelector('#commentInput').text = student.toString();
-}
+  request.send(""); // perform the async POST
 
-void saveData(_) {//用户提交数据，保存
+}
+onDataLoading(responseText) {//下载数据
+  if (request.readyState == HttpRequest.DONE && request.status == 200) {
+    //下载好的数据显示在文本框中
+    var jsonString = responseText;
+    var student = JSON.decode(jsonString);
+    querySelector('#commentInput').text = student.toString();
 
-//  var request = new HttpRequest();
-//  request.onReadyStateChange.listen((_) {
-//    if (request.readyState == HttpRequest.DONE &&
-//        (request.status == 200 || request.status == 0)) {
-//      // data saved OK.
-//     // print(request.responseText);
-//     var newcomment=request.responseText;// output the response from the server
-//     querySelector("#commentInput").text = newcomment;
-//    }
-//  });
-
-//  // Get some data to save
-//  var newcomment = query("#commentInput").text;
-//  Language jsonObject = new LanguageImpl.fromJsonString(jsonString);//language是类名
-//  jsonObject.language = jsonObject.language.toUpperCase();
-//  jsonObject.targets.add("Android?");
-//
-//  // POST the data to the server
-//  var url = "http://$host/programming-languages";
-//  request.open("POST", url, false);
-//  request.send(JSON.stringify(jsonObject));
   }
+  if(request.status == 404){
+    querySelector('#commentInput').text = "not found";
+  }
+}
+
+//JSON.decode() 	Builds Dart objects from a string containing JSON data.num String bool null List Map
+//JSON.encode() 	Serializes a Dart object into a JSON string.安排序列到JSON
+//var commentlist=student;
+
+
+
+
+
+
 
 
 void commentInput(){
