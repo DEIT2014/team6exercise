@@ -181,7 +181,7 @@ void showstupage(RouteEvent e) {
 //  querySelector('#threeli').classes.remove('selected');
 //  querySelector('#threedu').classes.remove('selected');
 }
-fff
+
 void showposthomework(RouteEvent e) {
 //  querySelector('#loginpage').classes.remove('selected');
   querySelector('#stupage').classes.remove('selected');
