@@ -175,16 +175,6 @@ void showloguppage(RouteEvent e) {
   querySelector('#hello').classes.remove('selected');
   querySelector('#loginpage').classes.remove('selected');
   querySelector('#loguppage').classes.add('selected');
-//  querySelector('#loguppage').classes.remove('selected');
-//  querySelector('#posthomework').classes.remove('selected');
-//  querySelector('#mygrade').classes.remove('selected');
-//  querySelector('#teapage').classes.remove('selected');
-//  querySelector('#one').classes.remove('selected');
-//  querySelector('#two').classes.remove('selected');
-//  querySelector('#three').classes.remove('selected');
-//  querySelector('#threewu').classes.remove('selected');
-//  querySelector('#threeli').classes.remove('selected');
-//  querySelector('#threedu').classes.remove('selected');
 }
 
 void showstupage(RouteEvent e) {
@@ -193,67 +183,30 @@ void showstupage(RouteEvent e) {
   querySelector('#stupage').classes.add('selected');
   querySelector('#posthomework').classes.remove('selected');
   querySelector('#mygrade').classes.remove('selected');
-//  querySelector('#teacherpage').classes.remove('selected');
-//  querySelector('#one').classes.remove('selected');
-//  querySelector('#two').classes.remove('selected');
-//  querySelector('#three').classes.remove('selected');
-//  querySelector('#threewu').classes.remove('selected');
-//  querySelector('#threeli').classes.remove('selected');
-//  querySelector('#threedu').classes.remove('selected');
 }
 
 void showposthomework(RouteEvent e) {
-//  querySelector('#loginpage').classes.remove('selected');
   querySelector('#stupage').classes.remove('selected');
   querySelector('#posthomework').classes.add('selected');
   querySelector('#mygrade').classes.remove('selected');
-//  querySelector('#teacherpage').classes.remove('selected');
-//  querySelector('#one').classes.remove('selected');
-//  querySelector('#two').classes.remove('selected');
-//  querySelector('#three').classes.remove('selected');
-//  querySelector('#threewu').classes.remove('selected');
-//  querySelector('#threeli').classes.remove('selected');
-//  querySelector('#threedu').classes.remove('selected');
 }
 
 void showmygrade(RouteEvent e) {
-//  querySelector('#loginpage').classes.remove('selected');
   querySelector('#stupage').classes.remove('selected');
-//  querySelector('#postmyhomework').classes.remove('selected');
-//  querySelector('#mygrade').classes.remove('selected');
   querySelector('#mygrade').classes.add('selected');
-//  querySelector('#teacherpage').classes.remove('selected');
-//  querySelector('#one').classes.remove('selected');
-//  querySelector('#two').classes.remove('selected');
-//  querySelector('#three').classes.remove('selected');
-//  querySelector('#threewu').classes.remove('selected');
-//  querySelector('#threeli').classes.remove('selected');
-//  querySelector('#threedu').classes.remove('selected');
 }
 
 void showteapage(RouteEvent e) {
   querySelector('#hello').classes.add('selected');
-//  querySelector('#stupage').classes.remove('selected');
-//  querySelector('#postmyhomework').classes.remove('selected');
-//  querySelector('#mygrade').classes.remove('selected');
   querySelector('#teapage').classes.add('selected');
   querySelector('#loginpage').classes.remove('selected');
   querySelector('#one').classes.remove('selected');
   querySelector('#two').classes.remove('selected');
   querySelector('#three').classes.remove('selected');
-//  querySelector('#threewu').classes.remove('selected');
-//  querySelector('#threeli').classes.remove('selected');
-//  querySelector('#threedu').classes.remove('selected');
 }
 
 void showthree(RouteEvent e) {
-//  querySelector('#stupage').classes.remove('selected');
-//  querySelector('#login').classes.remove('selected');
-//  querySelector('#postmyhomework').classes.remove('selected');
-//  querySelector('#mygrade').classes.remove('selected');
   querySelector('#teapage').classes.remove('selected');
-//  querySelector('#one').classes.remove('selected');
-//  querySelector('#two').classes.remove('selected');
   querySelector('#three').classes.add('selected');
   querySelector('#threewu').classes.remove('selected');
   querySelector('#threeli').classes.remove('selected');
@@ -262,58 +215,26 @@ void showthree(RouteEvent e) {
 
 void showtwo(RouteEvent e) {
   querySelector('#teapage').classes.remove('selected');
-//  querySelector('#stupage').classes.remove('selected');
-//  querySelector('#login').classes.remove('selected');
-//  querySelector('#one').classes.remove('selected');
   querySelector('#two').classes.add('selected');
-//  querySelector('#three').classes.remove('selected');
-//  querySelector('#threewu').classes.remove('selected');
-//  querySelector('#threeli').classes.remove('selected');
-//  querySelector('#threedu').classes.remove('selected');
 }
 
 void showone(RouteEvent e) {
   querySelector('#teapage').classes.remove('selected');
-//  querySelector('#stupage').classes.remove('selected');
-//  querySelector('#login').classes.remove('selected');
   querySelector('#one').classes.add('selected');
-//  querySelector('#two').classes.remove('selected');
-//  querySelector('#three').classes.remove('selected');
-//  querySelector('#threewu').classes.remove('selected');
-//  querySelector('#threeli').classes.remove('selected');
-//  querySelector('#threedu').classes.remove('selected');
 }
 
 void showthreewu(RouteEvent e) {
-//  querySelector('#stupage').classes.remove('selected');
-//  querySelector('#login').classes.remove('selected');
-//  querySelector('#one').classes.remove('selected');
-//  querySelector('#two').classes.remove('selected');
   querySelector('#three').classes.remove('selected');
   querySelector('#threewu').classes.add('selected');
-//  querySelector('#threeli').classes.remove('selected');
-//  querySelector('#threedu').classes.remove('selected');
 }
 
 void showthreeli(RouteEvent e) {
-//  querySelector('#stupage').classes.remove('selected');
-//  querySelector('#login').classes.remove('selected');
-//  querySelector('#one').classes.remove('selected');
-//  querySelector('#two').classes.remove('selected');
   querySelector('#three').classes.remove('selected');
-//  querySelector('#threewu').classes.remove('selected');
   querySelector('#threeli').classes.add('selected');
-//  querySelector('#threedu').classes.remove('selected');
 }
 
 void showthreedu(RouteEvent e) {
-//  querySelector('#stupage').classes.remove('selected');
-//  querySelector('#login').classes.remove('selected');
-//  querySelector('#one').classes.remove('selected');
-//  querySelector('#two').classes.remove('selected');
   querySelector('#three').classes.remove('selected');
-//  querySelector('#threewu').classes.remove('selected');
-//  querySelector('#threeli').classes.remove('selected');
   querySelector('#threedu').classes.add('selected');
 }
 
