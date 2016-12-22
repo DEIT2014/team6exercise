@@ -18,7 +18,7 @@ import 'package:jsonx/jsonx.dart';
 Map<String, String> data = new Map();
 final HOST = "127.0.0.1"; // 便于从console框中直接进入url，调试状态下勿删。
 final PORT = 3320;//便于从console框中直接进入url，调试状态下勿删。
-
+var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test', password: '111111', db: 'evaltool', max: 5);
 
 
 
@@ -40,7 +40,7 @@ Future main() async{
     ..get('/stu/submitHomework',stuSubHomwork)
     ..get('/teacher/id',teacherID)
   //吴怡雯
-    ..get('/stu/comment/',getComment)//评论区在某同学第几条作业下获取已有评论
+    ..get('/stupage/mygrade',getComment)//评论区在某同学第几条作业下获取已有评论
     ..get('/signin/getid/',getID)//登录获取身份信息
     ..get('/stu/getScore/{id}/{number}/',getScore)//评论区在某同学第几条作业下获取分数
     ..post('/stu/postComment/{id}/{number}/',stuPostComment)//评论区在某同学第几条作业下提交学生的评论
@@ -67,7 +67,7 @@ stuID(request) async{
     "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept",
     "Content-Type":"text/html"
   };
-  var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'root',  db: 'stu_sql', max: 5);
+
   var result=await pool.query('select Number_stu,Name_stu,Faculty_stu from stu_sql');
   await result.forEach((row) {
     singledata={
@@ -138,7 +138,7 @@ getComment(request) async{
 //  var singledata = new Map<String,String>(); //存放单个用户数据
  // var userdata = new List(); //存放所有用户的数据
 
-  var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test', password: '111111', db: 'evaltool', max: 5);
+
   var data = await pool.query('select id,comment from comment'); //取数据库中的数据
   var com1 = new com();
   await data.forEach((row) {

@@ -126,11 +126,12 @@ section.selected {
     padding-top: 30px;
 }
 #teaReview{
-    font-size: 40pt;
-    text-align: center;
-    margin-top: 140px;
-    -webkit-user-select: none;
-    user-select: none;
+    /*font-size: 40pt;*/
+    /*text-align: center;*/
+    /*margin-top: 140px;*/
+    /*-webkit-user-select: none;*/
+    /*user-select: none;*/
+    margin-left: 600px;
 }
 #return{
     font-size: 40pt;
@@ -183,9 +184,7 @@ section.selected {
     width: 80%;
 }
 
-.teaReview {
-    margin-left: 800px;
-}
+
 
 .container {
     left: 15%;
