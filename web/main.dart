@@ -238,7 +238,7 @@ void showthreedu(RouteEvent e) {
   querySelector('#threedu').classes.add('selected');
 }
 
-
+//这两段函数是GET功能
 void click(MouseEvent e){
   var url = 'http://localhost:3320/stu/id';
   request = new HttpRequest();
@@ -255,6 +255,13 @@ void onData(_) {
     querySelector("#name").text=stuname;
   }
 }
+//接下来是POST功能
+
+
+
+
+
+
 
 /// reverseText用来接受用户点击按钮翻转字符的响应工作。
 /// 参数[event]是鼠标事件....
