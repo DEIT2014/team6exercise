@@ -175,8 +175,21 @@ getScore(request){
   //todo 在某同学第几条作业下获取分数
 }
 //李志伟
-getprojectlist(request){
+getprolist(request) async{
   //todo 取老师发布的作业列表
+    var _headers1={"Access-Control-Allow-Origin":"*",
+      "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+      "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept",
+      "Content-Type":"application/json"
+    };
+    var data = await pool.query('select question from homework');
+    var com1 = new com();
+    await data.forEach((row) {
+      com1.id = row.id;
+      com1.comment = row.comment;
+    });
+    String comJson =encode(com1);
+    return (new Response.ok(comJson.toString(),headers: _headers1));
 }
 gethomeworklist(request){
   //todo 获取老师收到的学生的作业列表
