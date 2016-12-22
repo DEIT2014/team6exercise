@@ -34,11 +34,11 @@ Future main() async{
 
   //杜谦
   var myRouter = router()
-    ..get('/stu/id',stuID)
-    ..get('/stu/faculty',stuFaculty)
-    ..get('/stu/course',stuCourse)
-    ..get('/stu/submitHomework',stuSubHomwork)
-    ..get('/teacher/id',teacherID)
+    ..get('/stu/id',stuID)//获取学生的姓名
+    ..get('/stu/faculty',stuFaculty)//获取学生的专业
+    ..get('/stu/course',stuCourse)//获取学生选取的课程
+    ..post('/stu/submitHomework',stuSubHomwork)//学生提交作业
+    ..get('/teacher/id',teacherID)//获取老师的姓名
   //吴怡雯
     ..get('/stu/comment/',getComment)//评论区在某同学第几条作业下获取已有评论
     ..get('/signin/getid/',getID)//登录获取身份信息
@@ -59,7 +59,7 @@ Future main() async{
 ////todo:获取学生的姓名
 stuID(request) async{
   //连接我的数据库,将取出的数据存入到一个列表中
-  var singledata=new Map<String,String>();
+  var singledata=new Map<String,String>();//先建一个数组存放一条数据
   var info_stulist=new List();
   var finalinfo_stulist=new Map<String,String>();
   var _headers={"Access-Control-Allow-Origin":"*",
