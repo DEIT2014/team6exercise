@@ -283,25 +283,25 @@ void teaPreview(){
 
 void teaReview(MouseEvent e){
   //todo 跳出新的div回复框，提交已写文字到数据库
-  var request = new HttpRequest ();
+   request = new HttpRequest();
   var url = "http://127.0.0.1:3320/stupage/mygrade";
   request = new HttpRequest();
   request.onReadyStateChange.listen(onDataLoading);
   request.open('GET', url);
   //String jsonData = '{"language":"dart"}'; // etc...
-  //request.send(""); // perform the async POST
+  request.send(""); // perform the async POST
 
 }
-void onDataLoading(responseText) {//下载数据
+void onDataLoading(_) {//下载数据
 
   if (request.readyState == HttpRequest.DONE && request.status == 200) {
     //下载好的数据显示在文本框中
-    var jsonString = responseText;
+    var jsonString = request.responseText;
     var student = JSON.decode(jsonString);
     querySelector('#commentInput').text = student.toString();
 
   }
-  if(request.status == 404){
+  else if(request.status == 404){
     querySelector('#commentInput').text = "not found";
   }
 }
