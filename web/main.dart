@@ -12,7 +12,7 @@ import 'dart:async';
 import 'package:logging/logging.dart';
 import 'package:route_hierarchical/client.dart';
 
-var host = "localhost:3320";
+var host = "127.0.0.1:3320";
 HttpRequest request;
 
 
@@ -60,85 +60,85 @@ void main() {
   querySelector('#linkthreedu').attributes['href'] = router.url('threedu');
   router.listen();
 
-  querySelector("#btn")
-      .onClick.listen(click);
-//登录界面
-  var signup = querySelector('#signup');
-  querySelector('#signup')
-    ..text='注册'
-    ..onClick.listen(signup);
-
-  var signin = querySelector('#signin');
-  querySelector('#signin')
-    ..text='登录'
-    ..onClick.listen(signin);
-
-  //提交作业界面
-  var projectlist = querySelector('#projectlist');
-  querySelector('#projectlist')
-    ..text='信息技术课程作业'
-    ..onClick.listen(projectlist);
-
-  var homeworklist = querySelector('#homeworklist');
-  querySelector('#homeworklist')
-    ..text='信息技术课程作业三'
-    ..onClick.listen(homeworklist);
-
-  var homeworkdetail = querySelector('#homeworkdetail');
-  querySelector('#homeworkdetail')
-    ..text='信息技术课程作业三：吴同学'
-    ..onClick.listen (homeworkdetail );
-
-
-  var stuhomeworklist = querySelector('#stuhomeworklist');
-  querySelector('#stuhomeworklist')
-    ..text='信息技术课程作业三'
-    ..onClick.listen(stuhomeworklist);
-
-  var submitbutton = querySelector('#submitbutton');
-  querySelector('#submitbutton')
-    ..text = '提交'
-    ..onClick.listen(submitbutton);
-
-  var judge = querySelector('#judge');
-  querySelector('#judge')
-    ..text = '信息技术课程作业三：吴同学 图书馆预定座位小程序'
-    ..onClick.listen(judge);
-  //作业提交界面——杜谦
-  ///有关作业信息的板块
-  //todo:从老师数据库中获取作业信息的截至日期和作业注释
-  var posthomework = querySelector('#posthomework');
-  querySelector('#posthomework')
-    ..text='写入提交'
-    ..onClick.listen(posthomework);
-
-  var browseComputer = querySelector('#browseComputer');
-  querySelector('#browseComputer')
-    ..text='浏览我的电脑'
-    ..onClick.listen(browseComputer);
-  ///有关作业提交的板块
-  //todo:添加附件浏览电脑的功能
-
-
-  var postHomework = querySelector('#postHomework');
-  querySelector('#postHomework')
-    ..text='写入提交'
-    ..onClick.listen(postHomework);//todo：点击写入提交按钮就能够出现填写文本的输入框
-
-  var cancel = querySelector('#cancel');
-  querySelector('#cancel')
-    ..text='取消'
-    ..onClick.listen(cancel);
-
-  var saveDraft = querySelector('#saveDraft');
-  querySelector('#saveDraft')
-    ..text='保存草稿'
-    ..onClick.listen(saveDraft);
-
-  var submit = querySelector('#submit');
-  querySelector('#submit')
-    ..text='提交'
-    ..onClick.listen(submit);
+//  querySelector("#btn")
+//      .onClick.listen(click);
+////登录界面
+//  var signup = querySelector('#signup');
+//  querySelector('#signup')
+//    ..text='注册'
+//    ..onClick.listen(signup);
+//
+//  var signin = querySelector('#signin');
+//  querySelector('#signin')
+//    ..text='登录'
+//    ..onClick.listen(signin);
+//
+//  //提交作业界面
+//  var projectlist = querySelector('#projectlist');
+//  querySelector('#projectlist')
+//    ..text='信息技术课程作业'
+//    ..onClick.listen(projectlist);
+//
+//  var homeworklist = querySelector('#homeworklist');
+//  querySelector('#homeworklist')
+//    ..text='信息技术课程作业三'
+//    ..onClick.listen(homeworklist);
+//
+//  var homeworkdetail = querySelector('#homeworkdetail');
+//  querySelector('#homeworkdetail')
+//    ..text='信息技术课程作业三：吴同学'
+//    ..onClick.listen (homeworkdetail );
+//
+//
+//  var stuhomeworklist = querySelector('#stuhomeworklist');
+//  querySelector('#stuhomeworklist')
+//    ..text='信息技术课程作业三'
+//    ..onClick.listen(stuhomeworklist);
+//
+//  var submitbutton = querySelector('#submitbutton');
+//  querySelector('#submitbutton')
+//    ..text = '提交'
+//    ..onClick.listen(submitbutton);
+//
+//  var judge = querySelector('#judge');
+//  querySelector('#judge')
+//    ..text = '信息技术课程作业三：吴同学 图书馆预定座位小程序'
+//    ..onClick.listen(judge);
+//  //作业提交界面——杜谦
+//  ///有关作业信息的板块
+//  //todo:从老师数据库中获取作业信息的截至日期和作业注释
+//  var posthomework = querySelector('#posthomework');
+//  querySelector('#posthomework')
+//    ..text='写入提交'
+//    ..onClick.listen(posthomework);
+//
+//  var browseComputer = querySelector('#browseComputer');
+//  querySelector('#browseComputer')
+//    ..text='浏览我的电脑'
+//    ..onClick.listen(browseComputer);
+//  ///有关作业提交的板块
+//  //todo:添加附件浏览电脑的功能
+//
+//
+//  var postHomework = querySelector('#postHomework');
+//  querySelector('#postHomework')
+//    ..text='写入提交'
+//    ..onClick.listen(postHomework);//todo：点击写入提交按钮就能够出现填写文本的输入框
+//
+//  var cancel = querySelector('#cancel');
+//  querySelector('#cancel')
+//    ..text='取消'
+//    ..onClick.listen(cancel);
+//
+//  var saveDraft = querySelector('#saveDraft');
+//  querySelector('#saveDraft')
+//    ..text='保存草稿'
+//    ..onClick.listen(saveDraft);
+//
+//  var submit = querySelector('#submit');
+//  querySelector('#submit')
+//    ..text='提交'
+//    ..onClick.listen(submit);
 
 
 //评论区界面
@@ -146,7 +146,7 @@ void main() {
 //  querySelector('#teaPreview');
 //
 
-  var teaReview = querySelector('#teaReview');
+  //var teaReview = querySelector('#teaReview');
   querySelector('#teaReview')
     ..text='回复'
     ..onClick.listen(teaReview);
@@ -284,12 +284,12 @@ void teaPreview(){
 void teaReview(MouseEvent e){
   //todo 跳出新的div回复框，提交已写文字到数据库
   var request = new HttpRequest ();
-  var url = "http://localhost:3320/stu/comment/";
+  var url = "http://127.0.0.1:3320/stupage/mygrade";
   request = new HttpRequest();
   request.onReadyStateChange.listen(onDataLoading);
-  request.open('POST', url);
+  request.open('GET', url);
   //String jsonData = '{"language":"dart"}'; // etc...
-  request.send(""); // perform the async POST
+  //request.send(""); // perform the async POST
 
 }
 void onDataLoading(responseText) {//下载数据
