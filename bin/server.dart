@@ -82,6 +82,23 @@ stuID(request) async{
   return (new Response.ok(finalinfo_stulist.toString(),headers: _headers));
 }
 
+////todo：实现post功能
+stuSubHomwork(request) async{
+    HttpResponse res = req.response;
+    print("${req.method}: ${req.uri.path}");
+
+    addCorsHeaders(res);
+    req.listen((List<int> buffer) {
+    var file = new File(DATA_FILE);
+    var ioSink = file.openWrite(); // save the data to the file
+    ioSink.add(buffer);
+    ioSink.close();
+    // return the same results back to the client
+    res.add(buffer);
+    res.close();
+    },
+    onError: printError);
+    }
 
 
 //todo:把从数据库取出的数据连接到客户端，并在客户端上显示出来
