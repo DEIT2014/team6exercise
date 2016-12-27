@@ -11,7 +11,7 @@ import 'dart:core'as core;
 import 'dart:async';
 import 'package:logging/logging.dart';
 import 'package:route_hierarchical/client.dart';
-
+InputElement newcomment;
 var host = "127.0.0.1:3320";
 HttpRequest request;
 
@@ -290,14 +290,18 @@ void teaPreview(){
 
 void teaReview(MouseEvent e){
   //todo 跳出新的div回复框，提交已写文字到数据库
-   request = new HttpRequest();
+  var NewComment=newcomment.value;
+  request = new HttpRequest();
   var url = "http://127.0.0.1:3320/stupage/mygrade";
   request = new HttpRequest();
   request.onReadyStateChange.listen(onDataLoading);
   request.open('GET', url);
+  request.open('POST', url);
   //String jsonData = '{"language":"dart"}'; // etc...
-  request.send(""); // perform the async POST
-
+  NewComment= {
+    "comment":'${NewComment}',
+  };
+  request.send(NewComment); // perform the async POST
 }
 void onDataLoading(_) {//下载数据
 
