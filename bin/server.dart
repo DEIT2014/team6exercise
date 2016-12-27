@@ -46,6 +46,7 @@ Future main() async{
     ..post('/postInfo_basic/',postInfo_basic)//注册界面，注册账号，密码和身份
   //吴怡雯
     ..get('/stupage/mygrade',getComment)//评论区在某同学第几条作业下获取已有评论
+    ..post('/stupage/mygrade',getComment)
     ..get('/signin/getid/',getID)//登录获取身份信息
     ..get('/stu/getScore/{id}/{number}/',getScore)//评论区在某同学第几条作业下获取分数
     ..post('/stu/postComment/{id}/{number}/',stuPostComment)//评论区在某同学第几条作业下提交学生的评论
@@ -139,8 +140,8 @@ getComment(request) async{
   "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept",
   "Content-Type":"application/json"
   };
-//  var singledata = new Map<String,String>(); //存放单个用户数据
- // var userdata = new List(); //存放所有用户的数据
+  var singledata = new Map<String,String>(); //存放单个用户数据
+  var userdata = new List(); //存放所有用户的数据
 
 
   var data = await pool.query('select id,comment from comment'); //取数据库中的数据
@@ -150,8 +151,10 @@ getComment(request) async{
 //    singledata.add(index);//map加一个属性index
 //    singledata[index] = row.id;//值为数据库中的id
 //    i++;
-    com1.id = row.id;
-    com1.comment = row.comment;
+    singledata={'"comment"':'"${row.comment}"'};//按照这个格式存放单条数据
+    userdata.add(singledata);//将该数据加入数组中
+//    com1.id = row.id;
+//    com1.comment = row.comment;
   });
   String comJson =encode(com1);
 //  var commentList=[];
