@@ -192,11 +192,16 @@ section.selected {
     margin-right: 15%;
     margin-left: 15%;
 }
+#register_border{
+    height: 100px;
+}
 .register{
-    padding-top:100px;
+
     margin-left: 370px;
     width: 300px;
-    height:200px;
+    height:250px;
+    background-image: url("2.jpg");
+    border: 1px solid lightblue;
 }
 
 /*.form2buttom {*/
