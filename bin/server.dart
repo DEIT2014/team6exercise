@@ -19,7 +19,11 @@ Map<String, String> data = new Map();
 final HOST = "127.0.0.1"; // 便于从console框中直接进入url，调试状态下勿删。
 final PORT = 3320;//便于从console框中直接进入url，调试状态下勿删。
 var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test', password: '111111', db: 'evaltool', max: 5);
-
+var _headers={"Access-Control-Allow-Origin":"*",
+  "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+  "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept",
+  "Content-Type":"application/json",
+};
 
 
 
@@ -39,6 +43,7 @@ Future main() async{
     ..get('/stu/course',stuCourse)//获取学生选取的课程
     ..post('/stu/submitHomework',stuSubHomwork)//学生提交作业
     ..get('/teacher/id',teacherID)//获取老师的姓名
+    ..post('/postInfo_basic/',postInfo_basic)//注册界面，注册账号，密码和身份
   //吴怡雯
     ..get('/stupage/mygrade',getComment)//评论区在某同学第几条作业下获取已有评论
     ..get('/signin/getid/',getID)//登录获取身份信息
@@ -62,43 +67,25 @@ stuID(request) async{
   var singledata=new Map<String,String>();//先建一个数组存放一条数据
   var info_stulist=new List();
   var finalinfo_stulist=new Map<String,String>();
-  var _headers={"Access-Control-Allow-Origin":"*",
-    "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
-    "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept",
-    "Content-Type":"text/html"
-  };
-
-  var result=await pool.query('select Number_stu,Name_stu,Faculty_stu from stu_sql');
+  var result=await pool.query('select id,name,password,career from basic_info');
   await result.forEach((row) {
     singledata={
-      '"number_stu"':'"${row.Number_stu}"',
-      '" name_stu"':'"${row.Name_stu}"',
-      '"faculty_stu"':'"${row.Faculty_stu}"'
+      '"id"':'"${row.id}"',
+      '"name"':'"${row.name}"',
+      '"password"':'"${row.password}"',
+      '"career"':'"${row.career}"'
     };
     info_stulist.add(singledata);//将该数据加入数组中
 
   });
-  finalinfo_stulist={'"STU_SQL"':info_stulist};
+  finalinfo_stulist={'"basic_info"':info_stulist};
   return (new Response.ok(finalinfo_stulist.toString(),headers: _headers));
 }
 
 ////todo：实现post功能
-stuSubHomwork(request) async{
-    HttpResponse res = req.response;
-    print("${req.method}: ${req.uri.path}");
+postInfo_basic(request){
 
-    addCorsHeaders(res);
-    req.listen((List<int> buffer) {
-    var file = new File(DATA_FILE);
-    var ioSink = file.openWrite(); // save the data to the file
-    ioSink.add(buffer);
-    ioSink.close();
-    // return the same results back to the client
-    res.add(buffer);
-    res.close();
-    },
-    onError: printError);
-    }
+}
 
 
 //todo:把从数据库取出的数据连接到客户端，并在客户端上显示出来
