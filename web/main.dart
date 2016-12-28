@@ -259,7 +259,7 @@ void onData(_) {
 
 //接下来是POST功能
 void click1(MouseEvent e){
-  var url = 'http://localhost:3320/stu/id';
+  var url = 'http://localhost:3320/register';
   request = new HttpRequest();
   request.onReadyStateChange.listen(writeDATA);
   request.open('POST', url);
