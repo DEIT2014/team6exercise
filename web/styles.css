@@ -202,6 +202,19 @@ section.selected {
     background-image: url("2.jpg");
     border: 1px solid lightblue;
 }
+.background{
+    margin-left: 370px;
+    width: 970px;
+    height: 122px;
+    background-image: url("BEIJING.png");
+}
+.posthomework1{
+    padding-left: 350px;
+    padding-top: 30px;
+}
+#blank{
+    height: 50px;
+}
 
 /*.form2buttom {*/
     /*text-decoration: underline;*/
