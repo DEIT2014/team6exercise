@@ -56,7 +56,7 @@ Future main() async{
 
 
   //李志伟
-    ..get('/tea/gethprojectlist/{schoolnumber}/',getprojectlist)//获取老师发布的作业列表
+   // ..get('/tea/gethprojectlist/{schoolnumber}/',getprojectlist)//获取老师发布的作业列表
     ..get('/tea/gethprojectlist/{schoolnumber}/gethomeworklist',gethomeworklist)//获取老师收到的学生的作业列表
     ..get('/tea/rojectlist/{schoolnumber}/gethomeworklist/gethomeworkdetail',gethomeworkdetail)//获取学生提交的一份作业的具体信息
     ..post('/tea/postjudge/{teaschoolnumber}/{stuschoolnumber}/{id}/',postjudge)//提交教师的评价
@@ -133,15 +133,23 @@ responseRoot(request){
 
 
 }
-
-getComment(request) async{
-  ///todo 在某同学第几条作业下获取已有评论
+//把这个post过来的数据有返回给客户端
+Future<shelf.Response> getComment(shelf.Request request) async{
+  //todo 在某同学第几条作业下获取已有评论
   //连接我的数据库
   var _headers1={"Access-Control-Allow-Origin":"*",
   "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
   "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept",
   "Content-Type":"application/json"
   };
+
+
+    //接受post过来的数据
+    String newcomment=await request.readAsString();
+    print(newcomment);
+    var newdata = await pool.prepare('insert into comment(comment) values (singledata) ');
+    //把这个post过来的数据有返回给客户端
+
   var singledata = new Map<String,String>(); //存放单个用户数据
   var userdata = new List(); //存放所有用户的数据
 
@@ -149,12 +157,12 @@ getComment(request) async{
   var data = await pool.query('select id,comment from comment'); //取数据库中的数据
   var com1 = new com();
   await data.forEach((row) {
+    singledata={'"comment"':'"${row.comment}"'};//按照这个格式存放单条数据
+    userdata.add(singledata);//将该数据加入数组中
 //    String index = "id" + i.toString();//index=id0
 //    singledata.add(index);//map加一个属性index
 //    singledata[index] = row.id;//值为数据库中的id
 //    i++;
-    singledata={'"comment"':'"${row.comment}"'};//按照这个格式存放单条数据
-    userdata.add(singledata);//将该数据加入数组中
 //    com1.id = row.id;
 //    com1.comment = row.comment;
   });
@@ -165,7 +173,6 @@ getComment(request) async{
 //  print(comListJson);
 //  List<com> commentList1 = decode(comListJson, type: const TypeHelper<List<com>>().type);
 //  print(commentList1);
-
   return (new Response.ok(comJson.toString(),headers: _headers1));//string
 //可能是map无法转成String
 //也可能是singledata数据错误
