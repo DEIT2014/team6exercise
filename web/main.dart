@@ -3,7 +3,6 @@
 
 // Copyright (c) 2016, <your name>. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
-
 import 'dart:html';
 import 'dart:math';
 import 'dart:convert' show JSON;
@@ -19,7 +18,7 @@ HttpRequest request;
 
 void main() {
   querySelector('#warning').remove();
-
+  newcomment= querySelector('#commentInput');
 
   var router = new Router(useFragment: true);
 
@@ -309,7 +308,6 @@ void teaPreview(){
 
 void teaReview(MouseEvent e){
   //todo 跳出新的div回复框，提交已写文字到数据库
-  var NewComment=newcomment.value;
   request = new HttpRequest();
   var url = "http://127.0.0.1:3320/stupage/mygrade";
   request = new HttpRequest();
@@ -317,19 +315,14 @@ void teaReview(MouseEvent e){
   request.open('GET', url);
   request.open('POST', url);
   //String jsonData = '{"language":"dart"}'; // etc...
-  NewComment= {
-    "comment":'${NewComment}',
-  };
-  request.send(NewComment); // perform the async POST
+  request.send(newcomment); // perform the async POST
 }
 void onDataLoading(_) {//下载数据
-
   if (request.readyState == HttpRequest.DONE && request.status == 200) {
     //下载好的数据显示在文本框中
     var jsonString = request.responseText;
     var student = JSON.decode(jsonString);
     querySelector('#commentInput').text = student.toString();
-
   }
   else if(request.status == 404){
     querySelector('#commentInput').text = "not found";
