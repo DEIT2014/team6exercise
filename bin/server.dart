@@ -2,9 +2,10 @@ import 'dart:io';
 import 'package:sqljocky/sqljocky.dart';
 import 'package:sqljocky/utils.dart';
 import 'package:options_file/options_file.dart';
-import 'package:shelf/shelf.dart' ;
+import 'package:shelf/shelf.dart' as shelf;
 import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_route/shelf_route.dart';
+import 'package:shelf_cors/shelf_cors.dart' as shelf_cors;
 import 'package:json_object/json_object.dart';
 import 'dart:async';
 import 'dart:convert' show JSON;
@@ -24,8 +25,6 @@ var _headers={"Access-Control-Allow-Origin":"*",
   "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept",
   "Content-Type":"application/json",
 };
-
-
 
 Future main() async{
 
@@ -61,7 +60,17 @@ Future main() async{
     ..get('/tea/rojectlist/{schoolnumber}/gethomeworklist/gethomeworkdetail',gethomeworkdetail)//获取学生提交的一份作业的具体信息
     ..post('/tea/postjudge/{teaschoolnumber}/{stuschoolnumber}/{id}/',postjudge)//提交教师的评价
     ..get('/{name}{?age}', myHandler);
-  io.serve(myRouter.handler, '127.0.0.1', 3320);
+  var routerHandler = myRouter.handler;
+  //配置shelf中间件和路由handle
+  var handler = const shelf.Pipeline()
+      .addMiddleware(shelf.logRequests())
+      .addMiddleware(
+      shelf_cors.createCorsHeadersMiddleware(corsHeaders: _headers))
+      .addHandler(routerHandler);
+
+  io.serve(handler, 'localhost', 3320).then((server) {
+    print('Serving at http://${server.address.host}:${server.port}');
+  });
   print("Listening for GET,POST and PUT on http://$HOST:$PORT");//便于从console框中直接进入url,可在语句最后加上“/后缀”检验该URL是否取到数据，调试状态下勿删。
 }
 ////todo:获取学生的姓名
@@ -82,7 +91,7 @@ stuID(request) async{
 
   });
   finalinfo_stulist={'"basic_info"':info_stulist};
-  return (new Response.ok(finalinfo_stulist.toString(),headers: _headers));
+  return (new shelf.Response.ok(finalinfo_stulist.toString(),headers: _headers));
 }
 
 ////todo：实现post功能
@@ -95,7 +104,7 @@ postInfo_basic(request){
 myHandler(request) {
   var name = getPathParameter(request, 'name');
   var age = getPathParameter(request, 'age');
-  return new Response.ok("Hello $name of age $age");
+  return new shelf.Response.ok("Hello $name of age $age");
 }
 teacherID(request){
   ///todo:获取老师的姓名
@@ -104,32 +113,32 @@ stuFaculty(request) {
 //todo:获取学生的专业
   var name = getPathParameter(request, 'name');
   var faculty = getPathParameter(request, 'faculty');
-  return new Response.ok("Hello $name of faculty $faculty");
+  return new shelf.Response.ok("Hello $name of faculty $faculty");
 }
 stuCourse(request) {
   ///todo:获取学生的所选课程
   var name = getPathParameter(request, 'name');
   var course = getPathParameter(request, 'course');
-  return new Response.ok("Hello $name of course $course");
+  return new shelf.Response.ok("Hello $name of course $course");
 }
 scanComputer(request) {
   ///todo:实现浏览本地电脑文件的功能
   var name = getPathParameter(request, 'name');
   var scanComputer = getPathParameter(request, 'scanComputer');
-  return new Response.ok("Hello $name of scanComputer $scanComputer");
+  return new shelf.Response.ok("Hello $name of scanComputer $scanComputer");
 }
 
 stuSubHomwork(request) {
   ///todo:实现提交作业的功能
   var name = getPathParameter(request, 'name');
   var submitHomework = getPathParameter(request, 'submitHomework');
-  return new Response.ok("Hello $name of submitHomework $submitHomework");
+  return new shelf.Response.ok("Hello $name of submitHomework $submitHomework");
 }
 
 
 responseRoot(request){
   ///todo:获取老师的用户名，显示在页头
-  return new Response.ok("Hello teacher!");
+  return new shelf.Response.ok("Hello teacher!");
 
 
 }
@@ -147,16 +156,15 @@ Future<shelf.Response> getComment(shelf.Request request) async{
     //接受post过来的数据
     String newcomment=await request.readAsString();
     print(newcomment);
-    var newdata = await pool.prepare('insert into comment(comment) values (singledata) ');
-    //把这个post过来的数据有返回给客户端
-
+  await pool.prepare('insert into comment(comment) values ( ${newcomment}) ');
+    //把这个post过来的数据插入数据库
+  var getdata = await pool.query('select id,comment from comment'); //取数据库中的数据
   var singledata = new Map<String,String>(); //存放单个用户数据
   var userdata = new List(); //存放所有用户的数据
 
 
-  var data = await pool.query('select id,comment from comment'); //取数据库中的数据
   var com1 = new com();
-  await data.forEach((row) {
+  await getdata.forEach((row) {
     singledata={'"comment"':'"${row.comment}"'};//按照这个格式存放单条数据
     userdata.add(singledata);//将该数据加入数组中
 //    String index = "id" + i.toString();//index=id0
@@ -173,7 +181,7 @@ Future<shelf.Response> getComment(shelf.Request request) async{
 //  print(comListJson);
 //  List<com> commentList1 = decode(comListJson, type: const TypeHelper<List<com>>().type);
 //  print(commentList1);
-  return (new Response.ok(comJson.toString(),headers: _headers1));//string
+  return (new shelf.Response.ok(comJson.toString(),headers: _headers1));//string
 //可能是map无法转成String
 //也可能是singledata数据错误
 }
@@ -205,7 +213,7 @@ getprolist(request) async{
       com1.comment = row.comment;
     });
     String comJson =encode(com1);
-    return (new Response.ok(comJson.toString(),headers: _headers1));
+    return (new shelf.Response.ok(comJson.toString(),headers: _headers1));
 }
 gethomeworklist(request){
   //todo 获取老师收到的学生的作业列表
