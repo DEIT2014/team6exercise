@@ -90,11 +90,13 @@ section.selected {
     display: block;
 }
 
-.warning {
+#warning {
     color: red;
 }
 
-
+#comments{
+    font-size: 14px;
+}
 
 
 

@@ -322,7 +322,7 @@ void onDataLoading(_) {//下载数据
     //下载好的数据显示在文本框中
     var jsonString = request.responseText;
     var student = JSON.decode(jsonString);
-    querySelector('#commentInput').text = student.toString();
+    querySelector('#comments').text = student.toString();
   }
   else if(request.status == 404){
     querySelector('#commentInput').text = "not found";

@@ -156,14 +156,14 @@ Future<shelf.Response> getComment(shelf.Request request) async{
     //接受post过来的数据
     String newcomment=await request.readAsString();
     print(newcomment);
-  await pool.prepare('insert into comment(comment) values ( ${newcomment}) ');
+  await pool.prepare('insert into comment(comment) values (${newcomment})');
     //把这个post过来的数据插入数据库
   var getdata = await pool.query('select id,comment from comment'); //取数据库中的数据
   var singledata = new Map<String,String>(); //存放单个用户数据
   var userdata = new List(); //存放所有用户的数据
 
 
-  var com1 = new com();
+//  var com1 = new com();
   await getdata.forEach((row) {
     singledata={'"comment"':'"${row.comment}"'};//按照这个格式存放单条数据
     userdata.add(singledata);//将该数据加入数组中
@@ -174,7 +174,7 @@ Future<shelf.Response> getComment(shelf.Request request) async{
 //    com1.id = row.id;
 //    com1.comment = row.comment;
   });
-  String comJson =encode(com1);
+  String comJson =encode(getdata);
 //  var commentList=[];
 //  commentList.add(com1);
 //  String comListJson=encode(commentList);
