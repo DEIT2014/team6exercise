@@ -90,12 +90,16 @@ section.selected {
     display: block;
 }
 
-.warning {
+#warning {
     color: red;
 }
 
-
-
+#comments{
+    font-size: 14px;
+}
+#newcomment{
+    font-size: 14px;
+}
 
 
 #title {

@@ -47,7 +47,9 @@ void main() {
   querySelector('#subbtnli').attributes['href'] = router.url('three');
   querySelector('#subbtndu').attributes['href'] = router.url('three');
   querySelector('#newhomework').attributes['href'] = router.url('posthomework');
-  querySelector('#myhomework').attributes['href'] = router.url('mygrade');
+  querySelector('#myhomework')
+      ..attributes['href'] = router.url('mygrade')
+      ..onClick.listen(comment);
   querySelector('#rebtnthree').attributes['href'] = router.url('teapage');
   querySelector('#rebtntwo').attributes['href'] = router.url('teapage');
   querySelector('#rebtnone').attributes['href'] = router.url('teapage');
@@ -304,49 +306,46 @@ void teaPreview(){
   //todo 显示数据库中的学生作业
 }
 
-
-
-void teaReview(MouseEvent e){
-  //todo 跳出新的div回复框，提交已写文字到数据库
+void comment(MouseEvent e) {
+  //todo 显示评论
   request = new HttpRequest();
-  var url = "http://127.0.0.1:3320/stupage/mygrade";
-  request = new HttpRequest();
+  var url = "http://localhost:3320/stupage/mygrade/";
   request.onReadyStateChange.listen(onDataLoading);
   request.open('GET', url);
-  request.open('POST', url);
-  //String jsonData = '{"language":"dart"}'; // etc...
-  request.send(newcomment); // perform the async POST
 }
 void onDataLoading(_) {//下载数据
   if (request.readyState == HttpRequest.DONE && request.status == 200) {
     //下载好的数据显示在文本框中
     var jsonString = request.responseText;
     var student = JSON.decode(jsonString);
-    querySelector('#commentInput').text = student.toString();
+    querySelector('#comments').text = student.toString();
   }
   else if(request.status == 404){
-    querySelector('#commentInput').text = "not found";
+    querySelector('#comments').text = "not found";
   }
 }
+void teaReview(MouseEvent e){
+  //todo 跳出新的div回复框，提交已写文字到数据库
+  InputElement inputContent=querySelector("#commentInput");
+  core.String text=inputContent.value;
+  querySelector('#newcomment').text=text;
+  request = new HttpRequest();
+  var url = "http://localhost:3320/stupage/mygrade/";
+  request.open('POST', url);
+  //String jsonData = '{"language":"dart"}'; // etc...
+  request.send(text); // perform the async POST
+}
+
 
   //JSON.decode() 	Builds Dart objects from a string containing JSON data.num String bool null List Map
   //JSON.encode() 	Serializes a Dart object into a JSON string.安排序列到JSON
   //var commentlist=student;
 
-
-
-
-
-
-
-
 void commentInput(){
   //todo 输入评论
 }
 
-void comment(){
-  //todo 显示评论
-}
+
 //教师页面—李志伟
 
 void projectlist() {
