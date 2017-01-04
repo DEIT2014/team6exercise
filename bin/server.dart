@@ -15,7 +15,7 @@ import 'package:jsonx/jsonx.dart';
  * Browse to it using http://localhost:3320
  * Provides CORS headers, so can be accessed from any other page
  */
-
+String responseText;//注册时返回到客户端的数据：写入数据库成功，返回0；失败，返回错误值，不为0
 Map<String, String> data = new Map();
 final HOST = "127.0.0.1"; // 便于从console框中直接进入url，调试状态下勿删。
 final PORT = 3320;//便于从console框中直接进入url，调试状态下勿删。
@@ -27,7 +27,8 @@ var _headers={"Access-Control-Allow-Origin":"*",
 };
 
 Future main() async{
-
+//get是client发送request，让server从数据库取数据发送到相应的url，main.dart将数据放在相应的页面位置
+// post也是client发送request，让server将相应url中的数据插入到数据库
 //  var commentList=[];
 //  commentList.add(com1);
 //  String comListJson=encode(commentList);
@@ -46,8 +47,8 @@ Future main() async{
 
 
   //吴怡雯
-    ..get('/stupage/mygrade',getComment)//评论区在某同学第几条作业下获取已有评论
-    ..post('/stupage/mygrade',getComment)
+    ..get('/stupage/mygrade',getComment)
+    ..post('/stupage/mygrade/',postComment)
     ..get('/signin/getid/',getID)//登录获取身份信息
     ..get('/stu/getScore/{id}/{number}/',getScore)//评论区在某同学第几条作业下获取分数
     ..post('/stu/postComment/{id}/{number}/',stuPostComment)//评论区在某同学第几条作业下提交学生的评论
@@ -153,11 +154,7 @@ Future<shelf.Response> getComment(shelf.Request request) async{
   };
 
 
-    //接受post过来的数据
-    String newcomment=await request.readAsString();
-    print(newcomment);
-  await pool.prepare('insert into comment(comment) values (${newcomment})');
-    //把这个post过来的数据插入数据库
+
   var getdata = await pool.query('select id,comment from comment'); //取数据库中的数据
   var singledata = new Map<String,String>(); //存放单个用户数据
   var userdata = new List(); //存放所有用户的数据
@@ -184,6 +181,39 @@ Future<shelf.Response> getComment(shelf.Request request) async{
   return (new shelf.Response.ok(comJson.toString(),headers: _headers1));//string
 //可能是map无法转成String
 //也可能是singledata数据错误
+}
+Future<shelf.Response> postComment(shelf.Request request) async{
+  //接受post过来的数据
+  String newcomment=await request.readAsString();
+  print(newcomment);
+
+  //把这个post过来的数据插入数据库
+  await request.readAsString().then(insertDataBaseStu);
+  if(responseText == '0'){
+    return (new shelf.Response.ok('success',headers: _headers));
+  }
+  else{
+    return (new shelf.Response.ok('failure',headers: _headers));
+  }
+  //todo 写入数据库成功则responseText值为‘0’，否则是‘$error’（错误的内容）
+}
+insertDataBaseStu(data) async{
+  int id;
+  String comment;
+  Map realdata=JSON.decode(data);
+  id=realdata['id'];
+  comment=realdata['comment'];
+
+  //todo 将数据存入数据库
+  var query=await pool.prepare('insert into comment(id,comment) values(?,?)');
+  await query.execute([id,comment,'stu']).then((result){
+    print('${result.insertId}');//如果插入成功，这会是0，否则会报错
+    responseText='${result.insertId}';
+  }).catchError((error){
+    //todo 出错的情况下，返回错误的内容
+    print('$error');
+    responseText=error.toString();
+  });
 }
 
 getID(request){
