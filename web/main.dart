@@ -309,7 +309,7 @@ void teaPreview(){
 void comment(MouseEvent e) {
   //todo 显示评论
   request = new HttpRequest();
-  var url = "http://127.0.0.1:3320/stupage/mygrade/";
+  var url = "http://localhost:3320/stupage/mygrade/";
   request.onReadyStateChange.listen(onDataLoading);
   request.open('GET', url);
 }
@@ -330,10 +330,10 @@ void teaReview(MouseEvent e){
   core.String text=inputContent.value;
   querySelector('#newcomment').text=text;
   request = new HttpRequest();
-  var url = "http://127.0.0.1:3320/stupage/mygrade/";
+  var url = "http://localhost:3320/stupage/mygrade/";
   request.open('POST', url);
   //String jsonData = '{"language":"dart"}'; // etc...
-  request.send(newcomment); // perform the async POST
+  request.send(text); // perform the async POST
 }
 
 

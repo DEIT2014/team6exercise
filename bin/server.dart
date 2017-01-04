@@ -188,7 +188,7 @@ Future<shelf.Response> postComment(shelf.Request request) async{
   print(newcomment);
 
   //把这个post过来的数据插入数据库
-  await request.readAsString().then(insertDataBaseStu);
+  String comments1=await request.readAsString();
   if(responseText == '0'){
     return (new shelf.Response.ok('success',headers: _headers));
   }
