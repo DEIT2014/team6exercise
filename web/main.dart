@@ -13,13 +13,9 @@ import 'package:logging/logging.dart';
 import 'package:route_hierarchical/client.dart';
 
 var host = "localhost:3320";
-HttpRequest request;
-
-
 
 void main() {
   querySelector('#warning').remove();
-
 
   var router = new Router(useFragment: true);
 
@@ -60,8 +56,11 @@ void main() {
   querySelector('#linkthreedu').attributes['href'] = router.url('threedu');
   router.listen();
 
-  querySelector("#btn")
-      .onClick.listen(click);
+  //评价页面
+  var comment = querySelector('#combtn');
+  querySelector("#combtn").onClick.listen(combtn);//教师对学生进行评价
+  querySelector('#comment').text = showcomment(); //学生姓名的数据
+
 //登录界面
   var signup = querySelector('#signup');
   querySelector('#signup')
@@ -153,7 +152,30 @@ void main() {
 
 
 }
+void showcomment(MouseEvent event){
+  //to do 显示评论内容
+}
 
+void reasonwu(MouseEvent event) {
+//todo 将评价的数据写入数据库
+var router = new Router(useFragment: true);
+router.root
+..addRoute(
+name: 'SnewTask',
+path: '/tea/newTask/success',
+enter:SnewTask);
+querySelector('#ConfirmWord_Confirm_Btn').attributes['href'] =
+router.url('SnewTask');
+router.listen();
+String jsonData = encode(newWordList);
+HttpRequest request = new HttpRequest();
+request.onReadyStateChange.listen((_) {
+
+});
+var url = "http://127.0.0.1:14080/teacher_writetask";
+request.open("POST", url);
+request.send(jsonData);
+}
 
 void showloginpage(RouteEvent e) {
   querySelector('#hello').classes.remove('selected');

@@ -10,15 +10,16 @@ import 'dart:async';
 import 'dart:convert' show JSON;
 import 'package:team6exercise/comment-class.dart';
 import 'package:jsonx/jsonx.dart';
-/* A simple web server that responds to **ALL** GET requests by returning
- * Browse to it using http://localhost:3320
- * Provides CORS headers, so can be accessed from any other page
- */
+
 
 Map<String, String> data = new Map();
 final HOST = "127.0.0.1"; // 便于从console框中直接进入url，调试状态下勿删。
 final PORT = 3320;//便于从console框中直接进入url，调试状态下勿删。
 
+final _headers={"Access-Control-Allow-Origin":"*",
+  "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+  "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept",
+  "Content-Type":"application/json"};
 
 
 
@@ -48,12 +49,14 @@ Future main() async{
 
 
   //李志伟
-    ..get('/tea/gethprojectlist/{schoolnumber}/',getprojectlist)//获取老师发布的作业列表
-    ..get('/tea/gethprojectlist/{schoolnumber}/gethomeworklist',gethomeworklist)//获取老师收到的学生的作业列表
-    ..get('/tea/rojectlist/{schoolnumber}/gethomeworklist/gethomeworkdetail',gethomeworkdetail)//获取学生提交的一份作业的具体信息
+    ..get('/tea/gethprolist/{schnum}/',getprolist)//获取老师发布的作业列表
+    ..get('/tea/gethprolist/{schnum}/gethomeworklist',gethomeworklist)//获取老师收到的学生的作业列表
+    ..get('/tea/prolist/{schnum}/gethomeworklist/gethomeworkdetail',gethomeworkdetail)//获取学生提交的一份作业的具体信息
     ..post('/tea/postjudge/{teaschoolnumber}/{stuschoolnumber}/{id}/',postjudge)//提交教师的评价
     ..get('/{name}{?age}', myHandler);
+
   io.serve(myRouter.handler, '127.0.0.1', 3320);
+
   print("Listening for GET,POST and PUT on http://$HOST:$PORT");//便于从console框中直接进入url,可在语句最后加上“/后缀”检验该URL是否取到数据，调试状态下勿删。
 }
 ////todo:获取学生的姓名
@@ -175,8 +178,19 @@ getScore(request){
   //todo 在某同学第几条作业下获取分数
 }
 //李志伟
-getprojectlist(request){
+getprolist(request){
   //todo 取老师发布的作业列表
+  var pro=new Map<String,String>();//存放单个用户数据
+  var prolist=new List();//存放所有用户的数据
+  var endprolist=new Map<String,String>();//存放最终的用户数据
+  var pool=new ConnectionPool(host:'localhost',port:3306,user: 'test', password: '111111', db: 'evaltool',max:5);
+  var data= await pool.query('select id,question from homework');
+  await data.forEach((row){
+pro={'"id"':'"${row.id}"','"question"':'"${row.question}"'};
+prolist.add(pro);//将该数据加入数组中
+});
+endprolist={'"prolist"':prolist};
+return (new Response.ok(endprolist.toString(),headers: _headers));
 }
 gethomeworklist(request){
   //todo 获取老师收到的学生的作业列表
