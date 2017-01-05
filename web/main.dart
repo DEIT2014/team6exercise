@@ -11,7 +11,7 @@ import 'dart:async';
 import 'package:logging/logging.dart';
 import 'package:route_hierarchical/client.dart';
 InputElement newcomment;
-var host = "127.0.0.1:3320";
+var host = "localhost:3320";
 HttpRequest request;
 
 
@@ -148,10 +148,13 @@ void main() {
 //
 
   //var teaReview = querySelector('#teaReview');
+  querySelector('#myhomework')
+    ..onClick.listen(comment);
   querySelector('#teaReview')
     ..text='回复'
     ..onClick.listen(teaReview);
-
+  querySelector('form1dbuttom')
+    ..onClick.listen(login);
 
 }
 
@@ -296,7 +299,11 @@ void signup(){
 //todo 将用户输入的数据上传到数据库中
   json();
 }
-
+void login(MouseEvent e){
+  InputElement inputContent=querySelector("#yonghuming");
+  core.String text=inputContent.value;
+  querySelector('#yonghuming').text=text;
+}
 
 void json(){
   // todo 将提交的数据转成json数据
@@ -312,6 +319,7 @@ void comment(MouseEvent e) {
   var url = "http://localhost:3320/stupage/mygrade/";
   request.onReadyStateChange.listen(onDataLoading);
   request.open('GET', url);
+  request.send('');
 }
 void onDataLoading(_) {//下载数据
   if (request.readyState == HttpRequest.DONE && request.status == 200) {
