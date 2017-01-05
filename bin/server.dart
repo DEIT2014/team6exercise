@@ -160,7 +160,7 @@ Future<shelf.Response> getComment(shelf.Request request) async{
   var userdata = new List(); //存放所有用户的数据
 
 
-//  var com1 = new com();
+ //var com1 = new com();
   await getdata.forEach((row) {
     singledata={'"comment"':'"${row.comment}"'};//按照这个格式存放单条数据
     userdata.add(singledata);//将该数据加入数组中
@@ -185,28 +185,25 @@ Future<shelf.Response> getComment(shelf.Request request) async{
 Future<shelf.Response> postComment(shelf.Request request) async{
   //接受post过来的数据
   String newcomment=await request.readAsString();
-  print(newcomment);
-
-  //把这个post过来的数据插入数据库
-  String comments1=await request.readAsString();
-  if(responseText == '0'){
-    return (new shelf.Response.ok('success',headers: _headers));
-  }
-  else{
-    return (new shelf.Response.ok('failure',headers: _headers));
-  }
+  insertDataBaseStu(newcomment);
+//  if(responseText == '0'){
+//    return (new shelf.Response.ok('success',headers: _headers));
+//  }
+//  else{
+//    return (new shelf.Response.ok('failure',headers: _headers));
+//  }
   //todo 写入数据库成功则responseText值为‘0’，否则是‘$error’（错误的内容）
 }
 insertDataBaseStu(data) async{
-  int id;
-  String comment;
-  Map realdata=JSON.decode(data);
-  id=realdata['id'];
-  comment=realdata['comment'];
+  //int id;
+//  String comment;
+//  Map realdata=JSON.decode(data);
+  //id=realdata['id'];
+//  comment=realdata['comment'];
 
   //todo 将数据存入数据库
-  var query=await pool.prepare('insert into comment(id,comment) values(?,?)');
-  await query.execute([id,comment,'stu']).then((result){
+  var query=await pool.prepare('insert into comment(comment) values(?)');
+  await query.execute([data,'stu']).then((result){
     print('${result.insertId}');//如果插入成功，这会是0，否则会报错
     responseText='${result.insertId}';
   }).catchError((error){
