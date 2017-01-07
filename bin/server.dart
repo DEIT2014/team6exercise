@@ -42,7 +42,7 @@ Future main() async{
   var myRouter = router()
     ..get('/stu/id',stuID)//获取学生的姓名
     ..get('/stu/faculty',stuFaculty)//获取学生的专业
-    ..get('/stu/course',stuCourse)//获取学生选取的课程
+   // ..get('/stu/course',stuCourse)//获取学生选取的课程
     ..post('/stu/submitHomework',stuSubHomwork)//学生提交作业
     ..get('/teacher/id',teacherID)//获取老师的姓名
     ..post('/postInfo_basic/',postInfo_basic)//注册界面，注册账号，密码和身份
@@ -102,9 +102,8 @@ stuID(request) async{
 
 ////todo：实现注册功能功能
 postInfo_basic(request) async{
-
-
-
+//首先要用键盘键入新用户的用户名，密码，确认密码和身份选择
+//然后将数据传到服务器，接着由服务器传到数据库作为新记录存储，登录时再和数据库里面的用户名和密码进行比较登陆
 
 }
 ////todo：实现post功能
@@ -137,29 +136,44 @@ myHandler(request) {
   var age = getPathParameter(request, 'age');
   return new shelf.Response.ok("Hello $name of age $age");
 }
-teacherID(request) {
+teacherID(request) async{
   ///todo:获取老师的姓名
-  var name = getPathParameter(request, 'name');
-  var age = getPathParameter(request, 'age');
-  return new shelf.Response.ok("Hello $name of age $age");
+  var name_teacher = getPathParameter(request, 'name_teacher');
+  var career = getPathParameter(request, 'career');
+  var result=await pool.query('select id from basic_info');
+  //此处应该要加上一句判断语句，选择career为teacher的用户，显示它的用户名
+  await result.forEach((row) {
+    name_teacher={
+    '"name"':'"${row.name}"'
+   };
+});
+return (new shelf.Response.ok(name_teacher.toString(),headers: _headers));
 }
-stuFaculty(request) {
+
+
+stuFaculty(request) async{
 //todo:获取学生的专业
+  var result=await pool.query('select id,name,password,career from basic_info');
   var name = getPathParameter(request, 'name');
   var faculty = getPathParameter(request, 'faculty');
-  return new shelf.Response.ok("Hello $name of faculty $faculty");
+  //此处应该要加上一句判断语句，name和课程要相匹配，不过这一功能现在不予实现
+  await result.forEach((row) {
+    faculty={
+      '"career"':'"${row.career}"'
+    };
+   //将该数据加入数组中
+    });
+  return (new shelf.Response.ok(faculty.toString(),headers: _headers));
 }
-stuCourse(request) {
+/*stuCourse(request) {
   ///todo:获取学生的所选课程
   var name = getPathParameter(request, 'name');
   var course = getPathParameter(request, 'course');
   return new shelf.Response.ok("Hello $name of course $course");
-}
+}*/
 scanComputer(request) {
   ///todo:实现浏览本地电脑文件的功能
-  var name = getPathParameter(request, 'name');
-  var scanComputer = getPathParameter(request, 'scanComputer');
-  return new shelf.Response.ok("Hello $name of scanComputer $scanComputer");
+ //这个功能不需要用到url，是靠form上传文件,这是个电脑里面自带的文件浏览的功能，我们要去查找相应的文件
 }
 
 stuSubHomwork(request) {
@@ -172,10 +186,12 @@ stuSubHomwork(request) {
 
 responseRoot(request){
   ///todo:获取老师的用户名，显示在页头
+  //这个功能和get用户名的功能相同，可以不用写这个函数的功能了
   return new shelf.Response.ok("Hello teacher!");
 
-
 }
+
+
 //把这个post过来的数据有返回给客户端
 Future<shelf.Response> getComment(shelf.Request request) async{
   //todo 在某同学第几条作业下获取已有评论
