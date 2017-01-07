@@ -1,3 +1,5 @@
+
+
 import 'dart:io';
 import 'package:sqljocky/sqljocky.dart';
 import 'package:sqljocky/utils.dart';
@@ -56,7 +58,7 @@ Future main() async{
 
 
   //李志伟
-   // ..get('/tea/gethprojectlist/{schoolnumber}/',getprojectlist)//获取老师发布的作业列表
+  // ..get('/tea/gethprojectlist/{schoolnumber}/',getprojectlist)//获取老师发布的作业列表
     ..get('/tea/gethprojectlist/{schoolnumber}/gethomeworklist',gethomeworklist)//获取老师收到的学生的作业列表
     ..get('/tea/rojectlist/{schoolnumber}/gethomeworklist/gethomeworkdetail',gethomeworkdetail)//获取学生提交的一份作业的具体信息
     ..post('/tea/postjudge/{teaschoolnumber}/{stuschoolnumber}/{id}/',postjudge)//提交教师的评价
@@ -74,6 +76,7 @@ Future main() async{
   });
   print("Listening for GET,POST and PUT on http://$HOST:$PORT");//便于从console框中直接进入url,可在语句最后加上“/后缀”检验该URL是否取到数据，调试状态下勿删。
 }
+
 ////todo:获取学生的姓名
 stuID(request) async{
   //连接我的数据库,将取出的数据存入到一个列表中
@@ -95,9 +98,35 @@ stuID(request) async{
   return (new shelf.Response.ok(finalinfo_stulist.toString(),headers: _headers));
 }
 
+
 ////todo：实现post功能
 postInfo_basic(request){
 
+
+
+
+}
+////todo：实现post功能
+Future<String> getDataFromDb() async {
+  var results = await pool.query('select username from user');
+  int i = 0;
+  results.forEach((row) {
+    //列出所有用户名
+    String index = "Username" + i.toString();
+    data[index] = row.username;
+    i++;
+  });
+  String jsonData = JSON.encode(data);
+  return jsonData;
+}
+
+Future<shelf.Response> Info_basic(shelf.Request request) async {
+  //从数据库获取数据
+  String userName = await request.readAsString();
+  print(userName);
+  //把这个post过来的数据有返回给客户端
+  return new shelf.Response.ok(
+      'server successfully get data from database: "${userName}');
 }
 
 
@@ -148,9 +177,9 @@ Future<shelf.Response> getComment(shelf.Request request) async{
   //todo 在某同学第几条作业下获取已有评论
   //连接我的数据库
   var _headers1={"Access-Control-Allow-Origin":"*",
-  "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
-  "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept",
-  "Content-Type":"application/json"
+    "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+    "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept",
+    "Content-Type":"application/json"
   };
 
 
@@ -160,7 +189,7 @@ Future<shelf.Response> getComment(shelf.Request request) async{
   var userdata = new List(); //存放所有用户的数据
 
 
- //var com1 = new com();
+  //var com1 = new com();
   await getdata.forEach((row) {
     singledata={'"comment"':'"${row.comment}"'};//按照这个格式存放单条数据
     userdata.add(singledata);//将该数据加入数组中
@@ -228,19 +257,19 @@ getScore(request){
 //李志伟
 getprolist(request) async{
   //todo 取老师发布的作业列表
-    var _headers1={"Access-Control-Allow-Origin":"*",
-      "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
-      "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept",
-      "Content-Type":"application/json"
-    };
-    var data = await pool.query('select question from homework');
-    var com1 = new com();
-    await data.forEach((row) {
-      com1.id = row.id;
-      com1.comment = row.comment;
-    });
-    String comJson =encode(com1);
-    return (new shelf.Response.ok(comJson.toString(),headers: _headers1));
+  var _headers1={"Access-Control-Allow-Origin":"*",
+    "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+    "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept",
+    "Content-Type":"application/json"
+  };
+  var data = await pool.query('select question from homework');
+  var com1 = new com();
+  await data.forEach((row) {
+    com1.id = row.id;
+    com1.comment = row.comment;
+  });
+  String comJson =encode(com1);
+  return (new shelf.Response.ok(comJson.toString(),headers: _headers1));
 }
 gethomeworklist(request){
   //todo 获取老师收到的学生的作业列表

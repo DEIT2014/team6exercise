@@ -21,7 +21,7 @@
 </section>
 <div id="mainbody">
     <section id="loginpage">
-       <!-- <div id="title" align="center">华东师范大学作业评价工具</div>-->
+        <!-- <div id="title" align="center">华东师范大学作业评价工具</div>-->
         <div id="blank"></div>
         <form id="form1" name="form1" method="post" action="">
             <label> <br />
@@ -42,40 +42,40 @@
     </section>
 
 
-<!--注册界面-->
+    <!--注册界面-->
     <section id="loguppage">
         <div  id="register_border"  height="100px"></div>
         <div class="register" align="center">
-      <!--<img src="2.jpg"  align="center"  width="400px" height="300px">-->
-        <p align="center">作业评价小工具</p>
-        <p>注册新账号：</p>
-        <table>
-            form上传文件
-            <tr>
-                <td>用户名：</td>
-                <td><input name="register_username" type="text" /></td>
-            </tr>
-            <tr>
-                <td>密码：</td>
-                <td><input name="register_password" type="password" /></td>
-            </tr>
-            <tr>
-                <td>确认密码：</td>
-                <td><input name="register_password" type="password" /></td>
-            </tr>
-            <tr>
-                <td>登陆身份：</td>
-                <td>
-                    <select onchange="if(this.selectedIndex!=0)">
-                        <option selected></option>
-                        <option>教师</option>
-                        <option>学生</option>
-                    </select>
-                </td>
-            </tr>
-            <tr><td></td><td><button class="form1zbuttom" ><a href="#loginpage" id="confirbu">确认注册</a></button></td></tr>
-        </table>
-    </div></section>
+            <!--<img src="2.jpg"  align="center"  width="400px" height="300px">form上传文件-->
+
+            <p>注册新账号：</p>
+            <table>
+
+                <tr>
+                    <td>用户名：</td>
+                    <td><input name="register_username" type="text" /></td>
+                </tr>
+                <tr>
+                    <td>密码：</td>
+                    <td><input name="register_password" type="password" /></td>
+                </tr>
+                <tr>
+                    <td>确认密码：</td>
+                    <td><input name="register_password1" type="password" /></td>
+                </tr>
+                <tr>
+                    <td>登陆身份：</td>
+                    <td>
+                        <select onchange="if(this.selectedIndex!=0)">
+                            <option selected></option>
+                            <option>教师</option>
+                            <option>学生</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr><td></td><td><button class="form1zbuttom"  id="confirm" ><a href="#loginpage" id="confirbu">确认注册</a></button></td></tr>
+            </table>
+        </div></section>
     <!--//教师评价页面-->
     <section id="teapage">
         <div id="prolist">
@@ -226,26 +226,26 @@
 
 
     <section id="posthomework">
-       <!-- <p  align="right">你好，XX！|<a id="logoutbu1">注销 </a></p>-->
+        <!-- <p  align="right">你好，XX！|<a id="logoutbu1">注销 </a></p>-->
         <div class="posthomework1">
-        <p>作业提交:</p>
-        <p>截止日期：2016年12月31日   满分：100分</p>
-        <p>文本提交: </p>
-        <form  name="form1" method="post" action="">
-            <label for="writeText"></label>
-            <textarea name="writeText" id="writeText" cols="45" rows="5"></textarea>
-        </form>
-        <p>添加附件：
-            <label for="attachfile_text"></label>
-            <input type="text" name="attachfile_text" id="attachfile_text" />
-            <input type="submit" name="scan" id="scan2" value="浏览我的电脑" />
-        </p>
-        <p>
-            <input type="submit" style="margin-left:300px" name="cancel" id="cancel" value="取消" />
-            <input type="submit" style="margin-left:30px" name="post" id="post" value="提交" />
-        </p>
+            <p>作业提交:</p>
+            <p>截止日期：2016年12月31日   满分：100分</p>
+            <p>文本提交: </p>
+            <form  name="form1" method="post" action="">
+                <label for="writeText"></label>
+                <textarea name="writeText" id="writeText" cols="45" rows="5"></textarea>
+            </form>
+            <p>添加附件：
+                <label for="attachfile_text"></label>
+                <input type="text" name="attachfile_text" id="attachfile_text" />
+                <input type="submit" name="scan" id="scan2" value="浏览我的电脑" />
+            </p>
+            <p>
+                <input type="submit" style="margin-left:300px" name="cancel" id="cancel" value="取消" />
+                <input type="submit" style="margin-left:30px" name="post" id="post" value="提交" />
+            </p>
 
-        <p>&nbsp;</p>
+            <p>&nbsp;</p>
         </div>
     </section>
 
@@ -253,13 +253,13 @@
         <p>您的作业成绩已出，请看成绩与分析……</p>
         <p align="right"><div id="score">总分： 90</div></p>
         <div class="comment">
-        <div id="comments"></div>
-        <div id="newcomment"></div>
-        <p>凌菁老师：</p>
-        <textarea rows="4" id="commentInput"></textarea>
-        <br>
-        <button id="teaReview"></button>
-        <button id="return"><a id="combtn">回到主页面</a></button>
+            <div id="comments"></div>
+            <div id="newcomment"></div>
+            <p>凌菁老师：</p>
+            <textarea rows="4" id="commentInput"></textarea>
+            <br>
+            <button id="teaReview"></button>
+            <button id="return"><a id="combtn">回到主页面</a></button>
         </div><br>
     </section>
 </div>
@@ -292,66 +292,66 @@
 -->
 <!--评论区页面-吴怡雯-->
 <!--<div align="right" class="yhead">-->
-    <!--<p>你好，XX！|<button class="form2buttom">注销</button></p>-->
+<!--<p>你好，XX！|<button class="form2buttom">注销</button></p>-->
 <!--</div>-->
 <!--<br><br>-->
 <!--<section class="container">-->
-    <!--<p>您的作业成绩已出，请看成绩与分析……</p>-->
-    <!--<p align="right">总分：<div id="score"> 90</div></p>-->
-    <!--<div class="comment">-->
-        <!--<blockquote>-->
-            <!--<p>凌菁老师：</p>-->
-        <!--</blockquote>-->
-        <!--<textarea rows="4" id="commentInput"></textarea>-->
-        <!--<br>-->
-        <!--<button  class="teaReview">回复</button>-->
-    <!--</div>-->
-    <!--<br>-->
-    <!--&lt;!&ndash;<div class="comment">-->
-      <!--<blockquote>-->
-        <!--<p>小能：</p>-->
-      <!--</blockquote>-->
-      <!--<textarea rows="4" class="input">    谢谢凌菁老师的评语！</textarea>-->
-      <!--<br>-->
-      <!--<button class="teaReview">回复</button>-->
-    <!--</div>&ndash;&gt;-->
+<!--<p>您的作业成绩已出，请看成绩与分析……</p>-->
+<!--<p align="right">总分：<div id="score"> 90</div></p>-->
+<!--<div class="comment">-->
+<!--<blockquote>-->
+<!--<p>凌菁老师：</p>-->
+<!--</blockquote>-->
+<!--<textarea rows="4" id="commentInput"></textarea>-->
+<!--<br>-->
+<!--<button  class="teaReview">回复</button>-->
+<!--</div>-->
+<!--<br>-->
+<!--&lt;!&ndash;<div class="comment">-->
+<!--<blockquote>-->
+<!--<p>小能：</p>-->
+<!--</blockquote>-->
+<!--<textarea rows="4" class="input">    谢谢凌菁老师的评语！</textarea>-->
+<!--<br>-->
+<!--<button class="teaReview">回复</button>-->
+<!--</div>&ndash;&gt;-->
 <!--</section>-->
 
 <!--&lt;!&ndash;作业提交界面——杜谦&ndash;&gt;-->
-        <!--&lt;!&ndash; ///文件上传-->
-         <!--中间包括按钮，本地浏览文件，以及上传文件功能->-->
-         <!--1,页面布局问题-->
-            <!--2，添加按钮-->
-            <!--3，浏览电脑-->
-            <!--4，提交文件-->
-         <!--这四个函数组成作业提交的界面///&ndash;&gt;-->
+<!--&lt;!&ndash; ///文件上传-->
+<!--中间包括按钮，本地浏览文件，以及上传文件功能->-->
+<!--1,页面布局问题-->
+<!--2，添加按钮-->
+<!--3，浏览电脑-->
+<!--4，提交文件-->
+<!--这四个函数组成作业提交的界面///&ndash;&gt;-->
 
 
 <!--<div id="作业信息">-->
-    <!--<hr />-->
-    <!--<div>作业信息</div>-->
-    <!--<hr />-->
-    <!--<div id="截止日期">截止日期：2016年12月31日</div>-->
-    <!--<div id="满分">满分：100分</div></br>-->
-    <!--<p>&nbsp;</p>-->
-    <!--<div>你需要提交一份你对web编程课的感受</div>-->
+<!--<hr />-->
+<!--<div>作业信息</div>-->
+<!--<hr />-->
+<!--<div id="截止日期">截止日期：2016年12月31日</div>-->
+<!--<div id="满分">满分：100分</div></br>-->
+<!--<p>&nbsp;</p>-->
+<!--<div>你需要提交一份你对web编程课的感受</div>-->
 <!--</div>-->
 <!--<div id="作业提交">-->
-    <!--<hr />-->
-    <!--<div>作业提交</div>-->
-    <!--<hr />-->
-    <!--<div id="文本提交">文本提交</div>-->
-    <!--<p>-->
-    <!--<button  id="写入提交" >写入提交</button>-->
-    <!--<div id="附加文件">附加文件</div>-->
-    <!--<p>-->
-        <!--<button  id="scan">浏览我的电脑</button>-->
-    <!--</p>-->
-    <!--<div align="left">-->
-        <!--<p>&nbsp;</p>-->
-        <!--<p>添加注释：</p>-->
-    <!--</div>-->
-    <!--<textarea   id="注释文本框" dir="ltr" lang="zh" ></textarea>-->
+<!--<hr />-->
+<!--<div>作业提交</div>-->
+<!--<hr />-->
+<!--<div id="文本提交">文本提交</div>-->
+<!--<p>-->
+<!--<button  id="写入提交" >写入提交</button>-->
+<!--<div id="附加文件">附加文件</div>-->
+<!--<p>-->
+<!--<button  id="scan">浏览我的电脑</button>-->
+<!--</p>-->
+<!--<div align="left">-->
+<!--<p>&nbsp;</p>-->
+<!--<p>添加注释：</p>-->
+<!--</div>-->
+<!--<textarea   id="注释文本框" dir="ltr" lang="zh" ></textarea>-->
 <!--</div>-->
 
 
@@ -361,76 +361,78 @@
 <!--&lt;!&ndash;教师页面—李志伟&ndash;&gt;-->
 
 <!--<div id="teacherpage">-->
-    <!--<div class="STYLE1" id="project_list">-->
-        <!--<p>项目三：提交一个预定座位的小程序</p>-->
-        <!--<p>项目二：提交一个画图的小程序</p>-->
-        <!--<p>项目一：提交一个银行的服务器程序</p>-->
-    <!--</div>-->
-    <!--<div id="homework_list">-->
-        <!--<table width="100%" height="100" border="0" cellspacing="1">-->
-            <!--<tr>-->
-                <!--<td width="540"><span class="STYLE1">吴同学提交了项目三的作业</span></td>-->
-                <!--<td width="469" class="STYLE1">图书馆预定座位小程序</td>-->
-            <!--</tr>-->
-            <!--<tr>-->
-                <!--<td><span class="STYLE1">李同学提交了项目三的作业</span></td>-->
-                <!--<td><span class="STYLE1">电影院预定座位小程序</span></td>-->
-            <!--</tr>-->
-            <!--<tr>-->
-                <!--<td><span class="STYLE1">杜同学提交了项目三的作业</span></td>-->
-                <!--<td><span class="STYLE1">餐厅预定座位小程序</span></td>-->
-            <!--</tr>-->
-            <!--<tr>-->
-                <!--<td><span class="STYLE1">张同学提交了项目一的作业</span></td>-->
-                <!--<td><span class="STYLE1">电影院预定座位小程序</span></td>-->
-            <!--</tr>-->
-        <!--</table>-->
-    <!--</div>-->
+<!--<div class="STYLE1" id="project_list">-->
+<!--<p>项目三：提交一个预定座位的小程序</p>-->
+<!--<p>项目二：提交一个画图的小程序</p>-->
+<!--<p>项目一：提交一个银行的服务器程序</p>-->
+<!--</div>-->
+<!--<div id="homework_list">-->
+<!--<table width="100%" height="100" border="0" cellspacing="1">-->
+<!--<tr>-->
+<!--<td width="540"><span class="STYLE1">吴同学提交了项目三的作业</span></td>-->
+<!--<td width="469" class="STYLE1">图书馆预定座位小程序</td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td><span class="STYLE1">李同学提交了项目三的作业</span></td>-->
+<!--<td><span class="STYLE1">电影院预定座位小程序</span></td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td><span class="STYLE1">杜同学提交了项目三的作业</span></td>-->
+<!--<td><span class="STYLE1">餐厅预定座位小程序</span></td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td><span class="STYLE1">张同学提交了项目一的作业</span></td>-->
+<!--<td><span class="STYLE1">电影院预定座位小程序</span></td>-->
+<!--</tr>-->
+<!--</table>-->
+<!--</div>-->
 <!--</div>-->
 <!--&lt;!&ndash;教师评分页面—李志伟&ndash;&gt;-->
 <!--<div id="teacherjudge">-->
-    <!--<div id="stuhomework_list">-->
-        <!--<table width="100%" height="20" border="0" cellspacing="1">-->
-            <!--<tr>-->
-                <!--<td width="285"><span class="STYLE1">吴同学提交了项目三的作业</span></td>-->
-                <!--<td width="837" class="STYLE1"><p>图书馆预定座位小程序</p>-->
-                <!--</td>-->
-            <!--</tr>-->
-        <!--</table>-->
+<!--<div id="stuhomework_list">-->
+<!--<table width="100%" height="20" border="0" cellspacing="1">-->
+<!--<tr>-->
+<!--<td width="285"><span class="STYLE1">吴同学提交了项目三的作业</span></td>-->
+<!--<td width="837" class="STYLE1"><p>图书馆预定座位小程序</p>-->
+<!--</td>-->
+<!--</tr>-->
+<!--</table>-->
 
-        <!--<div id="homework_detail">-->
-            <!--<div id="homework_file">-->
-                <!--<p class="STYLE1">附件：图书馆预定座位小程序</p>-->
-            <!--</div>-->
-            <!--<div id="homework_word">-->
-                <!--<textarea name="word" cols="100" rows="8"></textarea>-->
-            <!--</div></div>-->
-    <!--</div>-->
+<!--<div id="homework_detail">-->
+<!--<div id="homework_file">-->
+<!--<p class="STYLE1">附件：图书馆预定座位小程序</p>-->
+<!--</div>-->
+<!--<div id="homework_word">-->
+<!--<textarea name="word" cols="100" rows="8"></textarea>-->
+<!--</div></div>-->
+<!--</div>-->
 
-    <!--<div id="judge">-->
-        <!--<div id="judge_score">-->
-            <!--<p class="STYLE1">评分</p>-->
-        <!--</div>-->
-        <!--<div id="score_number">-->
-            <!--<form id="form2" name="form1" method="post" action="">-->
-                <!--<label>-->
-                    <!--<input name="textfield" type="text" size="40" />-->
-                <!--</label>-->
-            <!--</form>-->
-        <!--</div>-->
-        <!--<div id="judge_reason">-->
-            <!--<p class="STYLE1">评分理由</p>-->
-        <!--</div>-->
-        <!--<div id="reason_word">-->
-            <!--<textarea name="judge_reason" cols="100" rows="3"></textarea>-->
-        <!--</div>-->
-        <!--<div id="submit">-->
-            <!--<button id="submitbutton"><p class="STYLE1">提交</p></button></bu>-->
-        <!--</div>-->
-    <!--</div>-->
+<!--<div id="judge">-->
+<!--<div id="judge_score">-->
+<!--<p class="STYLE1">评分</p>-->
+<!--</div>-->
+<!--<div id="score_number">-->
+<!--<form id="form2" name="form1" method="post" action="">-->
+<!--<label>-->
+<!--<input name="textfield" type="text" size="40" />-->
+<!--</label>-->
+<!--</form>-->
+<!--</div>-->
+<!--<div id="judge_reason">-->
+<!--<p class="STYLE1">评分理由</p>-->
+<!--</div>-->
+<!--<div id="reason_word">-->
+<!--<textarea name="judge_reason" cols="100" rows="3"></textarea>-->
+<!--</div>-->
+<!--<div id="submit">-->
+<!--<button id="submitbutton"><p class="STYLE1">提交</p></button></bu>-->
+<!--</div>-->
+<!--</div>-->
 <!--</div>-->
 
 <!--//教师评价页面—李志伟-->
 
 </body>
 </html>
+
+
