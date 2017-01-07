@@ -100,7 +100,7 @@ stuID(request) async{
 }
 
 
-////todo：实现post功能
+////todo：实现注册功能功能
 postInfo_basic(request) async{
 
 
