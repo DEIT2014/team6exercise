@@ -360,10 +360,43 @@ void onData(_) {
   }
 }
 
+void click2(MouseEvent e){
+  var url = 'http://localhost:8080/stu/faculty';
+  request = new HttpRequest();
+  request.onReadyStateChange.listen(onData2);
+  request.open('GET', url);
+  request.send(" jsonstring");
+}
+
+void onData2(_) {
+  if (request.readyState == HttpRequest.DONE && request.status == 200) {
+    var data=request.responseText;
+    var datalist=JSON.decode(data);//string(json)to map
+    var stuname=datalist[0]["name"];
+    querySelector("#faculty").text=stuname;
+  }
+}
+void click3(MouseEvent e){
+  var url = 'http://localhost:8080/teacher/id';
+  request = new HttpRequest();
+  request.onReadyStateChange.listen(onData3);
+  request.open('GET', url);
+  request.send(" jsonstring");
+}
+
+void onData3(_) {
+  if (request.readyState == HttpRequest.DONE && request.status == 200) {
+    var data=request.responseText;
+    var datalist=JSON.decode(data);//string(json)to map
+    var stuname=datalist[0]["name"];
+    querySelector("#teacherid").text=stuname;
+  }
+}
+
 
 //接下来是POST功能
 void click1(MouseEvent e){
-  var url = 'http://localhost:8080/register';
+  var url = 'http://localhost:8080/postInfo_basic/';
   request = new HttpRequest();
   request.onReadyStateChange.listen(writeDATA);
   request.open('POST', url);
@@ -375,7 +408,7 @@ void writeDATA(_) {
     var data=request.responseText;
     var datalist=JSON.decode(data);//string(json)to map
     var stuname=datalist[0]["number_stu"];
-    querySelector("#name").text=stuname;
+    querySelector("#register").text=stuname;
   }
 }
 
