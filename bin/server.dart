@@ -58,7 +58,7 @@ Future main() async{
 
 
   //李志伟
-  // ..get('/tea/gethprojectlist/{schoolnumber}/',getprojectlist)//获取老师发布的作业列表
+    ..get('/tea/gethprojectlist/{schoolnumber}/',getprojectlist)//获取老师发布的作业列表
     ..get('/tea/gethprojectlist/{schoolnumber}/gethomeworklist',gethomeworklist)//获取老师收到的学生的作业列表
     ..get('/tea/rojectlist/{schoolnumber}/gethomeworklist/gethomeworkdetail',gethomeworkdetail)//获取学生提交的一份作业的具体信息
     ..post('/tea/postjudge/{teaschoolnumber}/{stuschoolnumber}/{id}/',postjudge)//提交教师的评价
@@ -101,14 +101,14 @@ stuID(request) async{
 
 
 ////todo：实现post功能
-postInfo_basic(request){
+postInfo_basic(request) async{
 
 
 
 
 }
 ////todo：实现post功能
-/*Future<String> getDataFromDb() async {
+Future<String> getDataFromDb() async {
   var results = await pool.query('select username from user');
   int i = 0;
   results.forEach((row) {
@@ -128,7 +128,7 @@ Future<shelf.Response> Info_basic(shelf.Request request) async {
   //把这个post过来的数据有返回给客户端
   return new shelf.Response.ok(
       'server successfully get data from database: "${userName}');
-}*/
+}
 
 
 //todo:把从数据库取出的数据连接到客户端，并在客户端上显示出来
@@ -137,8 +137,11 @@ myHandler(request) {
   var age = getPathParameter(request, 'age');
   return new shelf.Response.ok("Hello $name of age $age");
 }
-teacherID(request){
+teacherID(request) {
   ///todo:获取老师的姓名
+  var name = getPathParameter(request, 'name');
+  var age = getPathParameter(request, 'age');
+  return new shelf.Response.ok("Hello $name of age $age");
 }
 stuFaculty(request) {
 //todo:获取学生的专业
@@ -244,19 +247,33 @@ insertDataBaseStu(data) async{
 }
 
 getID(request){
-  //todo 获取身份信息
+  //todo 获取登陆身份信息
+  var name = getPathParameter(request, 'name');
+  var password= getPathParameter(request, 'password');
+  return new shelf.Response.ok("Hello $name of password $password");
 }
 stuPostComment(request){
   ///todo 在某同学第几条作业下提交学生的评论
+  var comment = getPathParameter(request, 'comment');
+  var num= getPathParameter(request, 'num');
+  return new shelf.Response.ok("Hello $comment of  $num");
 }
 postID(request){
   //todo 提交身份信息
+  var name = getPathParameter(request, 'name');
+  var password= getPathParameter(request, 'password');
+  return new shelf.Response.ok("Hello $name of password $password");
+
 }
 getScore(request){
   //todo 在某同学第几条作业下获取分数
+  var name = getPathParameter(request, 'name');
+  var score= getPathParameter(request, 'score');
+  return new shelf.Response.ok("Hello $name of password $score");
+
 }
 //李志伟
-getprolist(request) async{
+getprojectlist(request) async{
   //todo 取老师发布的作业列表
   var _headers1={"Access-Control-Allow-Origin":"*",
     "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
@@ -272,12 +289,21 @@ getprolist(request) async{
   String comJson =encode(com1);
   return (new shelf.Response.ok(comJson.toString(),headers: _headers1));
 }
+
 gethomeworklist(request){
   //todo 获取老师收到的学生的作业列表
+  var career=getPathParameter(request, 'career');
+  var homework= getPathParameter(request, 'homework');
+  return new shelf.Response.ok("Hello $career of password $homework");
+
 }
 gethomeworkdetail(request){
   //todo 获取学生提交的一份作业的具体信息
+
 }
 postjudge(request){
 //todo 提交教师的评价
+  var name=getPathParameter(request, 'name');
+  var judge= getPathParameter(request, 'judge');
+  return new shelf.Response.ok("Hello $name of password $judge");
 }
