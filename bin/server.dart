@@ -20,7 +20,7 @@ import 'package:jsonx/jsonx.dart';
 String responseText;//注册时返回到客户端的数据：写入数据库成功，返回0；失败，返回错误值，不为0
 Map<String, String> data = new Map();
 final HOST = "127.0.0.1"; // 便于从console框中直接进入url，调试状态下勿删。
-final PORT = 3320;//便于从console框中直接进入url，调试状态下勿删。
+final PORT = 8080;//便于从console框中直接进入url，调试状态下勿删。
 var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test', password: '111111', db: 'evaltool', max: 5);
 var _headers={"Access-Control-Allow-Origin":"*",
   "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
@@ -67,15 +67,15 @@ Future main() async{
   //配置shelf中间件和路由handle
   var handler = const shelf.Pipeline()
       .addMiddleware(shelf.logRequests())
-      .addMiddleware(
-      shelf_cors.createCorsHeadersMiddleware(corsHeaders: _headers))
+      .addMiddleware(shelf_cors.createCorsHeadersMiddleware(corsHeaders: _headers))
       .addHandler(routerHandler);
 
-  io.serve(handler, 'localhost', 3320).then((server) {
+  io.serve(handler, 'localhost', 8080).then((server) {
     print('Serving at http://${server.address.host}:${server.port}');
   });
   print("Listening for GET,POST and PUT on http://$HOST:$PORT");//便于从console框中直接进入url,可在语句最后加上“/后缀”检验该URL是否取到数据，调试状态下勿删。
 }
+
 
 ////todo:获取学生的姓名
 stuID(request) async{
@@ -83,6 +83,7 @@ stuID(request) async{
   var singledata=new Map<String,String>();//先建一个数组存放一条数据
   var info_stulist=new List();
   var finalinfo_stulist=new Map<String,String>();
+  //var pool = new ConnectionPool(host:"localhost" , port: 3306, user: 'test', password: '111111', db: 'evaltool', max: 5);
   var result=await pool.query('select id,name,password,career from basic_info');
   await result.forEach((row) {
     singledata={
@@ -107,7 +108,7 @@ postInfo_basic(request){
 
 }
 ////todo：实现post功能
-Future<String> getDataFromDb() async {
+/*Future<String> getDataFromDb() async {
   var results = await pool.query('select username from user');
   int i = 0;
   results.forEach((row) {
@@ -127,7 +128,7 @@ Future<shelf.Response> Info_basic(shelf.Request request) async {
   //把这个post过来的数据有返回给客户端
   return new shelf.Response.ok(
       'server successfully get data from database: "${userName}');
-}
+}*/
 
 
 //todo:把从数据库取出的数据连接到客户端，并在客户端上显示出来

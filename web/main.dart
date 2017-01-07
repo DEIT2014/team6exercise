@@ -244,7 +244,7 @@ void showthreedu(RouteEvent e) {
 
 //这两段函数是GET功能
 void click(MouseEvent e){
-  var url = 'http://localhost:3320/stu/id';
+  var url = 'http://localhost:8080/stu/id';
   request = new HttpRequest();
   request.onReadyStateChange.listen(onData);
   request.open('GET', url);
@@ -255,15 +255,15 @@ void onData(_) {
   if (request.readyState == HttpRequest.DONE && request.status == 200) {
     var data=request.responseText;
     var datalist=JSON.decode(data);//string(json)to map
-    var stuname=datalist[0]["number_stu"];
-    querySelector("#name").text=stuname;
+    var stuname=datalist[0]["name"];
+    querySelector("#yonghuming").text=stuname;
   }
 }
 
 
 //接下来是POST功能
 void click1(MouseEvent e){
-  var url = 'http://localhost:3320/register';
+  var url = 'http://localhost:8080/register';
   request = new HttpRequest();
   request.onReadyStateChange.listen(writeDATA);
   request.open('POST', url);
