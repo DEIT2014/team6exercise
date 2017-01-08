@@ -90,12 +90,16 @@ section.selected {
     display: block;
 }
 
-.warning {
+#warning {
     color: red;
 }
 
-
-
+#comments{
+    font-size: 14px;
+}
+#newcomment{
+    font-size: 14px;
+}
 
 
 #title {
@@ -126,11 +130,12 @@ section.selected {
     padding-top: 30px;
 }
 #teaReview{
-    font-size: 40pt;
-    text-align: center;
-    margin-top: 140px;
-    -webkit-user-select: none;
-    user-select: none;
+    /*font-size: 40pt;*/
+    /*text-align: center;*/
+    /*margin-top: 140px;*/
+    /*-webkit-user-select: none;*/
+    /*user-select: none;*/
+    margin-left: 600px;
 }
 #return{
     font-size: 40pt;
@@ -183,15 +188,36 @@ section.selected {
     width: 80%;
 }
 
-.teaReview {
-    margin-left: 800px;
-}
+
 
 .container {
     left: 15%;
     right: 15%;
     margin-right: 15%;
     margin-left: 15%;
+}
+#register_border{
+    height: 100px;
+}
+.register{
+    margin-left: 370px;
+    width: 300px;
+    height:250px;
+    background-image: url("2.jpg");
+    border: 1px solid lightblue;
+}
+.background{
+    margin-left: 370px;
+    width: 970px;
+    height: 122px;
+    background-image: url("BEIJING.png");
+}
+.posthomework1{
+    padding-left: 350px;
+    padding-top: 30px;
+}
+#blank{
+    height: 50px;
 }
 
 /*.form2buttom {*/
