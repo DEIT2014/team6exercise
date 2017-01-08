@@ -1,3 +1,4 @@
+
 // Copyright (c) 2016, <your name>. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
@@ -12,10 +13,10 @@ import 'package:logging/logging.dart';
 import 'package:route_hierarchical/client.dart';
 InputElement newcomment;
 var host = "localhost:3320";
-
+HttpRequest request;
 void main() {
   querySelector('#warning').remove();
-
+  newcomment= querySelector('#commentInput');
 
   var router = new Router(useFragment: true);
 
