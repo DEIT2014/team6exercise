@@ -13,6 +13,12 @@ import 'dart:async';
 import 'dart:convert' show JSON;
 import 'package:team6exercise/comment-class.dart';
 import 'package:jsonx/jsonx.dart';
+
+
+
+
+
+=======
 /* A simple web server that responds to **ALL** GET requests by returning
  * Browse to it using http://localhost:3320
  * Provides CORS headers, so can be accessed from any other page
@@ -27,6 +33,7 @@ var _headers={"Access-Control-Allow-Origin":"*",
   "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept",
   "Content-Type":"application/json",
 };
+
 
 Future main() async{
 //get是client发送request，让server从数据库取数据发送到相应的url，main.dart将数据放在相应的页面位置
@@ -58,11 +65,14 @@ Future main() async{
 
 
   //李志伟
-    ..get('/tea/gethprojectlist/{schoolnumber}/',getprojectlist)//获取老师发布的作业列表
-    ..get('/tea/gethprojectlist/{schoolnumber}/gethomeworklist',gethomeworklist)//获取老师收到的学生的作业列表
-    ..get('/tea/rojectlist/{schoolnumber}/gethomeworklist/gethomeworkdetail',gethomeworkdetail)//获取学生提交的一份作业的具体信息
+    ..get('/tea/gethprolist/{schnum}/',getprolist)//获取老师发布的作业列表
+    ..get('/tea/gethprolist/{schnum}/gethomeworklist',gethomeworklist)//获取老师收到的学生的作业列表
+    ..get('/tea/prolist/{schnum}/gethomeworklist/gethomeworkdetail',gethomeworkdetail)//获取学生提交的一份作业的具体信息
     ..post('/tea/postjudge/{teaschoolnumber}/{stuschoolnumber}/{id}/',postjudge)//提交教师的评价
     ..get('/{name}{?age}', myHandler);
+
+
+
   var routerHandler = myRouter.handler;
   //配置shelf中间件和路由handle
   var handler = const shelf.Pipeline()
@@ -73,6 +83,7 @@ Future main() async{
   io.serve(handler, 'localhost', 8080).then((server) {
     print('Serving at http://${server.address.host}:${server.port}');
   });
+
   print("Listening for GET,POST and PUT on http://$HOST:$PORT");//便于从console框中直接进入url,可在语句最后加上“/后缀”检验该URL是否取到数据，调试状态下勿删。
 }
 
@@ -289,6 +300,8 @@ getScore(request){
 
 }
 //李志伟
+
+
 getprojectlist(request) async{
   //todo 取老师发布的作业列表
   var _headers1={"Access-Control-Allow-Origin":"*",
@@ -304,6 +317,7 @@ getprojectlist(request) async{
   });
   String comJson =encode(com1);
   return (new shelf.Response.ok(comJson.toString(),headers: _headers1));
+
 }
 
 gethomeworklist(request){
