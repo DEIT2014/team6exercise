@@ -347,29 +347,51 @@ void comment(){
   //todo 显示评论
 }
 //教师页面—李志伟
-
 void projectlist() {
-  //todo 获取老师发布的作业列表
+  var url = 'http://localhost:3320/teapage';
+  request = new HttpRequest();
+  request.onReadyStateChange.listen(onData);
+  request.open('GET', url);
+  request.send(" jsonstring");
 }
 
 void homeworklist() {
-  //todo 获取老师收到的学生的作业列表
+  var url = 'http://localhost:3320/teapage/homeworklist';
+  request = new HttpRequest();
+  request.onReadyStateChange.listen(onData);
+  request.open('GET', url);
+  request.send(" jsonstring");
 }
 
 void stuhomeworklist() {
-  //todo 获取学生提交的作业列表
+  var url = 'http://localhost:3320/teapage/homeworklist/stuhomeworklist';
+  request = new HttpRequest();
+  request.onReadyStateChange.listen(onData);
+  request.open('GET', url);
+  request.send(" jsonstring");
 }
 
 void homeworkdetail() {
-  //todo 获取学生提交的一份作业的具体信息
+  var url = 'http://localhost:3320/teapage/homeworklist/stuhomeworklist/homeworkdetail';
+  request = new HttpRequest();
+  request.onReadyStateChange.listen(onData);
+  request.open('GET', url);
+  request.send(" jsonstring");
 }
-//评价页面—李志伟
 
 void judge() {
-  //todo 教师的评价
+  var url = 'http://localhost:3320/teapage/judgepage';
+  request = new HttpRequest();
+  request.onReadyStateChange.listen(onData);
+  request.open('GET', url);
+  request.send(" jsonstring");
 }
 
 void submitbutton() {
-  //todo 提交
+  var url = 'http://localhost:3320/teapage/';
+  request = new HttpRequest();
+  request.onReadyStateChange.listen(onData);
+  request.open('GET', url);
+  request.send(" jsonstring");
 }
 

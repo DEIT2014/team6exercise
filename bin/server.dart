@@ -59,6 +59,7 @@ Future main() async{
 
   print("Listening for GET,POST and PUT on http://$HOST:$PORT");//便于从console框中直接进入url,可在语句最后加上“/后缀”检验该URL是否取到数据，调试状态下勿删。
 }
+
 ////todo:获取学生的姓名
 stuID(request) async{
   //连接我的数据库,将取出的数据存入到一个列表中
@@ -192,12 +193,44 @@ prolist.add(pro);//将该数据加入数组中
 endprolist={'"prolist"':prolist};
 return (new Response.ok(endprolist.toString(),headers: _headers));
 }
+
 gethomeworklist(request){
   //todo 获取老师收到的学生的作业列表
+  var pro=new Map<String,String>();//存放单个用户数据
+  var prolist=new List();//存放所有用户的数据
+  var endprolist=new Map<String,String>();//存放最终的用户数据
+  var pool=new ConnectionPool(host:'localhost',port:3306,user: 'test', password: '111111', db: 'evaltool',max:5);
+  var data= await pool.query('select id,question from homework');
+  await data.forEach((row){
+pro={'"id"':'"${row.id}"','"question"':'"${row.question}"'};
+prolist.add(pro);//将该数据加入数组中
+});
+endprolist={'"prolist"':prolist};
+return (new Response.ok(endprolist.toString(),headers: _headers));
 }
+
 gethomeworkdetail(request){
   //todo 获取学生提交的一份作业的具体信息
+  var homeworkdetail=new Map<String,String>();
+  var homeworkdetail1=new List();
+  var pool=new ConnectionPool(host:'localhost',port:3306,user: 'test', password: '111111', db: 'evaltool',max:5);
+  var data= await pool.query('select id,question from homework');
+  await data.forEach((row){
+homeworkdetail={'"answer"':'"${row.answer}"'};
+homeworkdetail.add();//将该数据加入数组中
+});
+return (new Response.ok(homeworkdetail1.toString(),headers: _headers));
 }
+
 postjudge(request){
 //todo 提交教师的评价
+  var judge=new Map<String,String>();
+  var judge1=new List();
+  var pool=new ConnectionPool(host:'localhost',port:3306,user: 'test', password: '111111', db: 'evaltool',max:5);
+  var data= await pool.query('select score,judge from homework');
+  await data.forEach((row){
+judge={'"score"':'"${row.score}"','"judge"':'"${row.judge}"'};
+judge1.add(judge);//将该数据加入数组中
+});
+return (new Response.ok(judge1.toString(),headers: _headers));
 }

@@ -8,6 +8,17 @@
 >你在创意阶段所做的贡献是什么？
 >*此部分每组同学之间可以有相同的内容*，总字数不能少于1000字。
 
+## 原型图片
+![new mockup 3](https://cloud.githubusercontent.com/assets/22018427/21747367/b01333d8-d59f-11e6-99d7-1ccd821ca8a5.png)
+![teacher](https://cloud.githubusercontent.com/assets/22018427/21747365/afe4a568-d59f-11e6-91f8-f81f9ca3c154.png)
+![judge](https://cloud.githubusercontent.com/assets/22018427/21747366/afe8b900-d59f-11e6-9835-9e34129c8b3b.png)
+![new mockup 1 alternate 391r](https://cloud.githubusercontent.com/assets/22018427/21747368/b02c0a52-d59f-11e6-877d-be9a949d0572.png)
+![new mockup 2](https://cloud.githubusercontent.com/assets/22018427/21747369/b0bcbebc-d59f-11e6-9985-2ff0f6968c5b.png)
+
+## 我在创意阶段所做的贡献
+>我们小组的创意来源于我的一门期末作业，因此主要是我提出的。之后我们小组一起对功能进行完善。
+我的贡献主要是：1，提出主题；2.对项目的模块和功能进行完善。
+
 ## 针对人群
 >ECNU作业评价小工具的针对人群 ，就是华东师范大学的学生和老师们，可以通过我们的小工具进行作业的发布、提交、评价和交流。
 
@@ -513,29 +524,53 @@ void showthreedu(RouteEvent e) {
   querySelector('#three').classes.remove('selected');
   querySelector('#threedu').classes.add('selected');
 }
-
+///自动获取教师发布的作业信息
 void projectlist() {
-  //todo 获取老师发布的作业列表
+  var url = 'http://localhost:3320/teapage';
+  request = new HttpRequest();
+  request.onReadyStateChange.listen(onData);
+  request.open('GET', url);
+  request.send(" jsonstring");
 }
-
+///自动获取某一项的作业信息
 void homeworklist() {
-  //todo 获取老师收到的学生的作业列表
+  var url = 'http://localhost:3320/teapage/homeworklist';
+  request = new HttpRequest();
+  request.onReadyStateChange.listen(onData);
+  request.open('GET', url);
+  request.send(" jsonstring");
 }
-
+///自动获取学生提交的作业信息
 void stuhomeworklist() {
-  //todo 获取学生提交的作业列表
+  var url = 'http://localhost:3320/teapage/homeworklist/stuhomeworklist';
+  request = new HttpRequest();
+  request.onReadyStateChange.listen(onData);
+  request.open('GET', url);
+  request.send(" jsonstring");
 }
-
+///获取学生提交的作业详情
 void homeworkdetail() {
-  //todo 获取学生提交的一份作业的具体信息
+  var url = 'http://localhost:3320/teapage/homeworklist/stuhomeworklist/homeworkdetail';
+  request = new HttpRequest();
+  request.onReadyStateChange.listen(onData);
+  request.open('GET', url);
+  request.send(" jsonstring");
 }
-
+///自动获取教师的评价信息
 void judge() {
-  //todo 教师的评价
+  var url = 'http://localhost:3320/teapage/judgepage';
+  request = new HttpRequest();
+  request.onReadyStateChange.listen(onData);
+  request.open('GET', url);
+  request.send(" jsonstring");
 }
-
+///提交按钮，转到教师的主页面
 void submitbutton() {
-  //todo 提交
+  var url = 'http://localhost:3320/teapage/';
+  request = new HttpRequest();
+  request.onReadyStateChange.listen(onData);
+  request.open('GET', url);
+  request.send(" jsonstring");
 }
 
 ```
@@ -543,10 +578,67 @@ void submitbutton() {
 ```dart
 ///主函数
 main(){
-var element;
+  ..get('/tea/gethprolist/{schnum}/',getprolist)//获取老师发布的作业列表
+    ..get('/tea/gethprolist/{schnum}/gethomeworklist',gethomeworklist)//获取老师收到的学生的作业列表
+    ..get('/tea/prolist/{schnum}/gethomeworklist/gethomeworkdetail',gethomeworkdetail)//获取学生提交的一份作业的具体信息
+    ..post('/tea/postjudge/{teaschoolnumber}/{stuschoolnumber}/{id}/',postjudge)//提交教师的评价
+    ..get('/{name}{?age}', myHandler);
 }
-///什么按钮的事件函数
-void click(event e){
+///自动获取老师发布的作业列表
+getprolist(request){
+  //todo 取老师发布的作业列表
+  var pro=new Map<String,String>();//存放单个用户数据
+  var prolist=new List();//存放所有用户的数据
+  var endprolist=new Map<String,String>();//存放最终的用户数据
+  var pool=new ConnectionPool(host:'localhost',port:3306,user: 'test', password: '111111', db: 'evaltool',max:5);
+  var data= await pool.query('select id,question from homework');
+  await data.forEach((row){
+pro={'"id"':'"${row.id}"','"question"':'"${row.question}"'};
+prolist.add(pro);//将该数据加入数组中
+});
+endprolist={'"prolist"':prolist};
+return (new Response.ok(endprolist.toString(),headers: _headers));
+}
+///自动获取老师收到的作业列表
+gethomeworklist(request){
+  //todo 获取老师收到的学生的作业列表
+  var pro=new Map<String,String>();//存放单个用户数据
+  var prolist=new List();//存放所有用户的数据
+  var endprolist=new Map<String,String>();//存放最终的用户数据
+  var pool=new ConnectionPool(host:'localhost',port:3306,user: 'test', password: '111111', db: 'evaltool',max:5);
+  var data= await pool.query('select id,question from homework');
+  await data.forEach((row){
+pro={'"id"':'"${row.id}"','"question"':'"${row.question}"'};
+prolist.add(pro);//将该数据加入数组中
+});
+endprolist={'"prolist"':prolist};
+return (new Response.ok(endprolist.toString(),headers: _headers));
+}
+///自动获取学生提交的作业
+gethomeworkdetail(request){
+  //todo 获取学生提交的一份作业的具体信息
+  var homeworkdetail=new Map<String,String>();
+  var homeworkdetail1=new List();
+  var pool=new ConnectionPool(host:'localhost',port:3306,user: 'test', password: '111111', db: 'evaltool',max:5);
+  var data= await pool.query('select id,question from homework');
+  await data.forEach((row){
+homeworkdetail={'"answer"':'"${row.answer}"'};
+homeworkdetail.add();//将该数据加入数组中
+});
+return (new Response.ok(homeworkdetail1.toString(),headers: _headers));
+}
+///获取老师的评价
+postjudge(request){
+//todo 提交教师的评价
+  var judge=new Map<String,String>();
+  var judge1=new List();
+  var pool=new ConnectionPool(host:'localhost',port:3306,user: 'test', password: '111111', db: 'evaltool',max:5);
+  var data= await pool.query('select score,judge from homework');
+  await data.forEach((row){
+judge={'"score"':'"${row.score}"','"judge"':'"${row.judge}"'};
+judge1.add(judge);//将该数据加入数组中
+});
+return (new Response.ok(judge1.toString(),headers: _headers));
 }
 
 ```
@@ -569,8 +661,13 @@ void click(event e){
 
 
 # 我的自评
-> 请你对自己的工作进行自评。
-> 如果用**一整天8小时**时间计算，你有信心再用多少天完成你未目前完成的功能？
+> 对自己的工作进行自评
+我对编程是比较感兴趣的，我认为通过一些代码能够实现各个功能是一件很神奇的事情。
+在web编程的课程学习的过程中，一方面我充分感受到了编程的神奇和奇妙之处，通过自己和小伙伴的努力一起做出了一个项目；
+第二，我的自主学习的能力有所增强，用老师的话说，知道了该怎样进兴学习。不应该像以往一样，只是等着老师给与我们答案，应该自己学会去主动寻找解决办法。我在这次项目中，就是自己去寻找解决办法，不只是依赖老师给我讲解。例如，我利用router实现了页面的切换功能，这给我带来了极大的自信心。
+第三，我更加认识到了坚持的重要性。web编程对我而言，是一门非常有挑战性的一门课。因为我的编程基础不是很好。但是我依然很努力的在研究，在这个过程中，坚持就显得至关重要。
+
+> 如果用**一整天8小时**时间计算，我认为再用3~5天才能完成目前未完成的功能。
 
 # 关于打印md文档为pdf
 >比部分是指导你如何打印你的这个文档为pdf文档的说明，不属于模板。
